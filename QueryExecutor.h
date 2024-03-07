@@ -12,10 +12,7 @@ namespace Query {
         sql::Connection* connection;
 
     public:
-        // Constructor
         QueryExecutor(sql::Connection* conn);
-
-        // Destructor
         ~QueryExecutor();
 
         // Select Queries

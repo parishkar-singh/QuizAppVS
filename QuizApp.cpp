@@ -8,7 +8,7 @@ int main() {
     MYSQL::Database* db = MYSQL::Database::getInstance(".env");
     if (!db || !db->connect()) {
         std::cerr << "Failed to connect to the database." << std::endl;
-        return 1; // Exit with error code
+        return 1; 
     }
     std::cout << "Connected to the database." << std::endl;
 

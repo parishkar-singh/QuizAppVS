@@ -6,8 +6,6 @@ namespace Query {
     QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {}
 
     QueryExecutor::~QueryExecutor() {}
-
-    // Select Queries
     void QueryExecutor::executeQueryAndPrint(const std::string& query) {
         try {
             sql::Statement* stmt = connection->createStatement();
