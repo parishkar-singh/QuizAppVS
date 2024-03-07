@@ -1,6 +1,7 @@
 #include "WhateverItTakes"
 
 namespace Auth {
+
     std::string AuthHandler::hashPassword(const std::string& password) {
         // Will impliment OPENSSL the moment this whole thing works 
         try {
