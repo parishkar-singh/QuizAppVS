@@ -1,7 +1,9 @@
 #pragma once
-//This file is mainly targetted for cpp file dont include this in .h 
+//This file is mainly targetted for cpp file dont include this in .h
+
 ///////////////////////////// c and windows headers
 #include <conio.h>
+#include <cstdlib>
 #include <windows.h>
 
 //////////////////////////// .h libraries
@@ -10,14 +12,17 @@
 #include "Console.h"
 #include "Database.h"
 #include "QueryExecutor.h"
+#include "ClipLoader.h"
 
 /////////////////////////// STL and Native Libraries
+#include <chrono>
 #include <fstream>
 #include <iostream>
-#include <string>
 #include <functional>
 #include <sstream>
 #include <stdexcept>
+#include <string>
+#include <thread>
 #include <vector>
 
 ////////////////////////// SQL libraries

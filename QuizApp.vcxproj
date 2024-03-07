@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Auth.cpp" />
+    <ClCompile Include="ClipLoader.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Bootstrap.cpp" />
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h" />
+    <ClInclude Include="ClipLoader.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="Bootstrap.h" />

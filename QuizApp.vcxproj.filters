@@ -54,6 +54,9 @@
     <ClCompile Include="Stats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClipLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WhateverItTakes">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

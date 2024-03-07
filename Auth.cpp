@@ -1,7 +1,6 @@
 #include "WhateverItTakes"
 
 namespace Auth {
-
     AuthHandler::AuthHandler() {}
     AuthHandler::~AuthHandler() {}
 

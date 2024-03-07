@@ -12,3 +12,66 @@ INSERT INTO User (username, password) VALUES
     ('alice', 'alice123'),
     ('bob', 'bob456'),
     ('charlie', 'charlie789');
+
+
+//EXEC::queryExecutor->executeUpdate("INSERT INTO users (username, password) VALUES ('john_doe', 'password123');");
+//EXEC::queryExecutor->executeQueryAndPrint("SELECT * from users");
+
+
+
+-- Create Users table
+CREATE TABLE Users (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL,
+    isAdmin BOOLEAN NOT NULL DEFAULT 0
+);
+
+-- Create Questions tables for Geography, Computer Science, and History
+CREATE TABLE Geography (
+    questionId INT AUTO_INCREMENT PRIMARY KEY,
+    questionText TEXT NOT NULL,
+    optionA VARCHAR(255) NOT NULL,
+    optionB VARCHAR(255) NOT NULL,
+    optionC VARCHAR(255) NOT NULL,
+    optionD VARCHAR(255) NOT NULL,
+    correctOption CHAR(1) NOT NULL
+);
+
+CREATE TABLE ComputerScience (
+    questionId INT AUTO_INCREMENT PRIMARY KEY,
+    questionText TEXT NOT NULL,
+    optionA VARCHAR(255) NOT NULL,
+    optionB VARCHAR(255) NOT NULL,
+    optionC VARCHAR(255) NOT NULL,
+    optionD VARCHAR(255) NOT NULL,
+    correctOption CHAR(1) NOT NULL
+);
+
+CREATE TABLE History (
+    questionId INT AUTO_INCREMENT PRIMARY KEY,
+    questionText TEXT NOT NULL,
+    optionA VARCHAR(255) NOT NULL,
+    optionB VARCHAR(255) NOT NULL,
+    optionC VARCHAR(255) NOT NULL,
+    optionD VARCHAR(255) NOT NULL,
+    correctOption CHAR(1) NOT NULL
+);
+
+-- Create QuestionsSet table
+CREATE TABLE QuestionsSet (
+    setId INT AUTO_INCREMENT PRIMARY KEY,
+    setName VARCHAR(50) NOT NULL,
+    category ENUM('Geography', 'ComputerScience', 'History') NOT NULL
+);
+
+-- Create Result table
+CREATE TABLE Result (
+    resultId INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    setId INT NOT NULL,
+    score INT NOT NULL,
+    FOREIGN KEY (userId) REFERENCES Users(userId),
+    FOREIGN KEY (setId) REFERENCES QuestionsSet(setId)
+);
+

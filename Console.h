@@ -38,6 +38,10 @@ namespace console {
     namespace error {
         void Error(const std::string& message);
     }
+    namespace art {
+        void intro();
+        void outro();
+    }
 }
 
 #endif // CONSOLE_H
