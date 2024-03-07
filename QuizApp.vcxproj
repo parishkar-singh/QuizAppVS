@@ -131,18 +131,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Auth.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Exec.cpp" />
     <ClCompile Include="QueryExecutor.cpp" />
     <ClCompile Include="QuizApp.cpp" />
-    <ClCompile Include="Tables.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h" />
+    <ClInclude Include="Console.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="Exec.h" />
     <ClInclude Include="QueryExecutor.h" />
-    <ClInclude Include="Table.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".env" />
