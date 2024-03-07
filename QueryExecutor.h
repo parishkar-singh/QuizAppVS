@@ -1,4 +1,3 @@
-// QueryExecutor.h
 #ifndef QUERYEXECUTOR_H
 #define QUERYEXECUTOR_H
 

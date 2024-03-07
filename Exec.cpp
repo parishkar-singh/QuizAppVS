@@ -1,19 +1,17 @@
-// EXEC.cpp
-
 #include "EXEC.h"
+#include "Auth.h" 
+#include "Console.h"
 
 namespace EXEC {
-
     Query::QueryExecutor* queryExecutor = nullptr;
 
     void initialize() {
         MYSQL::Database* dbInstance = MYSQL::Database::getInstance(".env");
         if (dbInstance) {
             queryExecutor = dbInstance->getQueryExecutor();
+
         }
-        else {
-            std::cerr << "Failed to initialize database instance." << std::endl;
-        }
+               
     }
 
     Query::QueryExecutor* getQueryExecutor() {

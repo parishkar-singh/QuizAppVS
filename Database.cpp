@@ -1,8 +1,8 @@
-// Database.cpp
 #include "Database.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "Console.h"
 
 namespace MYSQL {
     Database* Database::instance = nullptr;
@@ -49,7 +49,7 @@ namespace MYSQL {
             con = driver->connect(server, username, password);
             con->setSchema("test");
             queryExecutor = new Query::QueryExecutor(con); // Initialize the query executor
-            std::cout << "Database Connected\n";
+            console::log::printSuccess("Database Connected");
             return true;
         }
         catch (sql::SQLException& e) {

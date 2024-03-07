@@ -1,11 +1,11 @@
-// QueryExecutor.cpp
 #include "QueryExecutor.h"
 #include <iostream>
 #include <cppconn/exception.h>
+#include "Console.h"
 
 namespace Query {
     QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
-        std::cout << "[debug] Query Executor loaded \n";
+        console::log::printDebug("Query Executor loaded ");
     }
 
     QueryExecutor::~QueryExecutor() {}

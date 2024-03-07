@@ -1,50 +1,59 @@
 #include "Auth.h"
-#include "Database.h"
+#include "Exec.h"
 #include <iostream>
 #include <string>
 #include <functional>
 #include <sstream>
+#include <stdexcept>
 
 namespace Auth {
+
     UserManager::UserManager() {}
     UserManager::~UserManager() {}
 
     std::string UserManager::hashPassword(const std::string& password) {
-        std::hash<std::string> hasher;
-        size_t hashed = hasher(password);
-
-        std::stringstream ss;
-        ss << std::hex << hashed;
-        return ss.str();
+        // Will impliment OPENSSL the moment whole thing works 
+        try {
+            size_t hashed = std::hash<std::string>{}(password);
+            std::stringstream ss;
+            ss << std::hex << hashed;
+            return ss.str();
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Exception occurred while hashing password: " << e.what() << std::endl;
+            return "";
+        }
     }
 
     bool UserManager::registerUser(const std::string& username, const std::string& password) {
-        std::string hashedPassword = hashPassword(password);
-        MYSQL::Database* db = MYSQL::Database::getInstance(".env");
-        if (db) {
-            Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
-            std::string query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + hashedPassword + "')";
-            bool success = queryExecutor->executeUpdate(query);
-            return success;
+        if (!EXEC::queryExecutor) {
+            std::cerr << "QueryExecutor not initialized." << std::endl;
+            return false;
         }
-        else {
-            std::cerr << "Failed to get database instance." << std::endl;
+        try {
+            std::string hashedPassword = hashPassword(password);
+            std::string query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + hashedPassword + "')";
+            return EXEC::queryExecutor->executeUpdate(query);
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Exception occurred while registering user: " << e.what() << std::endl;
             return false;
         }
     }
 
     bool UserManager::authenticateUser(const std::string& username, const std::string& password) {
-        std::string hashedPassword = hashPassword(password);
-        MYSQL::Database* db = MYSQL::Database::getInstance(".env");
-
-        if (db) {
-            Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
-            std::string query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + hashedPassword + "'";
-            queryExecutor->executeQueryAndPrint(query); // Execute query and print results
-            return true; // Modify return value accordingly based on authentication logic
+        if (!EXEC::queryExecutor) {
+            std::cerr << "QueryExecutor not initialized." << std::endl;
+            return false;
         }
-        else {
-            std::cerr << "Failed to get database instance." << std::endl;
+        try {
+            std::string hashedPassword = hashPassword(password);
+            std::string query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + hashedPassword + "'";
+            EXEC::queryExecutor->executeQueryAndPrint(query);
+            return true;
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Exception occurred while authenticating user: " << e.what() << std::endl;
             return false;
         }
     }

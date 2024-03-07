@@ -3,6 +3,7 @@
 
 int main() {
     EXEC::initialize();
+
     EXEC::queryExecutor->executeQueryAndPrint("SELECT * from users");
 ;
   
