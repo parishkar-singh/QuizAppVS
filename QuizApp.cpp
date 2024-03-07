@@ -9,8 +9,10 @@
 
 int main() {
     EXEC::Initialize();
-    //std::cout<<EXEC::queryExecutor->tableExists("users");
-    //std::cout<<EXEC::queryExecutor->tableExists("computerscience");
-    EXEC::queryExecutor->selectQuery("select * from computerscience",true);
+    EXEC::ensureDatabase();
+    //std::cout<<EXEC::queryExecutor->tableExists("computerscience
+
+
+    //EXEC::queryExecutor->selectQuery("select * from computerscience",true);
     return 0;
 }

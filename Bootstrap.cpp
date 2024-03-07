@@ -6,7 +6,7 @@ namespace EXEC {
     Query::QueryExecutor* getQueryExecutor() {
         return queryExecutor;
     }
-   
+
     void Initialize() {
         MYSQL::Database* dbInstance = MYSQL::Database::getInstance(".env");
         if (dbInstance) {
@@ -14,7 +14,6 @@ namespace EXEC {
         }      
     }
     void ensureDatabase() {
-
         if (!queryExecutor->tableExists("Users")) {
             std::string createUserTableQuery = "CREATE TABLE Users ("
                 "userId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -23,8 +22,6 @@ namespace EXEC {
                 "isAdmin BOOLEAN NOT NULL DEFAULT 0)";
             queryExecutor->executeUpdate(createUserTableQuery);
         }
-
-        // Check if the Geography table exists
         if (!queryExecutor->tableExists("Geography")) {
             std::string createGeographyTableQuery = "CREATE TABLE Geography ("
                 "questionId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -36,8 +33,6 @@ namespace EXEC {
                 "correctOption CHAR(1) NOT NULL)";
             queryExecutor->executeUpdate(createGeographyTableQuery);
         }
-
-        // Check if the ComputerScience table exists
         if (!queryExecutor->tableExists("ComputerScience")) {
             std::string createComputerScienceTableQuery = "CREATE TABLE ComputerScience ("
                 "questionId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -49,8 +44,6 @@ namespace EXEC {
                 "correctOption CHAR(1) NOT NULL)";
             queryExecutor->executeUpdate(createComputerScienceTableQuery);
         }
-
-        // Check if the History table exists
         if (!queryExecutor->tableExists("History")) {
             std::string createHistoryTableQuery = "CREATE TABLE History ("
                 "questionId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -63,7 +56,6 @@ namespace EXEC {
             queryExecutor->executeUpdate(createHistoryTableQuery);
         }
 
-        // Check if the QuestionsSet table exists
         if (!queryExecutor->tableExists("QuestionsSet")) {
             std::string createQuestionsSetTableQuery = "CREATE TABLE QuestionsSet ("
                 "setId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -72,7 +64,6 @@ namespace EXEC {
             queryExecutor->executeUpdate(createQuestionsSetTableQuery);
         }
 
-        // Check if the Result table exists
         if (!queryExecutor->tableExists("Result")) {
             std::string createResultTableQuery = "CREATE TABLE Result ("
                 "resultId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -83,6 +74,7 @@ namespace EXEC {
                 "FOREIGN KEY (setId) REFERENCES QuestionsSet(setId))";
             queryExecutor->executeUpdate(createResultTableQuery);
         }
+        //console::log::Debug("All tables are there!");
     }
     void Authenticate() {
         console::selector::ConsoleSelector selector;
@@ -104,6 +96,7 @@ namespace EXEC {
         Loader::startEatSleepRepeat();
         system("cls");
         Initialize();
+        ensureDatabase();
         Authenticate();
         console::art::outro();
         std::cout << "Thank you for trying out...";
