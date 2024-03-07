@@ -21,10 +21,8 @@ namespace Auth {
 
     bool UserManager::registerUser(const std::string& username, const std::string& password) {
         std::string hashedPassword = hashPassword(password);
-        MYSQL::Database* db = MYSQL::Database::getInstance("creds.txt");
-
+        MYSQL::Database* db = MYSQL::Database::getInstance(".env");
         if (db) {
-            // Execute INSERT query to store username and hashed password
             Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
             std::string query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + hashedPassword + "')";
             bool success = queryExecutor->executeUpdate(query);
@@ -38,7 +36,7 @@ namespace Auth {
 
     bool UserManager::authenticateUser(const std::string& username, const std::string& password) {
         std::string hashedPassword = hashPassword(password);
-        MYSQL::Database* db = MYSQL::Database::getInstance("creds.txt");
+        MYSQL::Database* db = MYSQL::Database::getInstance(".env");
 
         if (db) {
             Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
