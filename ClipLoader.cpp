@@ -21,14 +21,14 @@ namespace Loader {
         const int delayMillis = 10;
 
         for (int i = 0; i <= numBars; ++i) {
-            std::cout << "\r[";
+            std::cout << "\r|";
             for (int j = 0; j < i; ++j) {
-                std::cout << ">";
+                std::cout <<console::log::GREEN<< ">"<<console::log::RESET;
             }
             for (int j = 0; j < numBars - i; ++j) {
                 std::cout << " ";
             }
-            std::cout << "] " << (i ) << "%";
+            std::cout << "| " << (i ) << "%";
             std::cout.flush();
             std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
         }
@@ -60,7 +60,5 @@ namespace Loader {
         }
 
     }
-
-
 
 }

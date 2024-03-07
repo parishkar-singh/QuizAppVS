@@ -42,19 +42,25 @@
     <ClCompile Include="Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Questions.cpp">
+    <ClCompile Include="Question.cpp">
       <Filter>Source Files\tables</Filter>
     </ClCompile>
     <ClCompile Include="QuizSet.cpp">
-      <Filter>Source Files\tables</Filter>
-    </ClCompile>
-    <ClCompile Include="Role.cpp">
       <Filter>Source Files\tables</Filter>
     </ClCompile>
     <ClCompile Include="Stats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ClipLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Result.cpp">
+      <Filter>Source Files\tables</Filter>
+    </ClCompile>
+    <ClCompile Include="Navbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Printer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,10 +86,7 @@
     <ClInclude Include="QuizSet.h">
       <Filter>Header Files\tables</Filter>
     </ClInclude>
-    <ClInclude Include="Questions.h">
-      <Filter>Header Files\tables</Filter>
-    </ClInclude>
-    <ClInclude Include="Role.h">
+    <ClInclude Include="Question.h">
       <Filter>Header Files\tables</Filter>
     </ClInclude>
     <ClInclude Include="Stats.h">
@@ -93,6 +96,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ClipLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>Header Files\tables</Filter>
+    </ClInclude>
+    <ClInclude Include="Navbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Printer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

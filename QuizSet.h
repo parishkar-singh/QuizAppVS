@@ -11,15 +11,7 @@ namespace Model {
         std::string category;
 
     public:
-        // Public member functions
-        int getSetId() const;
-        void setSetId(int id);
-
-        std::string getSetName() const;
-        void setSetName(const std::string& name);
-
-        std::string getCategory() const;
-        void setCategory(const std::string& cat);
+        
     };
 }
 

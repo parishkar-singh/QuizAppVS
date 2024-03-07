@@ -1,6 +1,16 @@
 #pragma once
 //This file is mainly targetted for cpp file dont include this in .h
 
+///////////////////////////// Definations
+#define QuizApp int
+enum Status { App= 0, Memory_Error = -1 };
+
+// Database Classes
+#include "User.h"
+#include "Question.h"
+#include "QuizSet.h"
+#include "Result.h"
+
 ///////////////////////////// c and windows headers
 #include <conio.h>
 #include <cstdlib>
@@ -13,6 +23,7 @@
 #include "Database.h"
 #include "QueryExecutor.h"
 #include "ClipLoader.h"
+#include "Printer.h"
 
 /////////////////////////// STL and Native Libraries
 #include <chrono>

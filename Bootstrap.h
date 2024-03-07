@@ -8,7 +8,8 @@ namespace EXEC {
     extern Query::QueryExecutor* queryExecutor;
     void Initialize();
     void Authenticate();
-    void bootstrap();
+    void ensureDatabase();
+    bool bootstrap();
     Query::QueryExecutor* getQueryExecutor();
 
 }

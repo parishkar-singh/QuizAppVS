@@ -1,23 +1,30 @@
 #include "WhateverItTakes"
-namespace UsersNamespace {
-    class User {
-    private:
-        int userId;
-        std::string username;
-        std::string password;
-        bool isAdmin;
+namespace Model {
+	User::User() {};
+	User::~User() {};
 
-    public:
-        int getUserId() const { return userId; }
-        void setUserId(int id) { userId = id; }
+    /*std::vector<std::string> getUser() {
+        std::vector<std::string> users;
 
-        std::string getUsername() const { return username; }
-        void setUsername(const std::string& name) { username = name; }
+        try {
+            sql::Statement* stmt = EXEC::queryExecutor->getConnection()->createStatement();
+            sql::ResultSet* res = stmt->executeQuery("SELECT * FROM users");
 
-        std::string getPassword() const { return password; }
-        void setPassword(const std::string& pass) { password = pass; }
+            while (res->next()) {
+                std::string username = res->getString("username");
+                users.push_back(username);
+            }
 
-        bool getIsAdmin() const { return isAdmin; }
-        void setIsAdmin(bool admin) { isAdmin = admin; }
-    };
+            delete res;
+            delete stmt;
+        }
+        catch (sql::SQLException& e) {
+            std::cerr << "SQL Exception: " << e.what() << std::endl;
+        }
+
+        return users;*/
+    
+
 }
+//EXEC::queryExecutor->executeUpdate("INSERT INTO users (username, password) VALUES ('john_doe', 'password123');");
+//EXEC::queryExecutor->executeQueryAndPrint("SELECT * from users");

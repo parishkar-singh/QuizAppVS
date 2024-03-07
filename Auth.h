@@ -1,5 +1,5 @@
-#ifndef USER_MANAGER_H
-#define USER_MANAGER_H
+#ifndef AUTHHANDLER_H
+#define AUTHHANDLER_H
 
 #include <string>
 
@@ -8,11 +8,11 @@ namespace Auth {
     public:
         AuthHandler();
         ~AuthHandler();
-
         static std::string hashPassword(const std::string& password);
         static bool registerUser(const std::string& username, const std::string& password);
         static bool authenticateUser(const std::string& username, const std::string& password);
+        static bool updatePassword(const std::string& username, const std::string& newPassword);
     };
 }
 
-#endif // USER_MANAGER_H
+#endif 

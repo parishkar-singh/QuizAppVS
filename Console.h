@@ -25,6 +25,13 @@ namespace console {
         };
     }
     namespace log {
+        extern const std::string RESET;
+        extern const std::string RED;
+        extern const std::string GREEN;
+        extern const std::string YELLOW;
+        extern const std::string BLUE;
+        extern const std::string MAGENTA;
+        extern const std::string CYAN;
         void Success(const std::string& message);
         void Warning(const std::string& message);
         void Info(const std::string& message);
@@ -44,4 +51,4 @@ namespace console {
     }
 }
 
-#endif // CONSOLE_H
+#endif 

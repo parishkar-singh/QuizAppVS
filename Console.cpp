@@ -7,24 +7,22 @@ namespace console {
         int ConsoleSelector::selectOption(const std::string question,const std::vector<std::string>& options) {
             while (keyPressed != ENTER_KEY) {
                 system("cls"); // To get that clear view
-
                 log::Database(true, "\t");
                 log::Executor(EXEC::queryExecutor, "\t");
                 log::Role("Admin\t");
                 log::User("Parishkar\n");
-                
 
                 // I think windows terminal supports css in its own fashion
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
                 CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
                 GetConsoleScreenBufferInfo(hConsole, &bufferInfo);
-
                 int terminalWidth = bufferInfo.dwSize.X;
                 std::string divider(terminalWidth - 1, '_');
                 std::cout << divider << std::endl << std::endl;
-                // Question
+                //CSS ends here
+                
+                // Question and ans
                 std::cout << question + "\n" << std::endl;
-                // choices
                 for (size_t i = 0; i < options.size(); ++i) {
                     if (static_cast<int>(i) == choice) {
                         std::cout << "-> " << options[i] << "\n";
@@ -49,46 +47,35 @@ namespace console {
     }
 
     namespace log {
+        // Color Values
+        const std::string RESET = "\033[0m";
+        const std::string RED = "\033[31m";
+        const std::string GREEN = "\033[32m";
+        const std::string YELLOW = "\033[33m";
+        const std::string BLUE = "\033[34m";
+        const std::string MAGENTA = "\033[35m";
+        const std::string CYAN = "\033[36m";
         void Success(const std::string& message) {
-            const std::string RESET = "\033[0m";
-            const std::string GREEN = "\033[32m";
-
             std::cout << GREEN << "[SUCCESS] " << message << RESET ;
         }
 
         void Warning(const std::string& message) {
-            const std::string RESET = "\033[0m";
-            const std::string YELLOW = "\033[33m";
-
             std::cout << YELLOW << "[WARNING] " << message << RESET ;
         }
 
         void Info(const std::string& message) {
-            const std::string RESET = "\033[0m";
-            const std::string CYAN = "\033[36m";
-
             std::cout << CYAN << "[INFO] " << message << RESET;
         }
 
         void Debug(const std::string& message) {
-            const std::string RESET = "\033[0m";
-            const std::string BLUE = "\033[34m";
-
             std::cout << BLUE << "[DEBUG] " << message << RESET;
         }
 
         void Test(const std::string& message) {
-            const std::string RESET = "\033[0m";
-            const std::string MAGENTA = "\033[35m";
 
             std::cout << MAGENTA << "[TEST] " << message << RESET;
         }
         void Database(bool isConnected, const std::string& message) {
-            const std::string RESET = "\033[0m";
-            const std::string YELLOW = "\033[33m";
-            const std::string RED = "\033[31m";
-            const std::string GREEN = "\033[32m";
-
             std::cout <<YELLOW << "[Database]: ";
             if (isConnected) {
                 std::cout << GREEN << "Connected " << message << RESET;
@@ -143,9 +130,10 @@ namespace console {
             std::cerr << RED << "[ERROR] " << message << RESET;
         }
     }
+
     namespace art {
         void intro() {
-            std::cout << R"(
+            std::cout  << R"(
  ________  ___  ___  ___  ________          ________  ________  ________   
 |\   __  \|\  \|\  \|\  \|\_____  \        |\   __  \|\   __  \|\   __  \  
 \ \  \|\  \ \  \\\  \ \  \\|___/  /|       \ \  \|\  \ \  \|\  \ \  \|\  \ 
@@ -157,6 +145,7 @@ namespace console {
                                                                             By Parishkar Singh                                                                       
     )" << std::endl;
         }
+        //////////////////////////////////
         void outro() {
             std::cout << R"(
  ________ ____  _____ ______    
