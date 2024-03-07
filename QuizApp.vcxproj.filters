@@ -33,7 +33,7 @@
     <ClCompile Include="QueryExecutor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Exec.cpp">
+    <ClCompile Include="Bootstrap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
@@ -65,7 +65,7 @@
     <ClInclude Include="QueryExecutor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Exec.h">
+    <ClInclude Include="Bootstrap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
@@ -84,6 +84,9 @@
       <Filter>Header Files\tables</Filter>
     </ClInclude>
     <ClInclude Include="Stats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WhateverItTakes">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,24 @@
+#pragma once
+//This file is mainly targetted for cpp file dont include this in .h 
+///////////////////////////// c and windows headers
+#include <conio.h>
+#include <windows.h>
+
+//////////////////////////// .h libraries
+#include "Auth.h"
+#include "Bootstrap.h"
+#include "Console.h"
+#include "Database.h"
+#include "QueryExecutor.h"
+
+/////////////////////////// STL and Native Libraries
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <functional>
+#include <sstream>
+#include <stdexcept>
+#include <vector>
+
+////////////////////////// SQL libraries
+#include <cppconn/exception.h>

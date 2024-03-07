@@ -1,8 +1,4 @@
-#include "Database.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include "Console.h"
+#include "WhateverItTakes"
 
 namespace MYSQL {
     Database* Database::instance = nullptr;

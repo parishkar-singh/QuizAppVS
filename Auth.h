@@ -4,10 +4,10 @@
 #include <string>
 
 namespace Auth {
-    class UserManager {
+    class AuthHandler {
     public:
-        UserManager();
-        ~UserManager();
+        AuthHandler();
+        ~AuthHandler();
 
         static std::string hashPassword(const std::string& password);
         static bool registerUser(const std::string& username, const std::string& password);

@@ -1,18 +1,12 @@
-#include "Auth.h"
-#include "Exec.h"
-#include <iostream>
-#include <string>
-#include <functional>
-#include <sstream>
-#include <stdexcept>
+#include "WhateverItTakes"
 
 namespace Auth {
 
-    UserManager::UserManager() {}
-    UserManager::~UserManager() {}
+    AuthHandler::AuthHandler() {}
+    AuthHandler::~AuthHandler() {}
 
-    std::string UserManager::hashPassword(const std::string& password) {
-        // Will impliment OPENSSL the moment whole thing works 
+    std::string AuthHandler::hashPassword(const std::string& password) {
+        // Will impliment OPENSSL the moment this whole thing works 
         try {
             size_t hashed = std::hash<std::string>{}(password);
             std::stringstream ss;
@@ -25,7 +19,7 @@ namespace Auth {
         }
     }
 
-    bool UserManager::registerUser(const std::string& username, const std::string& password) {
+    bool AuthHandler::registerUser(const std::string& username, const std::string& password) {
         if (!EXEC::queryExecutor) {
             std::cerr << "QueryExecutor not initialized." << std::endl;
             return false;
@@ -41,7 +35,7 @@ namespace Auth {
         }
     }
 
-    bool UserManager::authenticateUser(const std::string& username, const std::string& password) {
+    bool AuthHandler::authenticateUser(const std::string& username, const std::string& password) {
         if (!EXEC::queryExecutor) {
             std::cerr << "QueryExecutor not initialized." << std::endl;
             return false;

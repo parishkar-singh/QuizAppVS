@@ -1,9 +1,4 @@
-﻿#include "Exec.h"
-#include "Console.h"
-#include <conio.h>
-#include <vector>
-#include <string>
-#include <windows.h>
+﻿#include "WhateverItTakes"
 
 namespace console {
     namespace selector {

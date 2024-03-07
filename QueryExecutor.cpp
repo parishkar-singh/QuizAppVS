@@ -1,7 +1,4 @@
-#include "QueryExecutor.h"
-#include <iostream>
-#include <cppconn/exception.h>
-#include "Console.h"
+#include "WhateverItTakes"
 
 namespace Query {
     QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
