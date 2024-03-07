@@ -1,11 +1,15 @@
+// QueryExecutor.cpp
 #include "QueryExecutor.h"
 #include <iostream>
 #include <cppconn/exception.h>
 
 namespace Query {
-    QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {}
+    QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
+        std::cout << "[debug] Query Executor loaded \n";
+    }
 
     QueryExecutor::~QueryExecutor() {}
+
     void QueryExecutor::executeQueryAndPrint(const std::string& query) {
         try {
             sql::Statement* stmt = connection->createStatement();
@@ -26,7 +30,6 @@ namespace Query {
         }
     }
 
-    // Insert, Update, Delete
     bool QueryExecutor::executeUpdate(const std::string& query) {
         try {
             sql::Statement* stmt = connection->createStatement();

@@ -1,17 +1,16 @@
+// Database.cpp
 #include "Database.h"
-#include <iostream>
-#include <cppconn/exception.h>
-#include <cppconn/driver.h>
 #include <fstream>
-
+#include <iostream>
 #include <sstream>
 
 namespace MYSQL {
-    Database* Database::instance = nullptr; // Static perma member
+    Database* Database::instance = nullptr;
 
     Database::Database(const std::string& filename) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
         readConfigFile(filename);
-        queryExecutor = new Query::QueryExecutor(con);
+        // COnnecting to the db as soon as object creation 
+        connect();  
     }
 
     Database::~Database() {
@@ -49,6 +48,8 @@ namespace MYSQL {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
             con->setSchema("test");
+            queryExecutor = new Query::QueryExecutor(con); // Initialize the query executor
+            std::cout << "Database Connected\n";
             return true;
         }
         catch (sql::SQLException& e) {

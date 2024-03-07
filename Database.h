@@ -1,32 +1,34 @@
+// Database.h
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <string>
-#include <cppconn/connection.h>
 #include "QueryExecutor.h"
+#include <cppconn/driver.h>
+#include <string>
 
 namespace MYSQL {
     class Database {
     private:
-        static Database* instance; 
-        sql::Connection* con;
         sql::Driver* driver;
+        sql::Connection* con;
+        Query::QueryExecutor* queryExecutor;
         std::string server;
         std::string username;
         std::string password;
-        Query::QueryExecutor* queryExecutor;
 
         void readConfigFile(const std::string& filename);
-
-    public:
-        static Database* getInstance(const std::string& filename); 
-
-        Database(const std::string& filename);
-        ~Database();
-
         bool connect();
         void disconnect();
+
+    public:
+        static Database* getInstance(const std::string& filename);
         Query::QueryExecutor* getQueryExecutor();
+
+        ~Database();
+
+    private:
+        Database(const std::string& filename);
+        static Database* instance;
     };
 }
 

@@ -7,7 +7,6 @@
 
 namespace Auth {
     UserManager::UserManager() {}
-
     UserManager::~UserManager() {}
 
     std::string UserManager::hashPassword(const std::string& password) {
