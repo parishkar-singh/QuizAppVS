@@ -61,7 +61,24 @@ namespace Query {
 		}
 		return exists;
 	}
-
+	bool QueryExecutor::schemaExists(const std::string& schemaName) {
+		bool exists = false;
+		try {
+			sql::Statement* stmt = connection->createStatement();
+			std::string query = "SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '" + schemaName + "'";
+			sql::ResultSet* res = stmt->executeQuery(query);
+			if (res->next()) {
+				int count = res->getInt(1);
+				exists = (count > 0);
+			}
+			delete res;
+			delete stmt;
+		}
+		catch (sql::SQLException& e) {
+			std::cerr << "SQL Exception: " << e.what() << std::endl;
+		}
+		return exists;
+	}
 
 	bool QueryExecutor::executeUpdate(const std::string& query) {
 		try {

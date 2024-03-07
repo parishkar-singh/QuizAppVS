@@ -14,7 +14,7 @@ namespace Query {
 	public:
 		QueryExecutor(sql::Connection* conn);
 		~QueryExecutor();
-
+		bool schemaExists(const std::string& schemaName);
 		bool executeUpdate(const std::string& query);
 		bool tableExists(const std::string& tableName);
 		void selectQuery(const std::string& query, bool isQuestions);

@@ -4,7 +4,6 @@ namespace MYSQL {
     Database* Database::instance = nullptr;
 
     Database::Database(std::vector<std::string> creds) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
-        // Initialize non-static member variables in the constructor body
         this->server = creds[0];
         this->username = creds[1];
         this->password = creds[2];
@@ -22,7 +21,7 @@ namespace MYSQL {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
             con->setSchema("test");
-            queryExecutor = new Query::QueryExecutor(con); // Initialize the query executor
+            queryExecutor = new Query::QueryExecutor(con);
             console::log::Success("Database Connected\n");
             return true;
         }

@@ -6,19 +6,8 @@ namespace console {
 
         int ConsoleSelector::selectOption(const std::string question,const std::vector<std::string>& options) {
             while (keyPressed != ENTER_KEY) {
-                system("cls"); // To get that clear view
-                log::Database(true, "\t");
-                log::Executor(EXEC::queryExecutor, "\t");
-                log::Role("Admin\t");
-                log::User("Parishkar\n");
-
-                // I think windows terminal supports css in its own fashion
-                HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-                CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
-                GetConsoleScreenBufferInfo(hConsole, &bufferInfo);
-                int terminalWidth = bufferInfo.dwSize.X;
-                std::string divider(terminalWidth - 1, '_');
-                std::cout << divider << std::endl << std::endl;
+                // To get that clear view
+                NAVBAR::NavBar();
                 //CSS ends here
                 
                 // Question and ans

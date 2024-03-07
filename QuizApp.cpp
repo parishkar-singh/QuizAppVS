@@ -2,14 +2,15 @@
 
 QuizApp main(QuizApp keys, Credentials values[]) {
 	std::vector<std::string> creds{ values[1], values[2], values[3] };
-	for (auto e : creds) {
+	/*for (auto e : creds) {
 		std::cout << e << std::endl;
-	}
-
+	}*/
+	//EXEC::Initialize(creds);
 	if (EXEC::bootstrap(creds)) {
 		return App;
 	}
 
+	//return App;
 	return Memory_Error;
 }
 
