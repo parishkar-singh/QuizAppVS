@@ -1,26 +1,18 @@
 #include "WhateverItTakes"
 // I dont know this may be responsible for the flow of execution not yet decided
+
 namespace EXEC {
+
     
-    DataCreds::DataCreds(const std::string& s, const std::string& u, const std::string& p)
-        : server(s), username(u), password(p) {}
-    std::string DataCreds::getServer() const {
-        return server;
-    }
-    std::string DataCreds::getUsername() const {
-        return username;
-    }
-    std::string DataCreds::getPassword() const {
-        return password;
-    }
+    
     
     Query::QueryExecutor* queryExecutor = nullptr;
     Query::QueryExecutor* getQueryExecutor() {
         return queryExecutor;
     }
 
-    void Initialize() {
-        MYSQL::Database* dbInstance = MYSQL::Database::getInstance(".env");
+    void Initialize(std::vector<std::string> creds) {
+        MYSQL::Database* dbInstance = MYSQL::Database::getInstance(creds);
         if (dbInstance) {
             queryExecutor = dbInstance->getQueryExecutor();
         }      
@@ -99,7 +91,7 @@ namespace EXEC {
         std::cout << "You chose: " << options[choice] << std::endl;
     }
 
-    bool bootstrap(DataCreds d) {
+    bool bootstrap(std::vector<std::string> creds) {
         console::art::intro();
         Loader::startProgressBar();
         std::cout << " Lets go";
@@ -107,7 +99,7 @@ namespace EXEC {
         system("cls");
         Loader::startEatSleepRepeat();
         system("cls");
-        Initialize();
+        Initialize(creds);
         ensureDatabase();
         Authenticate();
         console::art::outro();

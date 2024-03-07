@@ -1,13 +1,18 @@
 ﻿#include "WhateverItTakes"
 
 QuizApp main(QuizApp keys, Credentials values[]) {
-	EXEC::DataCreds D (values[1], values[2], values[3]);
-	std:: cout << values[0] << values[1] << values[2] << std::endl;
-	if (EXEC::bootstrap(D)) {
+	std::vector<std::string> creds{ values[1], values[2], values[3] };
+	for (auto e : creds) {
+		std::cout << e << std::endl;
+	}
+
+	if (EXEC::bootstrap(creds)) {
 		return App;
 	}
+
 	return Memory_Error;
 }
+
 
 //if (argc < 4) {
 	//std::cerr << "Usage: " << argv[0] << " <server> <username> <password>" << std::endl;

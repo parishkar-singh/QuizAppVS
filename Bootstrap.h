@@ -6,23 +6,12 @@
 
 namespace EXEC {
 
-    class DataCreds {
-    private:
-        std::string server;
-        std::string username;
-        std::string password;
-
-    public:
-        DataCreds(const std::string& s, const std::string& u, const std::string& p);
-        std::string getServer() const;
-        std::string getUsername() const;
-        std::string getPassword() const;
-    };
+    
     extern Query::QueryExecutor* queryExecutor;
-    void Initialize();
+    void Initialize(std::vector<std::string> creds);
     void Authenticate();
     void ensureDatabase();
-    bool bootstrap(DataCreds d);
+    bool bootstrap(std::vector<std::string> creds);
     Query::QueryExecutor* getQueryExecutor();
 
 }

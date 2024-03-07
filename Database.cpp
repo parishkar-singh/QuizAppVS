@@ -3,10 +3,12 @@
 namespace MYSQL {
     Database* Database::instance = nullptr;
 
-    Database::Database(const EXEC::DataCreds& d) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
-        server = d.getServer();
-        username = d.getUsername();
-        password = d.getPassword();
+    Database::Database(std::vector<std::string> creds) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
+        // Initialize non-static member variables in the constructor body
+        this->server = creds[0];
+        this->username = creds[1];
+        this->password = creds[2];
+        
         connect();
     }
 
@@ -37,9 +39,9 @@ namespace MYSQL {
         }
     }
 
-    Database* Database::getInstance(const EXEC::DataCreds& d) {
+    Database* Database::getInstance(std::vector<std::string> creds) {
         if (!instance) {
-            instance = new Database(d);
+            instance = new Database(creds);
         }
         return instance;
     }

@@ -6,6 +6,7 @@
 #define Credentials char*
 enum Status { App= 0, Memory_Error = -1 };
 
+
 // Database Classes
 #include "User.h"
 #include "Question.h"
@@ -39,3 +40,5 @@ enum Status { App= 0, Memory_Error = -1 };
 
 ////////////////////////// SQL libraries
 #include <cppconn/exception.h>
+
+// Variables
