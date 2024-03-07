@@ -6,24 +6,33 @@ namespace Query {
     QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {}
 
     QueryExecutor::~QueryExecutor() {}
-    //Select Queries
-    sql::ResultSet* QueryExecutor::executeQuery(const std::string& query) {
+
+    // Select Queries
+    void QueryExecutor::executeQueryAndPrint(const std::string& query) {
         try {
             sql::Statement* stmt = connection->createStatement();
-            sql::ResultSet* res = stmt->executeQuery(query); 
+            sql::ResultSet* res = stmt->executeQuery(query);
+
+            while (res->next()) {
+                std::string username = res->getString("username");
+                std::string password = res->getString("password");
+
+                std::cout << "Username: " << username << ", Password: " << password << std::endl;
+            }
+
+            delete res;
             delete stmt;
-            return res;
         }
         catch (sql::SQLException& e) {
             std::cerr << "SQL Exception: " << e.what() << std::endl;
-            return nullptr;
         }
     }
-    // Insert, Update, DElete
+
+    // Insert, Update, Delete
     bool QueryExecutor::executeUpdate(const std::string& query) {
         try {
             sql::Statement* stmt = connection->createStatement();
-            stmt->executeUpdate(query); 
+            stmt->executeUpdate(query);
             delete stmt;
             return true;
         }

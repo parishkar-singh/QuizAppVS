@@ -1,10 +1,10 @@
-#pragma once
-#ifndef QUERYEXECUTOR_H
-#define QUERYEXECUTOR_H
+#ifndef QUERY_EXECUTOR_H
+#define QUERY_EXECUTOR_H
 
-#include <string>
 #include <cppconn/connection.h>
 #include <cppconn/statement.h>
+#include <cppconn/resultset.h>
+#include <cppconn/driver.h>
 
 namespace Query {
     class QueryExecutor {
@@ -12,11 +12,18 @@ namespace Query {
         sql::Connection* connection;
 
     public:
+        // Constructor
         QueryExecutor(sql::Connection* conn);
+
+        // Destructor
         ~QueryExecutor();
-        sql::ResultSet* executeQuery(const std::string& query);
+
+        // Select Queries
+        void executeQueryAndPrint(const std::string& query);
+
+        // Insert, Update, Delete
         bool executeUpdate(const std::string& query);
     };
 }
 
-#endif // QUERYEXECUTOR_H
+#endif // QUERY_EXECUTOR_H

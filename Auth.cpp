@@ -14,7 +14,6 @@ namespace Auth {
         std::hash<std::string> hasher;
         size_t hashed = hasher(password);
 
-        // Convert the hash into a hexadecimal string
         std::stringstream ss;
         ss << std::hex << hashed;
         return ss.str();
@@ -44,15 +43,8 @@ namespace Auth {
         if (db) {
             Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
             std::string query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + hashedPassword + "'";
-            sql::ResultSet* res = queryExecutor->executeQuery(query);
-            if (res && res->next()) {
-                delete res;
-                return true;
-            }
-            else {
-                delete res;
-                return false;
-            }
+            queryExecutor->executeQueryAndPrint(query); // Execute query and print results
+            return true; // Modify return value accordingly based on authentication logic
         }
         else {
             std::cerr << "Failed to get database instance." << std::endl;

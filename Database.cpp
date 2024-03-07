@@ -7,7 +7,7 @@
 #include <sstream>
 
 namespace MYSQL {
-    Database* Database::instance = nullptr; // Initialize the static member variable
+    Database* Database::instance = nullptr; // Static perma member
 
     Database::Database(const std::string& filename) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
         readConfigFile(filename);
@@ -40,7 +40,7 @@ namespace MYSQL {
             configFile.close();
         }
         else {
-            std::cerr << "Unable to open config file: " << filename << std::endl;
+            std::cerr << "Unable to open .env file: " << filename << std::endl;
         }
     }
 
@@ -48,6 +48,7 @@ namespace MYSQL {
         try {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
+            con->setSchema("test");
             return true;
         }
         catch (sql::SQLException& e) {

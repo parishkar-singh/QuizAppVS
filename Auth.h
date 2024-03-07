@@ -1,5 +1,5 @@
-#ifndef AUTH_H
-#define AUTH_H
+#ifndef USER_MANAGER_H
+#define USER_MANAGER_H
 
 #include <string>
 
@@ -15,4 +15,4 @@ namespace Auth {
     };
 }
 
-#endif // AUTH_H
+#endif // USER_MANAGER_H
