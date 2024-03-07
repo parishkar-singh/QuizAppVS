@@ -135,7 +135,10 @@
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Exec.cpp" />
     <ClCompile Include="QueryExecutor.cpp" />
+    <ClCompile Include="Questions.cpp" />
     <ClCompile Include="QuizApp.cpp" />
+    <ClCompile Include="QuizSet.cpp" />
+    <ClCompile Include="Role.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +147,9 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="Exec.h" />
     <ClInclude Include="QueryExecutor.h" />
+    <ClInclude Include="Questions.h" />
+    <ClInclude Include="QuizSet.h" />
+    <ClInclude Include="Role.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
