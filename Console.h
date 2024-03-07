@@ -7,16 +7,15 @@
 
 namespace console {
     namespace log {
-        void printError(const std::string& message);
-        void printSuccess(const std::string& message);
-        void printWarning(const std::string& message);
-        void printInfo(const std::string& message);
-        void printDebug(const std::string& message);
-        void printTest(const std::string& message);
+        void Success(const std::string& message);
+        void Warning(const std::string& message);
+        void Info(const std::string& message);
+        void Debug(const std::string& message);
+        void Test(const std::string& message);
     }
 
     namespace error {
-        void printError(const std::string& message);
+        void Error(const std::string& message);
     }
 }
 
