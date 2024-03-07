@@ -1,7 +1,19 @@
 #include "WhateverItTakes"
 // I dont know this may be responsible for the flow of execution not yet decided
 namespace EXEC {
-
+    
+    DataCreds::DataCreds(const std::string& s, const std::string& u, const std::string& p)
+        : server(s), username(u), password(p) {}
+    std::string DataCreds::getServer() const {
+        return server;
+    }
+    std::string DataCreds::getUsername() const {
+        return username;
+    }
+    std::string DataCreds::getPassword() const {
+        return password;
+    }
+    
     Query::QueryExecutor* queryExecutor = nullptr;
     Query::QueryExecutor* getQueryExecutor() {
         return queryExecutor;
@@ -87,7 +99,7 @@ namespace EXEC {
         std::cout << "You chose: " << options[choice] << std::endl;
     }
 
-    bool bootstrap() {
+    bool bootstrap(DataCreds d) {
         console::art::intro();
         Loader::startProgressBar();
         std::cout << " Lets go";

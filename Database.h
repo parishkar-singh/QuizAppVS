@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include "QueryExecutor.h"
+#include "Bootstrap.h" // Include the DataCreds class header
 #include <cppconn/driver.h>
 #include <string>
 
@@ -15,20 +16,19 @@ namespace MYSQL {
         std::string username;
         std::string password;
 
-        void readConfigFile(const std::string& filename);
         bool connect();
         void disconnect();
 
     public:
-        static Database* getInstance(const std::string& filename);
+        static Database* getInstance(const EXEC::DataCreds& d); // Update the getInstance method signature
         Query::QueryExecutor* getQueryExecutor();
 
         ~Database();
 
     private:
-        Database(const std::string& filename);
+        Database(const EXEC::DataCreds& d); // Update the constructor declaration
         static Database* instance;
     };
 }
 
-#endif 
+#endif

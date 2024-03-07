@@ -3,40 +3,16 @@
 namespace MYSQL {
     Database* Database::instance = nullptr;
 
-    Database::Database(const std::string& filename) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
-        readConfigFile(filename);
-        // COnnecting to the db as soon as object creation 
-        connect();  
+    Database::Database(const EXEC::DataCreds& d) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
+        server = d.getServer();
+        username = d.getUsername();
+        password = d.getPassword();
+        connect();
     }
 
     Database::~Database() {
         disconnect();
         delete queryExecutor;
-    }
-
-    void Database::readConfigFile(const std::string& filename) {
-        std::ifstream configFile(filename);
-        std::string line;
-
-        if (configFile.is_open()) {
-            while (std::getline(configFile, line)) {
-                std::istringstream iss(line);
-                std::string key, value;
-                std::getline(iss, key, '=');
-                std::getline(iss, value);
-
-                if (key == "server")
-                    server = value;
-                else if (key == "username")
-                    username = value;
-                else if (key == "password")
-                    password = value;
-            }
-            configFile.close();
-        }
-        else {
-            std::cerr << "Unable to open .env file: " << filename << std::endl;
-        }
     }
 
     bool Database::connect() {
@@ -61,9 +37,9 @@ namespace MYSQL {
         }
     }
 
-    Database* Database::getInstance(const std::string& filename) {
+    Database* Database::getInstance(const EXEC::DataCreds& d) {
         if (!instance) {
-            instance = new Database(filename);
+            instance = new Database(d);
         }
         return instance;
     }
