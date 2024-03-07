@@ -1,12 +1,11 @@
-﻿#include "Console.h"
+﻿#include "Exec.h"
+#include "Console.h"
 #include <conio.h>
 #include <vector>
 #include <string>
-
 #include <windows.h>
 
 namespace console {
-    
     namespace selector {
         ConsoleSelector::ConsoleSelector() : choice(0), keyPressed(0) {}
 
@@ -14,8 +13,11 @@ namespace console {
             while (keyPressed != ENTER_KEY) {
                 system("cls"); // To get that clear view
 
-                // Top Bar to Show the logs
-                log::Success("Database Connected");
+                log::Database(true, "\t");
+                log::Executor(EXEC::queryExecutor, "\t");
+                log::Role("Admin\t");
+                log::User("Parishkar\n");
+                
 
                 // I think windows terminal supports css in its own fashion
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -56,43 +58,94 @@ namespace console {
             const std::string RESET = "\033[0m";
             const std::string GREEN = "\033[32m";
 
-            std::cout << GREEN << "[SUCCESS] " << message << RESET << std::endl;
+            std::cout << GREEN << "[SUCCESS] " << message << RESET ;
         }
 
         void Warning(const std::string& message) {
             const std::string RESET = "\033[0m";
             const std::string YELLOW = "\033[33m";
 
-            std::cout << YELLOW << "[WARNING] " << message << RESET << std::endl;
+            std::cout << YELLOW << "[WARNING] " << message << RESET ;
         }
 
         void Info(const std::string& message) {
             const std::string RESET = "\033[0m";
             const std::string CYAN = "\033[36m";
 
-            std::cout << CYAN << "[INFO] " << message << RESET << std::endl;
+            std::cout << CYAN << "[INFO] " << message << RESET;
         }
 
         void Debug(const std::string& message) {
             const std::string RESET = "\033[0m";
             const std::string BLUE = "\033[34m";
 
-            std::cout << BLUE << "[DEBUG] " << message << RESET << std::endl;
+            std::cout << BLUE << "[DEBUG] " << message << RESET;
         }
 
         void Test(const std::string& message) {
             const std::string RESET = "\033[0m";
             const std::string MAGENTA = "\033[35m";
 
-            std::cout << MAGENTA << "[TEST] " << message << RESET << std::endl;
+            std::cout << MAGENTA << "[TEST] " << message << RESET;
         }
+        void Database(bool isConnected, const std::string& message) {
+            const std::string RESET = "\033[0m";
+            const std::string YELLOW = "\033[33m";
+            const std::string RED = "\033[31m";
+            const std::string GREEN = "\033[32m";
+
+            std::cout <<YELLOW << "[Database]: ";
+            if (isConnected) {
+                std::cout << GREEN << "Connected " << message << RESET;
+            }
+            else {
+                std::cout << RED << "Not Connected " <<message<< RESET;
+            }
+        }
+
+        void Executor(bool isAvailable, const std::string& message) {
+            const std::string RESET = "\033[0m";
+            const std::string CYAN = "\033[36m";
+            const std::string RED = "\033[31m";
+            const std::string GREEN = "\033[32m";
+            const std::string YELLOW = "\033[33m";
+
+            std::cout <<YELLOW << "[Query Executor]: ";
+            if (isAvailable) {
+                std::cout << GREEN << "Available " << message << RESET;
+            }
+            else {
+                std::cout << RED << "Not Available "<< message << RESET;
+            }
+        }
+        void Role(const std::string& message) {
+            const std::string RESET = "\033[0m";
+            const std::string CYAN = "\033[36m";
+            const std::string RED = "\033[31m";
+            const std::string GREEN = "\033[32m";
+            const std::string YELLOW = "\033[33m";
+
+            std::cout << YELLOW << "[ROLE]:";
+            std::cout << CYAN << message << RESET;
+        }
+        void User(const std::string& message) {
+            const std::string RESET = "\033[0m";
+            const std::string CYAN = "\033[36m";
+            const std::string RED = "\033[31m";
+            const std::string GREEN = "\033[32m";
+            const std::string YELLOW = "\033[33m";
+
+            std::cout << YELLOW << "[User]:";
+            std::cout << CYAN << message << RESET;
+        }
+
     }
     namespace error {
         void Error(const std::string& message) {
             const std::string RESET = "\033[0m";
             const std::string RED = "\033[31m";
 
-            std::cerr << RED << "[ERROR] " << message << RESET << std::endl;
+            std::cerr << RED << "[ERROR] " << message << RESET;
         }
     }
 }

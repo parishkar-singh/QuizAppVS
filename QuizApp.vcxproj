@@ -139,6 +139,7 @@
     <ClCompile Include="QuizApp.cpp" />
     <ClCompile Include="QuizSet.cpp" />
     <ClCompile Include="Role.cpp" />
+    <ClCompile Include="Stats.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="Questions.h" />
     <ClInclude Include="QuizSet.h" />
     <ClInclude Include="Role.h" />
+    <ClInclude Include="Stats.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>

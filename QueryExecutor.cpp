@@ -5,7 +5,7 @@
 
 namespace Query {
     QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
-        console::log::Debug("Query Executor loaded ");
+        console::log::Debug("Query Executor loaded \n");
     }
 
     QueryExecutor::~QueryExecutor() {}

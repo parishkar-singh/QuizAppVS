@@ -6,7 +6,7 @@
 
 namespace EXEC {
     extern Query::QueryExecutor* queryExecutor;
-    void initialize();
+    void Initialize();
     Query::QueryExecutor* getQueryExecutor();
 }
 

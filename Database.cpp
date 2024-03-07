@@ -49,7 +49,7 @@ namespace MYSQL {
             con = driver->connect(server, username, password);
             con->setSchema("test");
             queryExecutor = new Query::QueryExecutor(con); // Initialize the query executor
-            console::log::Success("Database Connected");
+            console::log::Success("Database Connected\n");
             return true;
         }
         catch (sql::SQLException& e) {

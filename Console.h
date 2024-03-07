@@ -30,6 +30,10 @@ namespace console {
         void Info(const std::string& message);
         void Debug(const std::string& message);
         void Test(const std::string& message);
+        void Database(bool isConnected, const std::string& message);
+        void Executor(bool isAvailable, const std::string& message);
+        void Role(const std::string& message);
+        void User(const std::string& message);
     }
     namespace error {
         void Error(const std::string& message);

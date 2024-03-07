@@ -4,7 +4,6 @@
 
 namespace EXEC {
     Query::QueryExecutor* queryExecutor = nullptr;
-
     void Initialize() {
         MYSQL::Database* dbInstance = MYSQL::Database::getInstance(".env");
 
