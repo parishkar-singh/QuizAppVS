@@ -14,9 +14,11 @@ namespace Query {
 	public:
 		QueryExecutor(sql::Connection* conn);
 		~QueryExecutor();
+
+		bool userExists(const std::string& username, const std::string& hashPassword);
 		bool schemaExists(const std::string& schemaName);
-		bool executeUpdate(const std::string& query);
 		bool tableExists(const std::string& tableName);
+		bool executeUpdate(const std::string& query);
 		void selectQuery(const std::string& query, bool isQuestions);
 	};
 }

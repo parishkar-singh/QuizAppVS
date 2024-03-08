@@ -79,16 +79,9 @@ namespace EXEC {
 			queryExecutor->executeUpdate(createResultTableQuery);
 		}
 	}
-	void Authenticate() {
-		console::selector::ConsoleSelector selector;
-		std::vector<std::string> options = {
-			"Register user",
-			"Login"
-		};
-		int choice = selector.selectOption("How would you like to start? ", options);
-		system("cls");
-		std::cout << "You chose: " << options[choice] << std::endl;
-	}
+	//void Authenticate() {
+		
+	//}
 
 	bool bootstrap(std::vector<std::string> creds) {
 		console::art::intro();
@@ -100,7 +93,8 @@ namespace EXEC {
 		system("cls");
 		Initialize(creds);
 		ensureDatabase();
-		Authenticate();
+		//Authenticate();
+		Auth::AuthHandler();
 		console::art::outro();
 		std::cout << "Thank you for trying out...";
 		_getch();

@@ -8,8 +8,7 @@ QuizApp main(QuizApp keys, Credentials values[]) {
 		return App;
 	}*/
 	EXEC::Initialize(creds);
-	//std::cout<<Auth::AuthHandler::registerUser("parishkar","parishkar")<<std::endl;
-	std::cout << Auth::AuthHandler::authenticateUser("parishkar", "parishkar")<<std::endl;
+	
 	
 
 	return App;

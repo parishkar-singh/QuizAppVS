@@ -1,7 +1,37 @@
 #include "WhateverItTakes"
 
 namespace Auth {
+    AuthHandler::AuthHandler() {
+        console::selector::ConsoleSelector selector;
+        /*std::vector<std::string> options = {
+            "Login",
+            "Register user",
+            "Forgot Password?"
+        };*/
+        const char* options[] = { "Login", "Register user", "Forgot Password" };
+        int choice = selector.selectOptions("How would you like to start? ", 3, options);
+        delete[] options;
+        system("cls");
+        switch (choice) {
+        case 0:{
+            const char* options[] = { "Enter User Name: ", "Enter Password" };
+            std::vector<std::string>answers;
+            authenticateUser(answers[0],answers[1]);
+            delete[] options;
+            break;
+        }
+        case 1:
+            handleRegistration();
+            break;
+        case 2:
+            handleForgotPassword();
+            break;
+        default:
+            std::cout << "Invalid choice." << std::endl;
+        }
+        /*std::cout << "You chose: " << options[choice] << std::endl;*/
 
+    }
     std::string AuthHandler::hashPassword(const std::string& password) {
         // Will impliment OPENSSL the moment this whole thing works 
         try {
@@ -15,6 +45,23 @@ namespace Auth {
             return "";
         }
     }
+
+    bool AuthHandler::authenticateUser(const std::string& username, const std::string& password) {
+        if (!EXEC::queryExecutor) {
+            std::cerr << "QueryExecutor not initialized." << std::endl;
+            return false;
+        }
+        try {
+            std::string hashedPassword = hashPassword(password);
+            EXEC::queryExecutor->userExists(username, hashedPassword);
+            return true;
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Exception occurred while authenticating user: " << e.what() << std::endl;
+            return false;
+        }
+    }
+
     bool AuthHandler::registerUser(const std::string& username, const std::string& password) {
         if (!EXEC::queryExecutor) {
             std::cerr << "QueryExecutor not initialized." << std::endl;
@@ -31,22 +78,7 @@ namespace Auth {
         }
     }
 
-    bool AuthHandler::authenticateUser(const std::string& username, const std::string& password) {
-        if (!EXEC::queryExecutor) {
-            std::cerr << "QueryExecutor not initialized." << std::endl;
-            return false;
-        }
-        try {
-            std::string hashedPassword = hashPassword(password);
-            std::string query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + hashedPassword + "'";
-            EXEC::queryExecutor->selectQuery(query,false);
-            return true;
-        }
-        catch (const std::exception& e) {
-            std::cerr << "Exception occurred while authenticating user: " << e.what() << std::endl;
-            return false;
-        }
-    }
+    
     bool AuthHandler::updatePassword(const std::string& username, const std::string& newPassword) {
         if (!EXEC::queryExecutor) {
             std::cerr << "QueryExecutor not initialized." << std::endl;

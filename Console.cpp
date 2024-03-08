@@ -4,13 +4,10 @@ namespace console {
     namespace selector {
         ConsoleSelector::ConsoleSelector() : choice(0), keyPressed(0) {}
 
-        int ConsoleSelector::selectOption(const std::string question,const std::vector<std::string>& options) {
+        int ConsoleSelector::selectOptions(const std::string question, int vars, const char* values[]) {
+            std::vector<std::string> options(values, values + vars);
             while (keyPressed != ENTER_KEY) {
-                // To get that clear view
                 NAVBAR::NavBar();
-                //CSS ends here
-                
-                // Question and ans
                 std::cout << question + "\n" << std::endl;
                 for (size_t i = 0; i < options.size(); ++i) {
                     if (static_cast<int>(i) == choice) {
@@ -32,6 +29,17 @@ namespace console {
             }
 
             return choice;
+        }
+        
+        std::vector<std::string> inputOptions(const std::string& question, int vars, const char* values[]) {
+            std::vector<std::string> options;
+            std::cout << question << std::endl;
+
+            for (int i = 0; i < vars; ++i) {
+                options.push_back(values[i]);
+                std::cout << values[i] << std::endl;
+            }
+            return options;
         }
     }
 

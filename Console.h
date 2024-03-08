@@ -21,7 +21,8 @@ namespace console {
         public:
             ConsoleSelector();
 
-            int selectOption(const std::string question,const std::vector<std::string>& options);
+            int selectOptions(const std::string question,int vars, const char * values[]);
+            std::vector<std::string> inputOptions(const std::string question, int vars, const char* values[]);
         };
     }
     namespace log {
