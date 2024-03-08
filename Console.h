@@ -21,8 +21,8 @@ namespace console {
         public:
             ConsoleSelector();
 
-            int selectOptions(const std::string question,int vars, const char * values[]);
-            std::vector<std::string> inputOptions(const std::string question, int vars, const char* values[]);
+            int selectOptions(const std::string question, const std::vector<std::string> values);
+            std::vector<std::string> inputOptions(const std::string question, const std::vector<std::string> values);
         };
     }
     namespace log {
@@ -49,6 +49,9 @@ namespace console {
     namespace art {
         void intro();
         void outro();
+    }
+    namespace secret {
+        std::string getPassword();
     }
 }
 

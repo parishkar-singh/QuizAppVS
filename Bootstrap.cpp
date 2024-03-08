@@ -79,9 +79,10 @@ namespace EXEC {
 			queryExecutor->executeUpdate(createResultTableQuery);
 		}
 	}
-	//void Authenticate() {
-		
-	//}
+	void Authenticate() {
+		Auth::AuthHandler::AuthHandler();
+
+	}
 
 	bool bootstrap(std::vector<std::string> creds) {
 		console::art::intro();
@@ -93,8 +94,7 @@ namespace EXEC {
 		system("cls");
 		Initialize(creds);
 		ensureDatabase();
-		//Authenticate();
-		Auth::AuthHandler();
+		Authenticate();
 		console::art::outro();
 		std::cout << "Thank you for trying out...";
 		_getch();

@@ -3,18 +3,17 @@
 namespace console {
     namespace selector {
         ConsoleSelector::ConsoleSelector() : choice(0), keyPressed(0) {}
-
-        int ConsoleSelector::selectOptions(const std::string question, int vars, const char* values[]) {
-            std::vector<std::string> options(values, values + vars);
+        
+        int ConsoleSelector::selectOptions(const std::string question, const std::vector<std::string> values) {
             while (keyPressed != ENTER_KEY) {
                 NAVBAR::NavBar();
                 std::cout << question + "\n" << std::endl;
-                for (size_t i = 0; i < options.size(); ++i) {
+                for (size_t i = 0; i < values.size(); ++i) {
                     if (static_cast<int>(i) == choice) {
-                        std::cout << "-> " << options[i] << "\n";
+                        std::cout << "-> " << values[i] << "\n";
                     }
                     else {
-                        std::cout << "   " << options[i] << "\n";
+                        std::cout << "   " << values[i] << "\n";
                     }
                 }
 
@@ -23,7 +22,7 @@ namespace console {
                 if (keyPressed == KEY_UP && choice > 0) {
                     choice--; // going up :)
                 }
-                else if (keyPressed == KEY_DOWN && choice < static_cast<int>(options.size()) - 1) {
+                else if (keyPressed == KEY_DOWN && choice < static_cast<int>(values.size()) - 1) {
                     choice++; // going down :(
                 }
             }
@@ -31,15 +30,23 @@ namespace console {
             return choice;
         }
         
-        std::vector<std::string> inputOptions(const std::string& question, int vars, const char* values[]) {
-            std::vector<std::string> options;
+        std::vector<std::string> inputOptions(const std::string& question, const std::vector<std::string>& values) {
+            std::vector<std::string> answers;
             std::cout << question << std::endl;
-
-            for (int i = 0; i < vars; ++i) {
-                options.push_back(values[i]);
-                std::cout << values[i] << std::endl;
+            for (const auto& value : values) {
+                std::string temp = "";
+                if (value == "Password:") {
+                    std::cin >> temp;
+                    // Read password securely
+                    //temp = secret::getPassword();
+                }
+                else {
+                    std::cout << value;
+                    std::cin >> temp;
+                }
+                answers.push_back(temp);
             }
-            return options;
+            return answers;
         }
     }
 
@@ -127,7 +134,30 @@ namespace console {
             std::cerr << RED << "[ERROR] " << message << RESET;
         }
     }
+    namespace secret {
+        std::string getPassword() {
+            const char BACKSPACE = 8;
+            const char RETURN = 13;
 
+            std::string password;
+            char ch = 0;
+
+            while ((ch = _getch()) != RETURN) {
+                if (ch == BACKSPACE) {
+                    if (password.length() != 0) {
+                        std::cout << "\b \b";
+                        password.resize(password.length() - 1);
+                    }
+                }
+                else {
+                    std::cout << '*';
+                    password += ch;
+                }
+            }
+            std::cout << std::endl;
+            return password;
+        }
+    }
     namespace art {
         void intro() {
             std::cout  << R"(
