@@ -6,7 +6,7 @@
 
 namespace EXEC {
 
-    
+    extern Model::CurrentUser* currentUser;
     extern Query::QueryExecutor* queryExecutor;
     void Initialize(std::vector<std::string> creds);
     void Authenticate();

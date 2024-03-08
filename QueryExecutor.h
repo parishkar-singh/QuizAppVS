@@ -21,6 +21,7 @@ namespace Query {
 		bool executeUpdate(const std::string& query);
 		void selectQuery(const std::string& query, bool isQuestions);
 		int executeCountQuery(const std::string& query);
+		std::vector < std::string > getUserQuery(const std::string& query);
 	};
 }
 

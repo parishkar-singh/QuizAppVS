@@ -1,10 +1,7 @@
-
-//EXEC::queryExecutor->executeUpdate("INSERT INTO users (username, password) VALUES ('john_doe', 'password123');");
-//EXEC::queryExecutor->executeQueryAndPrint("SELECT * from users");
-
 CREATE TABLE Users (
     userId INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(50) NOT NULL,
     isAdmin BOOLEAN NOT NULL DEFAULT 0
 );
@@ -42,8 +39,11 @@ CREATE TABLE History (
 CREATE TABLE QuestionsSet (
     setId INT AUTO_INCREMENT PRIMARY KEY,
     setName VARCHAR(50) NOT NULL,
-    category ENUM('Geography', 'ComputerScience', 'History') NOT NULL
+    category ENUM('Geography', 'ComputerScience', 'History') NOT NULL,
+    adminId INT NOT NULL, -- Admin who set the paper
+    FOREIGN KEY (adminId) REFERENCES Users(userId)
 );
+
 
 CREATE TABLE Result (
     resultId INT AUTO_INCREMENT PRIMARY KEY,
@@ -54,10 +54,10 @@ CREATE TABLE Result (
     FOREIGN KEY (setId) REFERENCES QuestionsSet(setId)
 );
 
-INSERT INTO Users (username, password, isAdmin) VALUES 
-('admin', 'admin123', 1),
-('user1', 'user123', 0),
-('user2', 'user456', 0);
+INSERT INTO Users (username, email, password, isAdmin) VALUES 
+('admin', 'admin@example.com', 'admin123', 1),
+('user1', 'user1@example.com', 'user123', 0),
+('user2', 'user2@example.com', 'user456', 0);
 
 INSERT INTO Geography (questionText, optionA, optionB, optionC, optionD, correctOption) VALUES
 ('What is the capital of France?', 'Paris', 'London', 'Berlin', 'Rome', 'A'),
@@ -80,15 +80,16 @@ INSERT INTO History (questionText, optionA, optionB, optionC, optionD, correctOp
 ('Who discovered penicillin?', 'Alexander Fleming', 'Louis Pasteur', 'Marie Curie', 'Robert Koch', 'A'),
 ('In what year did the Titanic sink?', '1912', '1909', '1914', '1917', 'A');
 
-INSERT INTO QuestionsSet (setName, category) VALUES
-('Geography Set 1', 'Geography'),
-('Computer Science Set 1', 'ComputerScience'),
-('History Set 1', 'History');
+INSERT INTO QuestionsSet (setName, category, adminId) VALUES
+('Geography Set 1', 'Geography', 1),
+('Computer Science Set 1', 'ComputerScience', 1),
+('History Set 1', 'History', 1);
 
 INSERT INTO Result (userId, setId, score) VALUES
 (2, 1, 8),
 (3, 2, 7),
 (2, 3, 9);
+
 
 
 DROP TABLE IF EXISTS Result;

@@ -23,11 +23,25 @@ namespace NAVBAR {
     }
 
     void NavBar::logRole() {
-        console::log::Role("Admin\t");
+        if (EXEC::currentUser == nullptr) {
+            console::log::Role("N/A\t ");
+        }
+        else if (EXEC::currentUser->isAdminUser()) {
+        console::log::Role( "Admin\t");
+        }
+        else {
+        console::log::Role( "Student\t");
+        }
+
     }
 
     void NavBar::logUser() {
-        console::log::User("Parishkar\n");
+        if (EXEC::currentUser == nullptr) {
+        console::log::User("N/A \n");
+        }
+        else {
+        console::log::User(EXEC::currentUser->getUsername()+"\n");
+        }
     }
 
     void NavBar::printDivider() {

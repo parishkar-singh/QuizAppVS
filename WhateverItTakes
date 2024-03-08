@@ -8,7 +8,7 @@ enum Status { App= 0, Memory_Error = -1 };
 #define SELECT_OPTION(selector, ...) selector.selectOption(std::vector<std::string>({__VA_ARGS__}))
 
 // Database Classes
-#include "User.h"
+#include "CurrentUser.h"
 #include "Question.h"
 #include "QuizSet.h"
 #include "Result.h"

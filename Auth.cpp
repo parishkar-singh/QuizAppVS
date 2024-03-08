@@ -16,8 +16,18 @@ namespace Auth {
 			std::cin >> email;
 			std::cout << "Password: ";
 			std::cin >> password;
-			authenticateUser(email,password);
-			break;
+			if (authenticateUser(email, password)) {
+				std::vector<std::string> userData = EXEC::queryExecutor->getUserQuery("SELECT userId, username, email, isAdmin FROM users WHERE username = '" + email + "'");
+
+				if (!userData.empty()) {
+					EXEC::currentUser = new Model::CurrentUser(userData);
+				}
+				else {
+					// Handle the case where user data is empty
+					EXEC::currentUser = nullptr;
+				}
+			}
+
 		}
 		case 1:
 		{

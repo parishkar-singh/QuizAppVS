@@ -2,7 +2,10 @@
 // I dont know this may be responsible for the flow of execution not yet decided
 
 namespace EXEC {
-
+	Model::CurrentUser* currentUser = nullptr;
+	Model::CurrentUser* getCurrentUser() {
+		return currentUser;
+	}
 	Query::QueryExecutor* queryExecutor = nullptr;
 	Query::QueryExecutor* getQueryExecutor() {
 		return queryExecutor;
@@ -22,10 +25,12 @@ namespace EXEC {
 			std::string createUserTableQuery = "CREATE TABLE Users ("
 				"userId INT AUTO_INCREMENT PRIMARY KEY, "
 				"username VARCHAR(50) NOT NULL UNIQUE, "
+				"email VARCHAR(100) NOT NULL UNIQUE, "
 				"password VARCHAR(50) NOT NULL, "
 				"isAdmin BOOLEAN NOT NULL DEFAULT 0)";
 			queryExecutor->executeUpdate(createUserTableQuery);
 		}
+
 		if (!queryExecutor->tableExists("Geography")) {
 			std::string createGeographyTableQuery = "CREATE TABLE Geography ("
 				"questionId INT AUTO_INCREMENT PRIMARY KEY, "
@@ -64,9 +69,12 @@ namespace EXEC {
 			std::string createQuestionsSetTableQuery = "CREATE TABLE QuestionsSet ("
 				"setId INT AUTO_INCREMENT PRIMARY KEY, "
 				"setName VARCHAR(50) NOT NULL, "
-				"category ENUM('Geography', 'ComputerScience', 'History') NOT NULL)";
+				"category ENUM('Geography', 'ComputerScience', 'History') NOT NULL, "
+				"adminId INT NOT NULL, " 
+				"FOREIGN KEY (adminId) REFERENCES Users(userId))"; 
 			queryExecutor->executeUpdate(createQuestionsSetTableQuery);
 		}
+
 
 		if (!queryExecutor->tableExists("Result")) {
 			std::string createResultTableQuery = "CREATE TABLE Result ("
@@ -79,10 +87,7 @@ namespace EXEC {
 			queryExecutor->executeUpdate(createResultTableQuery);
 		}
 	}
-	void Authenticate() {
-		Auth::AuthHandler::AuthHandler();
 
-	}
 
 	bool bootstrap(std::vector<std::string> creds) {
 		console::art::intro();
@@ -94,7 +99,7 @@ namespace EXEC {
 		system("cls");
 		Initialize(creds);
 		ensureDatabase();
-		Authenticate();
+		Auth::AuthHandler::AuthHandler();
 		console::art::outro();
 		std::cout << "Thank you for trying out...";
 		_getch();

@@ -63,7 +63,38 @@ namespace Query {
 		}
 		return exists;
 	}
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	 
+	std::vector<std::string> QueryExecutor::getUserQuery(const std::string& query) {
+		std::vector<std::string> userData;
+
+		try {
+			sql::Statement* stmt = connection->createStatement();
+			sql::ResultSet* res = stmt->executeQuery(query);
+			sql::ResultSetMetaData* meta = res->getMetaData();
+
+			int numColumns = meta->getColumnCount();
+
+			if (res->next()) {
+				for (int i = 1; i <= numColumns; ++i) {
+					std::string columnValue = res->getString(i);
+					userData.push_back(columnValue);
+				}
+			}
+
+			delete res;
+			delete stmt;
+		}
+		catch (sql::SQLException& e) {
+			std::cerr << "SQL Exception: " << e.what() << std::endl;
+		}
+
+		return userData;
+	}
+
+	 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	int QueryExecutor::executeCountQuery(const std::string& query) {
 		int count = 0;
 		try {

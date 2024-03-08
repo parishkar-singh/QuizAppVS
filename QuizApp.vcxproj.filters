@@ -36,7 +36,7 @@
     <ClCompile Include="Bootstrap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User.cpp">
+    <ClCompile Include="CurrentUser.cpp">
       <Filter>Source Files\tables</Filter>
     </ClCompile>
     <ClCompile Include="Console.cpp">
@@ -77,7 +77,7 @@
     <ClInclude Include="Bootstrap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="User.h">
+    <ClInclude Include="CurrentUser.h">
       <Filter>Header Files\tables</Filter>
     </ClInclude>
     <ClInclude Include="Console.h">
