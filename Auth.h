@@ -9,8 +9,8 @@ namespace Auth {
         AuthHandler();
         ~AuthHandler();
         static std::string hashPassword(const std::string& password);
-        static bool registerUser(const std::string& username, const std::string& password);
-        static bool authenticateUser(const std::string& username, const std::string& password);
+        static bool registerUser(const std::string& username,const std::string& email, const std::string& password);
+        static bool authenticateUser(const std::string& email, const std::string& password);
         static bool updatePassword(const std::string& username,const std::string& userId, const std::string& newPassword);
         bool userMatchesId(const std::string& username, const std::string& userId);
     };

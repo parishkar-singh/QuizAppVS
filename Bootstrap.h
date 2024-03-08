@@ -13,7 +13,7 @@ namespace EXEC {
     void ensureDatabase();
     bool bootstrap(std::vector<std::string> creds);
     Query::QueryExecutor* getQueryExecutor();
-
+    void printAvailable();
 }
 
 #endif

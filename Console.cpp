@@ -1,6 +1,7 @@
 ﻿#include "WhateverItTakes"
 
 namespace console {
+
     namespace selector {
         ConsoleSelector::ConsoleSelector() : choice(0), keyPressed(0) {}
         

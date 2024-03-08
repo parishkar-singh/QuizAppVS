@@ -88,7 +88,16 @@ namespace EXEC {
 		}
 	}
 
-
+	void printAvailable() {
+		system("cls");
+		NAVBAR::NavBar();
+		queryExecutor->selectQuery("select * from computerscience",true);
+		_getch();
+		system("cls");
+		NAVBAR::NavBar();
+		queryExecutor->selectQuery("select * from users",false);
+		_getch();
+	}
 	bool bootstrap(std::vector<std::string> creds) {
 		console::art::intro();
 		Loader::startProgressBar();
@@ -100,6 +109,8 @@ namespace EXEC {
 		Initialize(creds);
 		ensureDatabase();
 		Auth::AuthHandler::AuthHandler();
+		printAvailable();
+		system("cls");
 		console::art::outro();
 		std::cout << "Thank you for trying out...";
 		_getch();

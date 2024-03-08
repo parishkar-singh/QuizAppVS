@@ -17,7 +17,7 @@ namespace Auth {
 			std::cout << "Password: ";
 			std::cin >> password;
 			if (authenticateUser(email, password)) {
-				std::vector<std::string> userData = EXEC::queryExecutor->getUserQuery("SELECT userId, username, email, isAdmin FROM users WHERE username = '" + email + "'");
+				std::vector<std::string> userData = EXEC::queryExecutor->getUserQuery("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'");
 
 				if (!userData.empty()) {
 					EXEC::currentUser = new Model::CurrentUser(userData);
@@ -27,19 +27,21 @@ namespace Auth {
 					EXEC::currentUser = nullptr;
 				}
 			}
-
+			break;
 		}
 		case 1:
 		{
 			NAVBAR::NavBar();
 			std::cout << "Enter Credentials to Register:" << std::endl;
-			std::string email, password;
+			std::string username, email, password;
+			std::cout << "Username:";
+			std::cin >> username;
 			std::cout << "Email: ";
 			std::cin >> email;
 			std::cout << "Password: ";
 			std::cin >> password;
 
-			registerUser(email, password);
+			registerUser(username,email, password);
 			break;
 		}
 		case 2: {
@@ -98,16 +100,16 @@ namespace Auth {
 	}
 
 
-	bool AuthHandler::registerUser(const std::string& username, const std::string& password) {
+	bool AuthHandler::registerUser(const std::string& username,const std::string & email, const std::string& password) {
 		if (!EXEC::queryExecutor) {
 			std::cerr << "QueryExecutor not initialized." << std::endl;
 			return false;
 		}
 		try {
 			std::string hashedPassword = hashPassword(password);
-			std::string query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + hashedPassword + "')";
+			std::string query = "INSERT INTO users (username ,email, password) VALUES ('" + username + "','" + email + "', '" + hashedPassword + "')";
 			EXEC::queryExecutor->executeUpdate(query);
-			std::string selectQuery = "SELECT username, userId users WHERE username = '" + username + "' AND password = '" + hashedPassword + "'";
+			std::string selectQuery = "SELECT username, userId from users WHERE email = '" + email + "' AND password = '" + hashedPassword + "'";
 			EXEC::queryExecutor->selectQuery(selectQuery, false); 
 			return true;
 		}

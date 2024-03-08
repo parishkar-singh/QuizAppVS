@@ -7,11 +7,11 @@ namespace Query {
 
 	QueryExecutor::~QueryExecutor() {}
 
-	bool Query::QueryExecutor::userExists(const std::string& username, const std::string& password) {
+	bool Query::QueryExecutor::userExists(const std::string& email, const std::string& password) {
 		bool exists = false;
 		try {
 			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
+			std::string query = "SELECT COUNT(*) FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
 			sql::ResultSet* res = stmt->executeQuery(query);
 			if (res->next()) {
 				int count = res->getInt(1);

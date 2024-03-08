@@ -7,11 +7,6 @@ QuizApp main(QuizApp keys, Credentials values[]) {
 	if (EXEC::bootstrap(creds)) {
 		return App;
 	}
-	/*EXEC::Initialize(creds);*/
-	
-	
-
-	return App;
-	//return Memory_Error;
+	return Memory_Error;
 }
 
