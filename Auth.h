@@ -11,7 +11,8 @@ namespace Auth {
         static std::string hashPassword(const std::string& password);
         static bool registerUser(const std::string& username, const std::string& password);
         static bool authenticateUser(const std::string& username, const std::string& password);
-        static bool updatePassword(const std::string& username, const std::string& newPassword);
+        static bool updatePassword(const std::string& username,const std::string& userId, const std::string& newPassword);
+        bool userMatchesId(const std::string& username, const std::string& userId);
     };
 }
 

@@ -63,7 +63,23 @@ namespace Query {
 		}
 		return exists;
 	}
-
+	
+	int QueryExecutor::executeCountQuery(const std::string& query) {
+		int count = 0;
+		try {
+			sql::Statement* stmt = connection->createStatement();
+			sql::ResultSet* res = stmt->executeQuery(query);
+			if (res->next()) {
+				count = res->getInt(1);
+			}
+			delete res;
+			delete stmt;
+		}
+		catch (sql::SQLException& e) {
+			std::cerr << "SQL Exception: " << e.what() << std::endl;
+		}
+		return count;
+	}
 	bool QueryExecutor::executeUpdate(const std::string& query) {
 		try {
 			sql::Statement* stmt = connection->createStatement();
