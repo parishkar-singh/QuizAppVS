@@ -5,7 +5,7 @@ namespace Query {
 		console::log::Debug("Query Executor loaded \n");
 	}
 
-	QueryExecutor::~QueryExecutor() {}
+	QueryExecutor::~QueryExecutor() = default;
 
 	bool Query::QueryExecutor::userExists(const std::string& email, const std::string& password) const
 	{
@@ -126,7 +126,7 @@ namespace Query {
 		}
 	}
 
-	void QueryExecutor::selectQuery(const std::string& query, bool isQuestions) {
+	void QueryExecutor::selectQuery(const std::string& query, const bool isQuestions) {
 		std::vector<std::vector<std::string>> results;
 
 		try {
