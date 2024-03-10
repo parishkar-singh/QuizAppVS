@@ -22,6 +22,7 @@ enum Status { App= 0, Memory_Error = -1 };
 #include "Auth.h"
 #include "Bootstrap.h"
 #include "Console.h"
+#include "Doctor.h"
 #include "Database.h"
 #include "QueryExecutor.h"
 #include "ClipLoader.h"

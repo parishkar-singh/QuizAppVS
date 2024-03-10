@@ -17,9 +17,7 @@ namespace console {
                         std::cout << "   " << values[i] << "\n";
                     }
                 }
-
                 keyPressed = _getch(); // Catch the arrow key
-
                 if (keyPressed == KEY_UP && choice > 0) {
                     choice--; // going up :)
                 }
@@ -27,10 +25,8 @@ namespace console {
                     choice++; // going down :(
                 }
             }
-
             return choice;
         }
-        
         std::vector<std::string> inputOptions(const std::string& question, const std::vector<std::string>& values) {
             std::vector<std::string> answers;
             std::cout << question << std::endl;
