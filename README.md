@@ -1,13 +1,7 @@
-## V3  This is the first release version and the source code will be refactored to match the c++ guidelines to make sure the code is understandable by C++ enthusiasts. Hopefully i will be able to make time for the changelogs and features.
+## V3  This is the first release version and the source code will be refactored to match the c++ guidelines to make sure the code is understandable by C++ enthusiasts. 
 
-You need to pass hostname username password to the command line. 
-Example  :
-
-```json
-    ./QuizApp.exe localhost:3306 root parishkar
-```
-
-
+Hopefully i will be able to make time for the changelogs and features.
+Version:  C++ 2020
 
 
 ## V2  Command Line Arguments  
