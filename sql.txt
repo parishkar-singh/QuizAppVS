@@ -1,0 +1,100 @@
+CREATE TABLE Users (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL,
+    isAdmin BOOLEAN NOT NULL DEFAULT 0
+);
+
+CREATE TABLE Geography (
+    questionId INT AUTO_INCREMENT PRIMARY KEY,
+    questionText TEXT NOT NULL,
+    optionA VARCHAR(255) NOT NULL,
+    optionB VARCHAR(255) NOT NULL,
+    optionC VARCHAR(255) NOT NULL,
+    optionD VARCHAR(255) NOT NULL,
+    correctOption CHAR(1) NOT NULL
+);
+
+CREATE TABLE ComputerScience (
+    questionId INT AUTO_INCREMENT PRIMARY KEY,
+    questionText TEXT NOT NULL,
+    optionA VARCHAR(255) NOT NULL,
+    optionB VARCHAR(255) NOT NULL,
+    optionC VARCHAR(255) NOT NULL,
+    optionD VARCHAR(255) NOT NULL,
+    correctOption CHAR(1) NOT NULL
+);
+
+CREATE TABLE History (
+    questionId INT AUTO_INCREMENT PRIMARY KEY,
+    questionText TEXT NOT NULL,
+    optionA VARCHAR(255) NOT NULL,
+    optionB VARCHAR(255) NOT NULL,
+    optionC VARCHAR(255) NOT NULL,
+    optionD VARCHAR(255) NOT NULL,
+    correctOption CHAR(1) NOT NULL
+);
+
+CREATE TABLE QuestionsSet (
+    setId INT AUTO_INCREMENT PRIMARY KEY,
+    setName VARCHAR(50) NOT NULL,
+    category ENUM('Geography', 'ComputerScience', 'History') NOT NULL,
+    adminId INT NOT NULL, -- Admin who set the paper
+    FOREIGN KEY (adminId) REFERENCES Users(userId)
+);
+
+
+CREATE TABLE Result (
+    resultId INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    setId INT NOT NULL,
+    score INT NOT NULL,
+    FOREIGN KEY (userId) REFERENCES Users(userId),
+    FOREIGN KEY (setId) REFERENCES QuestionsSet(setId)
+);
+
+INSERT INTO Users (username, email, password, isAdmin) VALUES 
+('admin', 'admin@example.com', 'admin123', 1),
+('user1', 'user1@example.com', 'user123', 0),
+('user2', 'user2@example.com', 'user456', 0);
+
+INSERT INTO Geography (questionText, optionA, optionB, optionC, optionD, correctOption) VALUES
+('What is the capital of France?', 'Paris', 'London', 'Berlin', 'Rome', 'A'),
+('Which river is the longest in the world?', 'Nile', 'Amazon', 'Yangtze', 'Mississippi', 'A'),
+('Which country is known as the Land of the Rising Sun?', 'Japan', 'China', 'India', 'South Korea', 'A'),
+('What is the largest desert in the world?', 'Sahara', 'Arabian', 'Gobi', 'Kalahari', 'A'),
+('Which ocean is the largest?', 'Pacific', 'Atlantic', 'Indian', 'Arctic', 'A');
+
+INSERT INTO ComputerScience (questionText, optionA, optionB, optionC, optionD, correctOption) VALUES
+('What is the full form of HTML?', 'Hyper Text Markup Language', 'Hyperlink and Text Markup Language', 'Home Tool Markup Language', 'Hyper Text Managing Language', 'A'),
+('Which programming language is used for web development?', 'Python', 'Java', 'C++', 'JavaScript', 'D'),
+('What does CSS stand for?', 'Cascading Style Sheets', 'Creative Style Sheets', 'Computer Style Sheets', 'Colorful Style Sheets', 'A'),
+('What does PHP stand for?', 'Hypertext Preprocessor', 'Pretext Hypertext Processor', 'Personal Home Page', 'Preprocessor Home Page', 'A'),
+('What is the primary function of SQL?', 'To manage and manipulate databases', 'To design website layouts', 'To create graphics', 'To write server-side scripts', 'A');
+
+INSERT INTO History (questionText, optionA, optionB, optionC, optionD, correctOption) VALUES
+('Who was the first President of the United States?', 'George Washington', 'Thomas Jefferson', 'Abraham Lincoln', 'John Adams', 'A'),
+('When did World War II end?', '1945', '1939', '1941', '1943', 'A'),
+('Who wrote "To Kill a Mockingbird"?', 'Harper Lee', 'Mark Twain', 'J.K. Rowling', 'George Orwell', 'A'),
+('Who discovered penicillin?', 'Alexander Fleming', 'Louis Pasteur', 'Marie Curie', 'Robert Koch', 'A'),
+('In what year did the Titanic sink?', '1912', '1909', '1914', '1917', 'A');
+
+INSERT INTO QuestionsSet (setName, category, adminId) VALUES
+('Geography Set 1', 'Geography', 1),
+('Computer Science Set 1', 'ComputerScience', 1),
+('History Set 1', 'History', 1);
+
+INSERT INTO Result (userId, setId, score) VALUES
+(2, 1, 8),
+(3, 2, 7),
+(2, 3, 9);
+
+
+
+DROP TABLE IF EXISTS Result;
+DROP TABLE IF EXISTS QuestionsSet;
+DROP TABLE IF EXISTS History;
+DROP TABLE IF EXISTS ComputerScience;
+DROP TABLE IF EXISTS Geography;
+DROP TABLE IF EXISTS Users;

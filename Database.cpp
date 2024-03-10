@@ -1,55 +1,25 @@
-// Database.cpp
-#include "Database.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
+#include "WhateverItTakes"
 
 namespace MYSQL {
     Database* Database::instance = nullptr;
-
-    Database::Database(const std::string& filename) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
-        readConfigFile(filename);
-        // COnnecting to the db as soon as object creation 
-        connect();  
+    Database::Database(std::vector<std::string> creds) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
+        this->server = creds[0];
+        this->username = creds[1];
+        this->password = creds[2];
+        connect();
     }
-
     Database::~Database() {
         disconnect();
         delete queryExecutor;
     }
-
-    void Database::readConfigFile(const std::string& filename) {
-        std::ifstream configFile(filename);
-        std::string line;
-
-        if (configFile.is_open()) {
-            while (std::getline(configFile, line)) {
-                std::istringstream iss(line);
-                std::string key, value;
-                std::getline(iss, key, '=');
-                std::getline(iss, value);
-
-                if (key == "server")
-                    server = value;
-                else if (key == "username")
-                    username = value;
-                else if (key == "password")
-                    password = value;
-            }
-            configFile.close();
-        }
-        else {
-            std::cerr << "Unable to open .env file: " << filename << std::endl;
-        }
-    }
-
+    // Connections
     bool Database::connect() {
         try {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
             con->setSchema("test");
-            queryExecutor = new Query::QueryExecutor(con); // Initialize the query executor
-            std::cout << "Database Connected\n";
+            queryExecutor = new Query::QueryExecutor(con);
+            console::log::Success("Database Connected\n");
             return true;
         }
         catch (sql::SQLException& e) {
@@ -64,14 +34,13 @@ namespace MYSQL {
             con = nullptr;
         }
     }
-
-    Database* Database::getInstance(const std::string& filename) {
+    // Getters
+    Database* Database::getInstance(std::vector<std::string> creds) {
         if (!instance) {
-            instance = new Database(filename);
+            instance = new Database(creds);
         }
         return instance;
     }
-
     Query::QueryExecutor* Database::getQueryExecutor() {
         return queryExecutor;
     }

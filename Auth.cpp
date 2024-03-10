@@ -1,51 +1,152 @@
-#include "Auth.h"
-#include "Database.h"
-#include <iostream>
-#include <string>
-#include <functional>
-#include <sstream>
+#include "WhateverItTakes"
 
 namespace Auth {
-    UserManager::UserManager() {}
-    UserManager::~UserManager() {}
+	AuthHandler::AuthHandler() {
+		console::selector::ConsoleSelector selector;
+		const std::vector<std::string> options = { "Login", "Register user", "Forgot Password" };
+		int choice = selector.selectOptions("How would you like to start? ", options);
+		system("cls");
+		switch (choice) {
 
-    std::string UserManager::hashPassword(const std::string& password) {
-        std::hash<std::string> hasher;
-        size_t hashed = hasher(password);
+		case 0: {
+			NAVBAR::NavBar();
+			std::cout << "Enter Credentials to Login: " << std::endl;
+			std::string email, password;
+			std::cout << "Email: ";
+			std::cin >> email;
+			std::cout << "Password: ";
+			std::cin >> password;
+			if (authenticateUser(email, password)) {
+				std::vector<std::string> userData = EXEC::queryExecutor->getUserQuery("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'");
 
-        std::stringstream ss;
-        ss << std::hex << hashed;
-        return ss.str();
-    }
+				if (!userData.empty()) {
+					EXEC::currentUser = new Model::CurrentUser(userData);
+				}
+				else {
+					// Handle the case where user data is empty
+					EXEC::currentUser = nullptr;
+				}
+			}
+			break;
+		}
+		case 1:
+		{
+			NAVBAR::NavBar();
+			std::cout << "Enter Credentials to Register:" << std::endl;
+			std::string username, email, password;
+			std::cout << "Username:";
+			std::cin >> username;
+			std::cout << "Email: ";
+			std::cin >> email;
+			std::cout << "Password: ";
+			std::cin >> password;
 
-    bool UserManager::registerUser(const std::string& username, const std::string& password) {
-        std::string hashedPassword = hashPassword(password);
-        MYSQL::Database* db = MYSQL::Database::getInstance(".env");
-        if (db) {
-            Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
-            std::string query = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + hashedPassword + "')";
-            bool success = queryExecutor->executeUpdate(query);
-            return success;
-        }
-        else {
-            std::cerr << "Failed to get database instance." << std::endl;
-            return false;
-        }
-    }
+			registerUser(username,email, password);
+			break;
+		}
+		case 2: {
+			NAVBAR::NavBar();
+			std::cout << "Enter Required Details to reset:" << std::endl;
+			std::string email, userId, password;
+			std::cout << "Email: ";
+			std::cin >> email;
+			std::cout << "UserId: ";
+			std::cin >> userId;
+			std::cout << "Enter new password:";
+			std::cin >> password;
 
-    bool UserManager::authenticateUser(const std::string& username, const std::string& password) {
-        std::string hashedPassword = hashPassword(password);
-        MYSQL::Database* db = MYSQL::Database::getInstance(".env");
+			updatePassword(email,userId, password);
+			break;
+		}
+		default:std::cout << "Invalid choice." << std::endl;
+		}
 
-        if (db) {
-            Query::QueryExecutor* queryExecutor = db->getQueryExecutor();
-            std::string query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + hashedPassword + "'";
-            queryExecutor->executeQueryAndPrint(query); // Execute query and print results
-            return true; // Modify return value accordingly based on authentication logic
-        }
-        else {
-            std::cerr << "Failed to get database instance." << std::endl;
-            return false;
-        }
-    }
+	}
+	AuthHandler::~AuthHandler() {
+	
+	}
+
+	
+
+	std::string AuthHandler::hashPassword(const std::string& password) {
+		// Will impliment OPENSSL the moment this whole thing works 
+		try {
+			size_t hashed = std::hash<std::string>{}(password);
+			std::stringstream ss;
+			ss << std::hex << hashed;
+			return ss.str();
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exception occurred while hashing password: " << e.what() << std::endl;
+			return "";
+		}
+	}
+
+
+	bool AuthHandler::authenticateUser(const std::string& username, const std::string& password) {
+		if (!EXEC::queryExecutor) {
+			std::cerr << "QueryExecutor not initialized." << std::endl;
+			return false;
+		}
+		try {
+			std::string hashedPassword = hashPassword(password);
+			EXEC::queryExecutor->userExists(username, hashedPassword);
+			return true;
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exception occurred while authenticating user: " << e.what() << std::endl;
+			return false;
+		}
+	}
+
+
+	bool AuthHandler::registerUser(const std::string& username,const std::string & email, const std::string& password) {
+		if (!EXEC::queryExecutor) {
+			std::cerr << "QueryExecutor not initialized." << std::endl;
+			return false;
+		}
+		try {
+			std::string hashedPassword = hashPassword(password);
+			std::string query = "INSERT INTO users (username ,email, password) VALUES ('" + username + "','" + email + "', '" + hashedPassword + "')";
+			EXEC::queryExecutor->executeUpdate(query);
+			std::string selectQuery = "SELECT username, userId from users WHERE email = '" + email + "' AND password = '" + hashedPassword + "'";
+			EXEC::queryExecutor->selectQuery(selectQuery, false); 
+			return true;
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exception occurred while registering user: " << e.what() << std::endl;
+			return false;
+		}
+	}
+
+	bool AuthHandler::userMatchesId(const std::string& username, const std::string& userId) {
+		try {
+			std::string query = "SELECT COUNT(*) FROM users WHERE username = '" + username + "' AND userId = '" + userId + "'";
+			int count = EXEC::queryExecutor->executeCountQuery(query);
+			return count > 0;
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exception occurred while checking if username and userId match: " << e.what() << std::endl;
+			return false;
+		}
+	}
+
+	bool AuthHandler::updatePassword(const std::string& username, const std::string& userId, const std::string& newPassword) {
+		if (!EXEC::queryExecutor) {
+			std::cerr << "QueryExecutor not initialized." << std::endl;
+			return false;
+		}
+		try {
+			std::string hashedPassword = hashPassword(newPassword);
+			std::string query = "UPDATE users SET password = '" + hashedPassword + "' WHERE username = '" + username + "'";
+			EXEC::queryExecutor->executeUpdate(query);
+			std::cout << "Password Reset Success\n";
+			return true;
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exception occurred while updating password: " << e.what() << std::endl;
+			return false;
+		}
+	}
+
 }

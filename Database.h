@@ -1,8 +1,8 @@
-// Database.h
 #ifndef DATABASE_H
 #define DATABASE_H
 
 #include "QueryExecutor.h"
+#include "Bootstrap.h"
 #include <cppconn/driver.h>
 #include <string>
 
@@ -16,20 +16,20 @@ namespace MYSQL {
         std::string username;
         std::string password;
 
-        void readConfigFile(const std::string& filename);
         bool connect();
         void disconnect();
 
     public:
-        static Database* getInstance(const std::string& filename);
+        static Database* getInstance(std::vector<std::string> creds);
         Query::QueryExecutor* getQueryExecutor();
 
         ~Database();
 
     private:
-        Database(const std::string& filename);
+        Database(std::vector<std::string> creds);
         static Database* instance;
     };
 }
 
-#endif // DATABASE_H
+
+#endif
