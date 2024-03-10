@@ -90,7 +90,7 @@ namespace Auth {
 		}
 		try {
 			std::string hashedPassword = hashPassword(password);
-			EXEC::queryExecutor->userExists(username, hashedPassword);
+			EXEC::queryExecutor->user_exists(username, hashedPassword);
 			return true;
 		}
 		catch (const std::exception& e) {

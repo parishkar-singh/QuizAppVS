@@ -22,6 +22,7 @@ namespace EXEC {
 		
 		system("cls");
 		NAVBAR::NavBar give_me_a_name;
+
 		queryExecutor->selectQuery("select * from computerscience");
 		_getch();
 		/*system("cls");

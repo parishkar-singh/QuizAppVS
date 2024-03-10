@@ -7,15 +7,15 @@ namespace Query {
 
 	QueryExecutor::~QueryExecutor() = default;
 
-	bool Query::QueryExecutor::userExists(const std::string& email, const std::string& password) const
+	bool Query::QueryExecutor::user_exists(const std::string& email, const std::string& password) const
 	{
 		bool exists = false;
 		try {
 			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
+			const std::string query = "SELECT COUNT(*) FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
 			sql::ResultSet* res = stmt->executeQuery(query);
 			if (res->next()) {
-				int count = res->getInt(1);
+				const int count = res->getInt(1);
 				exists = (count > 0);
 			}
 			delete res;
@@ -134,20 +134,20 @@ namespace Query {
 			sql::ResultSet* res = stmt->executeQuery(query);
 			sql::ResultSetMetaData* meta = res->getMetaData();
 
-			int numColumns = meta->getColumnCount();
+			const int num_columns = meta->getColumnCount();
 
-			std::vector<std::string> columnNames;
-			for (int i = 1; i <= numColumns; ++i) {
-				std::string columnName = meta->getColumnLabel(i);
-				columnNames.push_back(columnName);
+			std::vector<std::string> column_names;
+			for (int i = 1; i <= num_columns; ++i) {
+				std::string column_name = meta->getColumnLabel(i);
+				column_names.push_back(column_name);
 			}
-			results.push_back(columnNames);
+			results.push_back(column_names);
 
 			while (res->next()) {
 				std::vector<std::string> row;
-				for (int i = 1; i <= numColumns; ++i) {
-					std::string columnValue = res->getString(i);
-					row.push_back(columnValue);
+				for (int i = 1; i <= num_columns; ++i) {
+					std::string column_value = res->getString(i);
+					row.push_back(column_value);
 				}
 				results.push_back(row);
 			}

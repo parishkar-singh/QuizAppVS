@@ -1,59 +1,60 @@
 #include "WhateverItTakes"
 
-namespace Navigator {
-    Navigator::Navigator() : currentStep(nullptr) {}
+namespace navigation {
+    Navigator::Navigator() : current_step(nullptr) {}
 
-    void Navigator::addStep(const std::string& action) {
-        ProgramStep* newStep = new ProgramStep{ action, nullptr, nullptr };
-        if (currentStep) {
-            currentStep->next = newStep;
-            newStep->prev = currentStep;
+    void Navigator::add_step(const std::string& action) {
+        ProgramStep* new_step = new ProgramStep{ action, nullptr, nullptr };
+        if (current_step) {
+            current_step->next = new_step;
+            new_step->prev = current_step;
         }
-        currentStep = newStep;
+        current_step = new_step;
     }
 
-    void Navigator::nextStep() {
-        if (currentStep && currentStep->next) {
-            currentStep = currentStep->next;
-        }
-    }
-
-    void Navigator::prevStep() {
-        if (currentStep && currentStep->prev) {
-            currentStep = currentStep->prev;
+    void Navigator::next_step() {
+        if (current_step && current_step->next) {
+            current_step = current_step->next;
         }
     }
 
-    void Navigator::executeCurrentStep() {
-        if (currentStep) {
-            std::cout << "Executing step: " << currentStep->action << std::endl;
+    void Navigator::prev_step() {
+        if (current_step && current_step->prev) {
+            current_step = current_step->prev;
+        }
+    }
+
+    void Navigator::execute_current_step() const
+    {
+        if (current_step) {
+            std::cout << "Executing step: " << current_step->action << '\n';
             _getch(); // Wait for user input to continue
         }
     }
 
-    void Navigator::branch(bool condition, ProgramStep* truePath, ProgramStep* falsePath) {
+    void Navigator::branch(const bool condition, ProgramStep* true_path, ProgramStep* false_path) {
         if (condition) {
-            currentStep = truePath;
+            current_step = true_path;
         }
         else {
-            currentStep = falsePath;
+            current_step = false_path;
         }
     }
 
-    void Navigator::loop(int iterations, ProgramStep* loopBody) {
+    void Navigator::loop(const int iterations, ProgramStep* loop_body) {
         for (int i = 0; i < iterations; ++i) {
-            currentStep = loopBody;
-            while (currentStep) {
-                executeCurrentStep();
-                currentStep = currentStep->next;
+            current_step = loop_body;
+            while (current_step) {
+                execute_current_step();
+                current_step = current_step->next;
             }
         }
     }
 
-    void Navigator::executeIf(bool condition, ProgramStep* step) {
+    void Navigator::execute_if(const bool condition, ProgramStep* step) {
         if (condition) {
-            currentStep = step;
-            executeCurrentStep();
+            current_step = step;
+            execute_current_step();
         }
     }
 }
