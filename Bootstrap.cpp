@@ -20,7 +20,7 @@ namespace EXEC {
 	
 	void printAvailable() {
 		system("cls");
-		NAVBAR::NavBar();
+		NAVBAR::NavBar give_me_a_name;
 		queryExecutor->selectQuery("select * from computerscience",true);
 		_getch();
 		system("cls");
@@ -37,7 +37,7 @@ namespace EXEC {
 		Loader::startEatSleepRepeat();
 		system("cls");
 		Initialize(creds);
-		ensureDatabase();
+		Inspector::Diagnose::validateSchemaAndTables();
 		Auth::AuthHandler::AuthHandler();
 		printAvailable();
 		system("cls");

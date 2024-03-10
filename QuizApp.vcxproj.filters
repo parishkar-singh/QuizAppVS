@@ -22,6 +22,9 @@
     <Filter Include="Source Files\DTO">
       <UniqueIdentifier>{40c5f08d-51c9-42d8-a7d3-10ad51663c29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DTO">
+      <UniqueIdentifier>{1314c64c-5cee-443d-8e65-2d1f25b8df6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="QuizApp.cpp">
