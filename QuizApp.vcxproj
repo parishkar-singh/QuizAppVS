@@ -146,7 +146,7 @@
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="CurrentUser.cpp" />
     <ClCompile Include="Test.cpp" />
-    <ClCompile Include="Validator.cpp" />
+    <ClCompile Include="Inspector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h" />

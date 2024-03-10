@@ -17,10 +17,7 @@ namespace EXEC {
 			queryExecutor = dbInstance->getQueryExecutor();
 		}
 	}
-	void ensureDatabase() {
-		
-	}
-
+	
 	void printAvailable() {
 		system("cls");
 		NAVBAR::NavBar();
