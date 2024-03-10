@@ -7,7 +7,8 @@ namespace Query {
 
 	QueryExecutor::~QueryExecutor() {}
 
-	bool Query::QueryExecutor::userExists(const std::string& email, const std::string& password) {
+	bool Query::QueryExecutor::userExists(const std::string& email, const std::string& password) const
+	{
 		bool exists = false;
 		try {
 			sql::Statement* stmt = connection->createStatement();
@@ -21,13 +22,14 @@ namespace Query {
 			delete stmt;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 		return exists;
 	}
 
 
-	bool QueryExecutor::tableExists(const std::string& tableName) {
+	bool  QueryExecutor::tableExists(const std::string& tableName) const
+	{
 		bool exists = false;
 		try {
 			sql::Statement* stmt = connection->createStatement();
@@ -41,7 +43,7 @@ namespace Query {
 			delete stmt;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 		return exists;
 	}
@@ -59,7 +61,7 @@ namespace Query {
 			delete stmt;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 		return exists;
 	}
@@ -87,7 +89,7 @@ namespace Query {
 			delete stmt;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 
 		return userData;
@@ -107,7 +109,7 @@ namespace Query {
 			delete stmt;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 		return count;
 	}
@@ -119,7 +121,7 @@ namespace Query {
 			return true;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 			return false;
 		}
 	}
@@ -154,7 +156,7 @@ namespace Query {
 			delete stmt;
 		}
 		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << std::endl;
+			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 
 		isQuestions ? Printer::Questions(results) : Printer::Table(results);

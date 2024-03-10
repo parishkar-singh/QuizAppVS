@@ -15,9 +15,9 @@ namespace Query {
 		QueryExecutor(sql::Connection* conn);
 		~QueryExecutor();
 
-		bool userExists(const std::string& username, const std::string& hashPassword);
+		bool userExists(const std::string& username, const std::string& hashPassword) const;
 		bool schemaExists(const std::string& schemaName);
-		bool tableExists(const std::string& tableName);
+		bool tableExists(const std::string& tableName) const;
 		bool executeUpdate(const std::string& query);
 		void selectQuery(const std::string& query, bool isQuestions);
 		int executeCountQuery(const std::string& query);
