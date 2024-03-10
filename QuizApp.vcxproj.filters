@@ -19,6 +19,9 @@
     <Filter Include="Source Files\tables">
       <UniqueIdentifier>{7e21b97c-be30-4b32-b973-16a56a6b79ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{58169511-1c45-4d55-995f-530ad92b409f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="QuizApp.cpp">
@@ -42,20 +45,11 @@
     <ClCompile Include="Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Question.cpp">
-      <Filter>Source Files\tables</Filter>
-    </ClCompile>
-    <ClCompile Include="QuizSet.cpp">
-      <Filter>Source Files\tables</Filter>
-    </ClCompile>
     <ClCompile Include="Stats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ClipLoader.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Result.cpp">
-      <Filter>Source Files\tables</Filter>
     </ClCompile>
     <ClCompile Include="Navbar.cpp">
       <Filter>Source Files</Filter>
@@ -69,7 +63,7 @@
     <ClCompile Include="Inspector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="States.cpp">
+    <ClCompile Include="Context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Navigator.cpp">
@@ -77,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="Entities.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Question.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,9 +98,6 @@
     <ClInclude Include="Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QuizSet.h">
-      <Filter>Header Files\tables</Filter>
-    </ClInclude>
     <ClInclude Include="Stats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="ClipLoader.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Result.h">
-      <Filter>Header Files\tables</Filter>
     </ClInclude>
     <ClInclude Include="Navbar.h">
       <Filter>Header Files</Filter>
@@ -125,7 +119,7 @@
     <ClInclude Include="Inspector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="States.h">
+    <ClInclude Include="Context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Navigator.h">

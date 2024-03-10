@@ -19,34 +19,35 @@ namespace EXEC {
 	}
 	
 	void printAvailable() {
+		
 		system("cls");
 		NAVBAR::NavBar give_me_a_name;
-		queryExecutor->selectQuery("select * from computerscience",true);
+		queryExecutor->selectQuery("select * from computerscience");
 		_getch();
-		system("cls");
+		/*system("cls");
 		NAVBAR::NavBar();
 		queryExecutor->selectQuery("select * from users",false);
-		_getch();
+		_getch();*/
 	}
 	bool bootstrap(std::vector<std::string> creds) {
-		console::art::intro();
-		Loader::startProgressBar();
-		std::cout << " Lets go";
-		_getch();
-		system("cls");
-		Loader::startEatSleepRepeat();
-		system("cls");
+		//console::art::intro();
+		//Loader::startProgressBar();
+		//std::cout << " Lets go";
+		//_getch();
+		//system("cls");
+		//Loader::startEatSleepRepeat();
+		//system("cls");
 		Initialize(creds);
 		Inspector::Diagnose::validateSchemaAndTables();
 		Auth::AuthHandler::AuthHandler();
 		printAvailable();
-		system("cls");
-		console::art::outro();
-		std::cout << "Thank you for trying out...";
-		_getch();
-		system("cls");
-		Loader::startEatSleepRepeat();
-		system("cls");
+		//system("cls");
+		//console::art::outro();
+		//std::cout << "Thank you for trying out...";
+		//_getch();
+		//system("cls");
+		//Loader::startEatSleepRepeat();
+		//system("cls");
 		return true;
 	}
 

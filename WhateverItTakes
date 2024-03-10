@@ -9,9 +9,6 @@ enum Status { App= 0, Memory_Error = -1 };
 
 // Database Classes
 #include "CurrentUser.h"
-#include "Question.h"
-#include "QuizSet.h"
-#include "Result.h"
 
 ///////////////////////////// c and windows headers
 #include <conio.h>
@@ -21,14 +18,17 @@ enum Status { App= 0, Memory_Error = -1 };
 //////////////////////////// .h libraries
 #include "Auth.h"
 #include "Bootstrap.h"
+#include "ClipLoader.h"
 #include "Console.h"
+#include "Context.h"
+#include "Database.h"
 #include "Entities.h"
 #include "Inspector.h"
-#include "Database.h"
-#include "QueryExecutor.h"
-#include "ClipLoader.h"
-#include "Printer.h"
 #include "Navbar.h"
+#include "Navigator.h"
+#include "Printer.h"
+#include "QueryExecutor.h"
+#include "Test.h"
 
 /////////////////////////// STL and Native Libraries
 #include <chrono>

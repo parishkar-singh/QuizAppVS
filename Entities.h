@@ -5,8 +5,9 @@
 #include <string>
 
 namespace entities {
+	///////////// Questions
 	class question_dto {
-	public:
+	private:
 		int question_id;
 		std::string question_text;
 		std::string option_a;
@@ -14,8 +15,16 @@ namespace entities {
 		std::string option_c;
 		std::string option_d;
 		char correct_option;
+	public:
+		question_dto(int id, const std::string& text, const std::string& a,
+			const std::string& b, const std::string& c,
+			const std::string& d, char correct);
+		std::vector<std::string> convert_to_vector() const;
+		int ask_question_and_get_response() const;
+		bool is_correct(char option) const;
 	};
 
+	///////////// Users
 	class user_dto
 	{
 	public:
@@ -24,7 +33,7 @@ namespace entities {
 		std::string email;
 		bool is_admin;
 	};
-
+	///////////// Question Set
 	class question_set_dto
 	{
 	public:
@@ -33,6 +42,15 @@ namespace entities {
 		std::string category;
 		int admin_id;
 
+	};
+	//////////// Result 
+	class result_dto
+	{
+	public:
+		int result_id;
+		int user_id;
+		int question_set_id;
+		int score;
 	};
 }
 

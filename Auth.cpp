@@ -110,7 +110,7 @@ namespace Auth {
 			std::string query = "INSERT INTO users (username ,email, password) VALUES ('" + username + "','" + email + "', '" + hashedPassword + "')";
 			EXEC::queryExecutor->executeUpdate(query);
 			std::string selectQuery = "SELECT username, userId from users WHERE email = '" + email + "' AND password = '" + hashedPassword + "'";
-			EXEC::queryExecutor->selectQuery(selectQuery, false); 
+			EXEC::queryExecutor->selectQuery(selectQuery); 
 			return true;
 		}
 		catch (const std::exception& e) {

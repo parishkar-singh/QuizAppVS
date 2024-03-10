@@ -1,7 +1,1 @@
 #include "WhateverItTakes"
-
-
-namespace entities
-{
-	
-}

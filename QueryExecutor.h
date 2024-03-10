@@ -19,7 +19,8 @@ namespace Query {
 		bool schemaExists(const std::string& schemaName);
 		bool tableExists(const std::string& tableName) const;
 		bool executeUpdate(const std::string& query);
-		void selectQuery(const std::string& query, bool isQuestions);
+		std::vector<std::vector<std::string>> selectQuery(const std::string& query);
+		void select_query_and_print(const std::string& query, const bool is_question);
 		int executeCountQuery(const std::string& query);
 		std::vector < std::string > getUserQuery(const std::string& query);
 	};
