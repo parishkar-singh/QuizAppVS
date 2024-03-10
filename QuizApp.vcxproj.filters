@@ -19,12 +19,6 @@
     <Filter Include="Source Files\tables">
       <UniqueIdentifier>{7e21b97c-be30-4b32-b973-16a56a6b79ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\DTO">
-      <UniqueIdentifier>{40c5f08d-51c9-42d8-a7d3-10ad51663c29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\DTO">
-      <UniqueIdentifier>{1314c64c-5cee-443d-8e65-2d1f25b8df6b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="QuizApp.cpp">
@@ -81,6 +75,9 @@
     <ClCompile Include="Navigator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h">
@@ -102,9 +99,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuizSet.h">
-      <Filter>Header Files\tables</Filter>
-    </ClInclude>
-    <ClInclude Include="Question.h">
       <Filter>Header Files\tables</Filter>
     </ClInclude>
     <ClInclude Include="Stats.h">
@@ -135,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Navigator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
