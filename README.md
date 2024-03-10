@@ -4,6 +4,9 @@ Hopefully i will be able to make time for the changelogs and features.
 Version:  C++ 2020
 
 
+___________________________________________________________________________________________
+
+
 ## V2  Command Line Arguments  
 
 You need to pass hostname username password to the command line. 
@@ -12,6 +15,10 @@ Example  :
 ```json
     ./QuizApp.exe localhost:3306 root parishkar
 ```
+
+___________________________________________________________________________________________
+
+
 
 ## V1 (SCRAPED) -> .env  
 
