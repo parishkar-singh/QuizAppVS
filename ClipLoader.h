@@ -6,12 +6,12 @@
 #include <thread>
 #include <chrono>
 
-namespace Loader {
+namespace loader {
 
-    void startSpinner();
-    void startProgressBar();
-    void startDots();
-    void startEatSleepRepeat();
+    void start_spinner();
+    void start_progress_bar();
+    void start_dots();
+    void start_eat_sleep_repeat();
 
 }
 

@@ -24,43 +24,43 @@ namespace inspector {
 		}
 
 		void validate_schema() {
-			if (!EXEC::queryExecutor->schemaExists("test")) {
+			if (!exec::query_executor->schemaExists("test")) {
 				fixer::fix_schema();
 			}
 		}
 
 		void validate_user_table() {
-			if (!EXEC::queryExecutor->tableExists("Users")) {
+			if (!exec::query_executor->tableExists("Users")) {
 				fixer::fix_user_table();
 			}
 		}
 
 		void validate_geography_table() {
-			if (!EXEC::queryExecutor->tableExists("Geography")) {
+			if (!exec::query_executor->tableExists("Geography")) {
 				fixer::fix_geography_table();
 			}
 		}
 
 		void validate_computer_science_table() {
-			if (!EXEC::queryExecutor->tableExists("ComputerScience")) {
+			if (!exec::query_executor->tableExists("ComputerScience")) {
 				fixer::fix_computer_science_table();
 			}
 		}
 
 		void validate_history_table() {
-			if (!EXEC::queryExecutor->tableExists("History")) {
+			if (!exec::query_executor->tableExists("History")) {
 				fixer::fix_history_table();
 			}
 		}
 
 		void validate_questions_set_table() {
-			if (!EXEC::queryExecutor->tableExists("QuestionsSet")) {
+			if (!exec::query_executor->tableExists("QuestionsSet")) {
 				fixer::fix_questions_set_table();
 			}
 		}
 
 		void validate_result_table() {
-			if (!EXEC::queryExecutor->tableExists("Result")) {
+			if (!exec::query_executor->tableExists("Result")) {
 				fixer::fix_result_table();
 			}
 		}
@@ -68,7 +68,7 @@ namespace inspector {
 
 	namespace fixer {
 		void fix_schema() {
-			EXEC::queryExecutor->executeUpdate("CREATE SCHEMA test");
+			exec::query_executor->executeUpdate("CREATE SCHEMA test");
 		}
 
 		void fix_user_table() {
@@ -78,7 +78,7 @@ namespace inspector {
 				"email VARCHAR(100) NOT NULL UNIQUE, "
 				"password VARCHAR(50) NOT NULL, "
 				"is_admin BOOLEAN NOT NULL DEFAULT 0)";
-			EXEC::queryExecutor->executeUpdate(create_user_table_query);
+			exec::query_executor->executeUpdate(create_user_table_query);
 		}
 
 		void fix_geography_table() {
@@ -90,7 +90,7 @@ namespace inspector {
 				"option_c VARCHAR(255) NOT NULL, "
 				"option_d VARCHAR(255) NOT NULL, "
 				"correct_option CHAR(1) NOT NULL)";
-			EXEC::queryExecutor->executeUpdate(create_geography_table_query);
+			exec::query_executor->executeUpdate(create_geography_table_query);
 		}
 
 		void fix_computer_science_table() {
@@ -102,7 +102,7 @@ namespace inspector {
 				"option_c VARCHAR(255) NOT NULL, "
 				"option_d VARCHAR(255) NOT NULL, "
 				"correct_option CHAR(1) NOT NULL)";
-			EXEC::queryExecutor->executeUpdate(create_computer_science_table_query);
+			exec::query_executor->executeUpdate(create_computer_science_table_query);
 		}
 
 		void fix_history_table() {
@@ -114,7 +114,7 @@ namespace inspector {
 				"option_c VARCHAR(255) NOT NULL, "
 				"option_d VARCHAR(255) NOT NULL, "
 				"correct_option CHAR(1) NOT NULL)";
-			EXEC::queryExecutor->executeUpdate(create_history_table_query);
+			exec::query_executor->executeUpdate(create_history_table_query);
 		}
 
 		void fix_questions_set_table() {
@@ -124,7 +124,7 @@ namespace inspector {
 				"category ENUM('Geography', 'ComputerScience', 'History') NOT NULL, "
 				"admin_id INT NOT NULL, "
 				"FOREIGN KEY (admin_id) REFERENCES Users(user_id))";
-			EXEC::queryExecutor->executeUpdate(create_questions_set_table_query);
+			exec::query_executor->executeUpdate(create_questions_set_table_query);
 		}
 
 		void fix_result_table() {
@@ -135,7 +135,7 @@ namespace inspector {
 				"score INT NOT NULL, "
 				"FOREIGN KEY (user_id) REFERENCES Users(user_id), "
 				"FOREIGN KEY (set_id) REFERENCES QuestionsSet(set_id))";
-			EXEC::queryExecutor->executeUpdate(create_result_table_query);
+			exec::query_executor->executeUpdate(create_result_table_query);
 		}
 	}
 }

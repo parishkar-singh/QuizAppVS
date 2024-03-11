@@ -1,33 +1,33 @@
 #ifndef Inspector_H
 #define Inspector_H
 
-namespace Inspector {
-	namespace Diagnose {
-		void validateSchemaAndTables();
+namespace inspector {
+	namespace diagnose {
+		void validate_schema_and_tables();
 	}
 
-	namespace Validator {
+	namespace validator {
 		// Input Related 
-		bool validateEmail(const std::string& email);
-		bool validatePassword(const std::string& password);
+		bool validate_email(const std::string& email);
+		bool validate_password(const std::string& password);
 		// DB related
-		void validateSchema();
-		void validateUserTable();
-		void validateGeographyTable();
-		void validateComputerScienceTable();
-		void validateHistoryTable();
-		void validateQuestionsSetTable();
-		void validateResultTable();
+		void validate_schema();
+		void validate_user_table();
+		void validate_geography_table();
+		void validate_computer_science_table();
+		void validate_history_table();
+		void validate_questions_set_table();
+		void validate_result_table();
 	}
 
-	namespace Fixer {
-		void fixSchema();
-		void fixUserTable();
-		void fixGeographyTable();
-		void fixComputerScienceTable();
-		void fixHistoryTable();
-		void fixQuestionsSetTable();
-		void fixResultTable();
+	namespace fixer {
+		void fix_schema();
+		void fix_user_table();
+		void fix_geography_table();
+		void fix_computer_science_table();
+		void fix_history_table();
+		void fix_questions_set_table();
+		void fix_result_table();
 	}
 }
 

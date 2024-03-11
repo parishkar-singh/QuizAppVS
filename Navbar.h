@@ -6,7 +6,7 @@
 #include <string>
 #include <windows.h> 
 
-namespace NAVBAR {
+namespace navbar {
 
     class NavBar {
     public:
@@ -14,12 +14,12 @@ namespace NAVBAR {
         ~NavBar();
 
     private:
-        void logDatabase();
-        void logExecutor();
-        void logRole();
-        void logUser();
+        static void log_database();
+        static void log_executor();
+        static void log_role();
+        static void log_user();
 
-        void printDivider();
+        static void print_divider();
     };
 
 }

@@ -1,29 +1,28 @@
 #include "WhateverItTakes"
 // I dont know this may be responsible for the flow of execution not yet decided
 
-namespace EXEC {
-	Model::CurrentUser* currentUser = nullptr;
-	Model::CurrentUser* getCurrentUser() {
-		return currentUser;
+namespace exec {
+	Model::CurrentUser* current_user = nullptr;
+	Model::CurrentUser* get_current_user() {
+		return current_user;
 	}
-	Query::QueryExecutor* queryExecutor = nullptr;
-	Query::QueryExecutor* getQueryExecutor() {
-		return queryExecutor;
+	Query::QueryExecutor* query_executor = nullptr;
+	Query::QueryExecutor* get_query_executor() {
+		return query_executor;
 	}
 
-	void Initialize(std::vector<std::string> creds) {
-		MYSQL::Database* dbInstance = MYSQL::Database::getInstance(creds);
-		if (dbInstance) {
-			queryExecutor = dbInstance->getQueryExecutor();
+	void initialize(std::vector<std::string> creds) {
+		if (MYSQL::Database* db_instance = MYSQL::Database::getInstance(creds)) {
+			query_executor = db_instance->getQueryExecutor();
 		}
 	}
 	
-	void printAvailable() {
+	void print_available() {
 		
 		system("cls");
-		NAVBAR::NavBar give_me_a_name;
+		navbar::NavBar give_me_a_name;
 
-		queryExecutor->selectQuery("select * from computerscience");
+		query_executor->selectQuery("select * from computerscience");
 		_getch();
 		/*system("cls");
 		NAVBAR::NavBar();
@@ -31,24 +30,24 @@ namespace EXEC {
 		_getch();*/
 	}
 	bool bootstrap(std::vector<std::string> creds) {
-		//console::art::intro();
-		//Loader::startProgressBar();
-		//std::cout << " Lets go";
-		//_getch();
+		console::art::intro();
+		loader::start_progress_bar();
+		std::cout << " Lets go";
+		_getch();
 		//system("cls");
 		//Loader::startEatSleepRepeat();
 		//system("cls");
-		Initialize(creds);
-		Inspector::Diagnose::validateSchemaAndTables();
-		Auth::AuthHandler::AuthHandler();
-		printAvailable();
+		initialize(creds);
+		inspector::diagnose::validate_schema_and_tables();
+		auth::AuthHandler::AuthHandler();
+		print_available();
 		//system("cls");
 		//console::art::outro();
 		//std::cout << "Thank you for trying out...";
 		//_getch();
-		//system("cls");
-		//Loader::startEatSleepRepeat();
-		//system("cls");
+		system("cls");
+		loader::start_eat_sleep_repeat();
+		system("cls");
 		return true;
 	}
 

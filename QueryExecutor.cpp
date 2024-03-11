@@ -125,8 +125,9 @@ namespace Query {
 			return false;
 		}
 	}
-
-	std::vector<std::vector<std::string>> QueryExecutor::selectQuery(const std::string& query) {
+	// This does not return the headers and mostly this will be used for the DTO conversion
+	std::vector<std::vector<std::string>> QueryExecutor::select_query(const std::string& query) const
+	{
 		std::vector<std::vector<std::string>> results;
 
 		try {
@@ -136,12 +137,13 @@ namespace Query {
 
 			const int num_columns = meta->getColumnCount();
 
-			std::vector<std::string> column_names;
+			// Right now ignore the column vector
+			/*std::vector<std::string> column_names;
 			for (int i = 1; i <= num_columns; ++i) {
 				std::string column_name = meta->getColumnLabel(i);
 				column_names.push_back(column_name);
 			}
-			results.push_back(column_names);
+			results.push_back(column_names);*/
 
 			while (res->next()) {
 				std::vector<std::string> row;
@@ -162,6 +164,7 @@ namespace Query {
 		return results;
 		//isQuestions ? Printer::Questions(results) : Printer::Table(results);
 	}
+	// Prints the data using the printer module
 	void QueryExecutor::select_query_and_print(const std::string& query,const bool is_question) const
 	{
 		std::vector<std::vector<std::string>> results;

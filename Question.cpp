@@ -28,7 +28,6 @@ namespace entities
 		return choice;
 	}
 
-	// Method to check if the given option is correct
 	bool question_dto::is_correct(const char option) const {
 		return (std::toupper(option) == std::toupper(correct_option));
 	}

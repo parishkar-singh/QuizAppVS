@@ -5,10 +5,10 @@ namespace console {
     namespace selector {
         ConsoleSelector::ConsoleSelector() : choice(0), keyPressed(0) {}
         
-        int ConsoleSelector::selectOptions(const std::string question, const std::vector<std::string> values) {
+        int ConsoleSelector::selectOptions(const std::string& question, const std::vector<std::string>& values) {
             while (keyPressed != ENTER_KEY) {
-                NAVBAR::NavBar();
-                std::cout << question + "\n" << std::endl;
+                navbar::NavBar();
+                std::cout << question + "\n" << '\n';
                 for (size_t i = 0; i < values.size(); ++i) {
                     if (static_cast<int>(i) == choice) {
                         std::cout << "-> " << values[i] << "\n";

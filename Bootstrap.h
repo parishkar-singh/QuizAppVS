@@ -4,15 +4,14 @@
 #include "Database.h"
 #include "QueryExecutor.h"
 
-namespace EXEC {
+namespace exec {
 
-    extern Model::CurrentUser* currentUser;
-    extern Query::QueryExecutor* queryExecutor;
-    void Initialize(std::vector<std::string> creds);
-    void Authenticate();
+    extern Model::CurrentUser* current_user;
+    extern Query::QueryExecutor* query_executor;
+    void initialize(std::vector<std::string> creds);
     bool bootstrap(std::vector<std::string> creds);
-    Query::QueryExecutor* getQueryExecutor();
-    void printAvailable();
+    Query::QueryExecutor* get_query_executor();
+    void print_available();
 }
 
 #endif

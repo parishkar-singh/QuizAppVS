@@ -1,52 +1,52 @@
 #include "WhateverItTakes"
 
-namespace Loader {
+namespace loader {
 
-    void startSpinner() {
-        const char spinner[4] = { '|', '/', '-', '\\' };
-        const int numFrames = 4;
-        const int delayMillis = 100;
+    void start_spinner() {
+	    constexpr char spinner[4] = { '|', '/', '-', '\\' };
+	    constexpr int num_frames = 4;
+	    constexpr int delay_millis = 100;
 
         int i = 0;
         while (true) {
             std::cout << "\r" << spinner[i] << " Loading... ";
             std::cout.flush();
-            std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
-            i = (i + 1) % numFrames;
+            std::this_thread::sleep_for(std::chrono::milliseconds(delay_millis));
+            i = (i + 1) % num_frames;
         }
     }
 
-    void startProgressBar() {
-        const int numBars = 100;
-        const int delayMillis = 10;
+    void start_progress_bar() {
+	    constexpr int num_bars = 100;
+	    constexpr int delay_millis = 10;
 
-        for (int i = 0; i <= numBars; ++i) {
+        for (int i = 0; i <= num_bars; ++i) {
             std::cout << "\r|";
             for (int j = 0; j < i; ++j) {
                 std::cout <<console::log::GREEN<< ">"<<console::log::RESET;
             }
-            for (int j = 0; j < numBars - i; ++j) {
+            for (int j = 0; j < num_bars - i; ++j) {
                 std::cout << " ";
             }
             std::cout << "| " << (i ) << "%";
             std::cout.flush();
-            std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
+            std::this_thread::sleep_for(std::chrono::milliseconds(delay_millis));
         }
         std::cout << std::endl;
     }
 
-    void startDots() {
-        const int numDots = 10;
-        const int delayMillis = 200;
+    void start_dots() {
+	    constexpr int num_dots = 10;
+	    constexpr int delay_millis = 200;
 
-        for (int i = 0; i < numDots; ++i) {
+        for (int i = 0; i < num_dots; ++i) {
             std::cout << ".";
             std::cout.flush();
-            std::this_thread::sleep_for(std::chrono::milliseconds(delayMillis));
+            std::this_thread::sleep_for(std::chrono::milliseconds(delay_millis));
         }
-        std::cout << std::endl;
+        std::cout << '\n';
     }
-    void startEatSleepRepeat() {
+    void start_eat_sleep_repeat() {
         int i = 1;
         while (i--) {
             std::cout << "\r^_^";

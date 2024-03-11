@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace Navigator {
+namespace navigation {
     struct ProgramStep {
         std::string action;
         ProgramStep* prev;
@@ -12,18 +12,18 @@ namespace Navigator {
 
     class Navigator {
     private:
-        ProgramStep* currentStep;
+        ProgramStep* current_step;
 
     public:
         Navigator();
 
-        void addStep(const std::string& action);
-        void nextStep();
-        void prevStep();
-        void executeCurrentStep();
-        void branch(bool condition, ProgramStep* truePath, ProgramStep* falsePath);
-        void loop(int iterations, ProgramStep* loopBody);
-        void executeIf(bool condition, ProgramStep* step);
+        void add_step(const std::string& action);
+        void next_step();
+        void prev_step();
+        void execute_current_step() const;
+        void branch(bool condition, ProgramStep* true_path, ProgramStep* false_path);
+        void loop(int iterations, ProgramStep* loop_body);
+        void execute_if(bool condition, ProgramStep* step);
     };
 }
 

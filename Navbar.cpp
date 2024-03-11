@@ -1,32 +1,32 @@
 #include "WhateverItTakes"
 
-namespace NAVBAR {
+namespace navbar {
 
     NavBar::NavBar() {
         system("cls");
-        logDatabase();
-        logExecutor();
-        logRole();
-        logUser();
-        printDivider();
+        log_database();
+        log_executor();
+        log_role();
+        log_user();
+        print_divider();
     }
 
-    NavBar::~NavBar() {}
+    NavBar::~NavBar() = default;
 
-    void NavBar::logDatabase() {
+    void NavBar::log_database() {
             console::log::Database(true,"\t") ;
         
     }
 
-    void NavBar::logExecutor() {
-        console::log::Executor(EXEC::queryExecutor, "\t");
+    void NavBar::log_executor() {
+        console::log::Executor(exec::query_executor, "\t");
     }
 
-    void NavBar::logRole() {
-        if (EXEC::currentUser == nullptr) {
+    void NavBar::log_role() {
+        if (exec::current_user == nullptr) {
             console::log::Role("N/A\t ");
         }
-        else if (EXEC::currentUser->isAdminUser()) {
+        else if (exec::current_user->isAdminUser()) {
         console::log::Role( "Admin\t");
         }
         else {
@@ -35,22 +35,22 @@ namespace NAVBAR {
 
     }
 
-    void NavBar::logUser() {
-        if (EXEC::currentUser == nullptr) {
+    void NavBar::log_user() {
+        if (exec::current_user == nullptr) {
         console::log::User("N/A \n");
         }
         else {
-        console::log::User(EXEC::currentUser->getUsername()+"\n");
+        console::log::User(exec::current_user->getUsername()+"\n");
         }
     }
 
-    void NavBar::printDivider() {
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
-        GetConsoleScreenBufferInfo(hConsole, &bufferInfo);
-        int terminalWidth = bufferInfo.dwSize.X;
-        std::string divider(terminalWidth - 1, '_');
-        std::cout << divider << std::endl << std::endl;
+    void NavBar::print_divider() {
+	    const HANDLE h_console = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO buffer_info;
+        GetConsoleScreenBufferInfo(h_console, &buffer_info);
+	    const int terminal_width = buffer_info.dwSize.X;
+	    const std::string divider(terminal_width - 1, '_');
+        std::cout << divider << '\n' << '\n';
     }
 
 }
