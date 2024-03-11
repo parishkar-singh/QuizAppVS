@@ -2,8 +2,8 @@
 // I dont know this may be responsible for the flow of execution not yet decided
 
 namespace exec {
-	Model::CurrentUser* current_user = nullptr;
-	Model::CurrentUser* get_current_user() {
+	model::CurrentUser* current_user = nullptr;
+	model::CurrentUser* get_current_user() {
 		return current_user;
 	}
 	query::QueryExecutor* query_executor = nullptr;
@@ -22,7 +22,7 @@ namespace exec {
 		system("cls");
 		navbar::NavBar give_me_a_name;
 
-		query_executor->select_query("select * from computerscience");
+		query_executor->select_query_and_print("select * from computerscience",true);
 		_getch();
 		/*system("cls");
 		NAVBAR::NavBar();
@@ -41,10 +41,10 @@ namespace exec {
 		inspector::diagnose::validate_schema_and_tables();
 		auth::AuthHandler::AuthHandler();
 		print_available();
-		//system("cls");
-		//console::art::outro();
-		//std::cout << "Thank you for trying out...";
-		//_getch();
+		system("cls");
+		console::art::outro();
+		std::cout << "Thank you for trying out...";
+		_getch();
 		system("cls");
 		loader::start_eat_sleep_repeat();
 		system("cls");

@@ -1,7 +1,6 @@
 #ifndef NAVIGATOR_H
 #define NAVIGATOR_H
 
-#include <iostream>
 
 namespace navigation {
     struct ProgramStep {

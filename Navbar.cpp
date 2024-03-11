@@ -26,7 +26,7 @@ namespace navbar {
         if (exec::current_user == nullptr) {
             console::log::Role("N/A\t ");
         }
-        else if (exec::current_user->isAdminUser()) {
+        else if (exec::current_user->is_admin_user()) {
         console::log::Role( "Admin\t");
         }
         else {
@@ -40,7 +40,7 @@ namespace navbar {
         console::log::User("N/A \n");
         }
         else {
-        console::log::User(exec::current_user->getUsername()+"\n");
+        console::log::User(exec::current_user->get_username()+"\n");
         }
     }
 

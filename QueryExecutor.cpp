@@ -6,7 +6,7 @@ namespace query {
 	}
 
 	QueryExecutor::~QueryExecutor() = default;
-
+	// To check if things exist already or not
 	bool query::QueryExecutor::user_exists(const std::string& email, const std::string& password) const
 	{
 		bool exists = false;
@@ -130,7 +130,7 @@ namespace query {
 		}
 	}
 	// This does not return the headers and mostly this will be used for the DTO conversion
-	std::vector<std::vector<std::string>> QueryExecutor::select_query(const std::string& query) const
+	std::vector<std::vector<std::string>> QueryExecutor::select_query_convert_into_dto(const std::string& query) const
 	{
 		std::vector<std::vector<std::string>> results;
 

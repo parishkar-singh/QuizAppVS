@@ -18,7 +18,7 @@ namespace auth {
 			std::cin >> password;
 			if (authenticate_user(email, password)) {
 				if (const std::vector<std::string> user_data = exec::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
-					exec::current_user = new Model::CurrentUser(user_data);
+					exec::current_user = new model::CurrentUser(user_data);
 				}
 				else {
 					// Handle the case where user data is empty
@@ -104,7 +104,7 @@ namespace auth {
 			const std::string query = "INSERT INTO users (username ,email, password) VALUES ('" + username + "','" + email + "', '" + hashed_password + "')";
 			exec::query_executor->execute_update(query);
 			const std::string select_query = "SELECT username, userId from users WHERE email = '" + email + "' AND password = '" + hashed_password + "'";
-			exec::query_executor->select_query(select_query); 
+			exec::query_executor->select_query_and_print(select_query,false);
 			return true;
 		}
 		catch (const std::exception& e) {

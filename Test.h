@@ -6,10 +6,12 @@
 namespace test {
     class Test {
     private:
-        std::vector<entities::question_dto> questions;
+        //std::vector<entities::question_dto> questions;
 
     public:
-        Test(const std::vector<entities::question_dto>& questions);
+        // To start the quiz session;
+        Test();
+        
 
         void take_test() const;
     };
