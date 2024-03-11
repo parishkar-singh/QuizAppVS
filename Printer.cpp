@@ -1,6 +1,6 @@
 #include "WhateverItTakes"
 
-namespace Printer {
+namespace printer {
     void Table(const std::vector<std::vector<std::string>>& data) {
 	    const HANDLE h_console = GetStdHandle(STD_OUTPUT_HANDLE);
         CONSOLE_SCREEN_BUFFER_INFO csbi;

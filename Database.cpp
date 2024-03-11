@@ -1,6 +1,6 @@
 #include "WhateverItTakes"
 
-namespace MYSQL {
+namespace mysql {
     Database* Database::instance = nullptr;
     Database::Database(std::vector<std::string> creds) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
         this->server = creds[0];
@@ -18,7 +18,7 @@ namespace MYSQL {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
             con->setSchema("test");
-            queryExecutor = new Query::QueryExecutor(con);
+            queryExecutor = new query::QueryExecutor(con);
             console::log::Success("Database Connected\n");
             return true;
         }
@@ -35,13 +35,13 @@ namespace MYSQL {
         }
     }
     // Getters
-    Database* Database::getInstance(std::vector<std::string> creds) {
+    Database* Database::get_instance(std::vector<std::string> creds) {
         if (!instance) {
             instance = new Database(creds);
         }
         return instance;
     }
-    Query::QueryExecutor* Database::getQueryExecutor() {
+    query::QueryExecutor* Database::get_query_executor() {
         return queryExecutor;
     }
 }

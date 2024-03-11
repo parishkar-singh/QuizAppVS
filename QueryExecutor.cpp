@@ -1,13 +1,13 @@
 #include "WhateverItTakes"
 
-namespace Query {
+namespace query {
 	QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
 		console::log::Debug("Query Executor loaded \n");
 	}
 
 	QueryExecutor::~QueryExecutor() = default;
 
-	bool Query::QueryExecutor::user_exists(const std::string& email, const std::string& password) const
+	bool query::QueryExecutor::user_exists(const std::string& email, const std::string& password) const
 	{
 		bool exists = false;
 		try {
@@ -28,15 +28,15 @@ namespace Query {
 	}
 
 
-	bool  QueryExecutor::tableExists(const std::string& tableName) const
+	bool  QueryExecutor::table_exists(const std::string& table_name) const
 	{
 		bool exists = false;
 		try {
 			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '" + tableName + "'";
+			const std::string query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '" + table_name + "'";
 			sql::ResultSet* res = stmt->executeQuery(query);
 			if (res->next()) {
-				int count = res->getInt(1);
+				const int count = res->getInt(1);
 				exists = (count > 0);
 			}
 			delete res;
@@ -47,14 +47,15 @@ namespace Query {
 		}
 		return exists;
 	}
-	bool QueryExecutor::schemaExists(const std::string& schemaName) {
+	bool QueryExecutor::schema_exists(const std::string& schema_name) const
+	{
 		bool exists = false;
 		try {
 			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '" + schemaName + "'";
+			const std::string query = "SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '" + schema_name + "'";
 			sql::ResultSet* res = stmt->executeQuery(query);
 			if (res->next()) {
-				int count = res->getInt(1);
+				const int count = res->getInt(1);
 				exists = (count > 0);
 			}
 			delete res;
@@ -68,20 +69,21 @@ namespace Query {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	 
-	std::vector<std::string> QueryExecutor::getUserQuery(const std::string& query) {
-		std::vector<std::string> userData;
+	std::vector<std::string> QueryExecutor::get_user_query(const std::string& query) const
+	{
+		std::vector<std::string> user_data;
 
 		try {
 			sql::Statement* stmt = connection->createStatement();
 			sql::ResultSet* res = stmt->executeQuery(query);
 			sql::ResultSetMetaData* meta = res->getMetaData();
 
-			int numColumns = meta->getColumnCount();
+			const int num_columns = meta->getColumnCount();
 
 			if (res->next()) {
-				for (int i = 1; i <= numColumns; ++i) {
-					std::string columnValue = res->getString(i);
-					userData.push_back(columnValue);
+				for (int i = 1; i <= num_columns; ++i) {
+					std::string column_value = res->getString(i);
+					user_data.push_back(column_value);
 				}
 			}
 
@@ -92,12 +94,13 @@ namespace Query {
 			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 
-		return userData;
+		return user_data;
 	}
 
 	 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	int QueryExecutor::executeCountQuery(const std::string& query) {
+	int QueryExecutor::execute_count_query(const std::string& query) const
+	{
 		int count = 0;
 		try {
 			sql::Statement* stmt = connection->createStatement();
@@ -113,7 +116,8 @@ namespace Query {
 		}
 		return count;
 	}
-	bool QueryExecutor::executeUpdate(const std::string& query) {
+	bool QueryExecutor::execute_update(const std::string& query) const
+	{
 		try {
 			sql::Statement* stmt = connection->createStatement();
 			stmt->executeUpdate(query);
@@ -160,7 +164,7 @@ namespace Query {
 		catch (sql::SQLException& e) {
 			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
-		Printer::Questions(results);
+		printer::Questions(results);
 		return results;
 		//isQuestions ? Printer::Questions(results) : Printer::Table(results);
 	}
@@ -199,6 +203,6 @@ namespace Query {
 			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
 	
-		is_question ? Printer::Questions(results) : Printer::Table(results);
+		is_question ? printer::Questions(results) : printer::Table(results);
 	}
 }

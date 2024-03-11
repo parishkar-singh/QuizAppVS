@@ -6,14 +6,14 @@ namespace exec {
 	Model::CurrentUser* get_current_user() {
 		return current_user;
 	}
-	Query::QueryExecutor* query_executor = nullptr;
-	Query::QueryExecutor* get_query_executor() {
+	query::QueryExecutor* query_executor = nullptr;
+	query::QueryExecutor* get_query_executor() {
 		return query_executor;
 	}
 
 	void initialize(std::vector<std::string> creds) {
-		if (MYSQL::Database* db_instance = MYSQL::Database::getInstance(creds)) {
-			query_executor = db_instance->getQueryExecutor();
+		if (mysql::Database* db_instance = mysql::Database::get_instance(creds)) {
+			query_executor = db_instance->get_query_executor();
 		}
 	}
 	
@@ -22,7 +22,7 @@ namespace exec {
 		system("cls");
 		navbar::NavBar give_me_a_name;
 
-		query_executor->selectQuery("select * from computerscience");
+		query_executor->select_query("select * from computerscience");
 		_getch();
 		/*system("cls");
 		NAVBAR::NavBar();

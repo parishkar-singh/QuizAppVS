@@ -7,10 +7,10 @@
 namespace exec {
 
     extern Model::CurrentUser* current_user;
-    extern Query::QueryExecutor* query_executor;
+    extern query::QueryExecutor* query_executor;
     void initialize(std::vector<std::string> creds);
     bool bootstrap(std::vector<std::string> creds);
-    Query::QueryExecutor* get_query_executor();
+    query::QueryExecutor* get_query_executor();
     void print_available();
 }
 
