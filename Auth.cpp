@@ -10,7 +10,7 @@ namespace auth {
 
 		case 0: {
 			navbar::NavBar give_me_a_name;
-			std::cout << "Enter Credentials to Login: " << std::endl;
+			std::cout << "Enter Credentials to Login: " << '\n';
 			std::string email, password;
 			std::cout << "Email: ";
 			std::cin >> email;

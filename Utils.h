@@ -1,7 +1,6 @@
 #ifndef Inspector_H
 #define Inspector_H
 
-namespace inspector {
 	namespace diagnose {
 		void validate_schema_and_tables();
 	}
@@ -20,7 +19,7 @@ namespace inspector {
 		void validate_result_table();
 	}
 
-	namespace fixer {
+	namespace repair {
 		void fix_schema();
 		void fix_user_table();
 		void fix_geography_table();
@@ -29,6 +28,5 @@ namespace inspector {
 		void fix_questions_set_table();
 		void fix_result_table();
 	}
-}
 
 #endif // Inspector_H
