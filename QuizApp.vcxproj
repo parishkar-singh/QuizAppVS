@@ -143,13 +143,11 @@
     <ClCompile Include="QueryExecutor.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="QuizApp.cpp" />
-    <ClCompile Include="Context.cpp" />
     <ClCompile Include="Repair.cpp" />
     <ClCompile Include="Role.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="CurrentUser.cpp" />
     <ClCompile Include="Test.cpp" />
-    <ClCompile Include="Inspector.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
@@ -160,13 +158,14 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="Bootstrap.h" />
     <ClInclude Include="Entities.h" />
-    <ClInclude Include="Utils.h" />
     <ClInclude Include="Navbar.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="Context.h" />
+    <ClInclude Include="Repair.h" />
     <ClInclude Include="Role.h" />
     <ClInclude Include="Test.h" />
+    <ClInclude Include="Validator.h" />
     <ClInclude Include="WhateverItTakes" />
     <ClInclude Include="QueryExecutor.h" />
     <ClInclude Include="Stats.h" />

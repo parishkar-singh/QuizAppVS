@@ -20,15 +20,17 @@ enum Status { App= 0, Memory_Error = -1 };
 #include "Bootstrap.h"
 #include "ClipLoader.h"
 #include "Console.h"
-#include "Context.h"
 #include "Database.h"
 #include "Entities.h"
-#include "Utils.h"
 #include "Navbar.h"
 #include "Navigator.h"
 #include "Printer.h"
 #include "QueryExecutor.h"
 #include "Test.h"
+
+// Utils
+#include "Repair.h"
+#include "Validator.h"
 
 /////////////////////////// STL and Native Libraries
 #include <chrono>

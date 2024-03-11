@@ -28,44 +28,8 @@ namespace query {
 	}
 
 
-	bool QueryExecutor::table_exists(const std::string& table_name) const
-	{
-		bool exists = false;
-		try {
-			sql::Statement* stmt = connection->createStatement();
-			const std::string query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '" + table_name + "'";
-			sql::ResultSet* res = stmt->executeQuery(query);
-			if (res->next()) {
-				const int count = res->getInt(1);
-				exists = (count > 0);
-			}
-			delete res;
-			delete stmt;
-		}
-		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << '\n';
-		}
-		return exists;
-	}
-	bool QueryExecutor::schema_exists(const std::string& schema_name) const
-	{
-		bool exists = false;
-		try {
-			sql::Statement* stmt = connection->createStatement();
-			const std::string query = "SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '" + schema_name + "'";
-			sql::ResultSet* res = stmt->executeQuery(query);
-			if (res->next()) {
-				const int count = res->getInt(1);
-				exists = (count > 0);
-			}
-			delete res;
-			delete stmt;
-		}
-		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << '\n';
-		}
-		return exists;
-	}
+	
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	 
