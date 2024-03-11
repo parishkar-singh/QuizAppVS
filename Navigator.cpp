@@ -28,7 +28,7 @@ namespace navigation {
     {
         if (current_step) {
             std::cout << "Executing step: " << current_step->action << '\n';
-            _getch(); // Wait for user input to continue
+            _getch(); 
         }
     }
 
