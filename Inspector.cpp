@@ -33,6 +33,8 @@ namespace inspector {
 			if (!exec::query_executor->table_exists("Users")) {
 				fixer::fix_user_table();
 			}
+
+
 		}
 
 		void validate_geography_table() {

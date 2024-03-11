@@ -13,6 +13,12 @@ namespace auth {
         static bool authenticate_user(const std::string& email, const std::string& password);
         static bool update_password(const std::string& username,const std::string& user_id, const std::string& new_password);
         static bool user_matches_id(const std::string& username, const std::string& user_id);
+    private:
+        std::string generate_user_id();
+
+        bool username_exists(const std::string& username);
+
+        bool email_exists(const std::string& email);
     };
 }
 

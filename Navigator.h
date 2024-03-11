@@ -1,6 +1,12 @@
 #ifndef NAVIGATOR_H
 #define NAVIGATOR_H
 
+/// <summary>
+/// 1.This is mainly responsible for traversing thru the application
+/// 2.Data structure used is doubly linked list and the main benifit is backward and forward traversing.
+/// 3. Name of the functions are self explanatory.
+/// 4. There's also support for loop and execute_if help full in case of the authentication screen.
+/// </summary>
 
 namespace navigation {
     struct ProgramStep {
