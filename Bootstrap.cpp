@@ -38,7 +38,6 @@ namespace exec {
 		//Loader::startEatSleepRepeat();
 		//system("cls");
 		initialize(creds);
-		inspector::diagnose::validate_schema_and_tables();
 		auth::AuthHandler::AuthHandler();
 		print_available();
 		system("cls");
