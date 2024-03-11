@@ -25,6 +25,7 @@ namespace auth {
 					exec::current_user = nullptr;
 				}
 			}
+			
 			break;
 		}
 		case 1:
