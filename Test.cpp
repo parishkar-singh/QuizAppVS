@@ -9,7 +9,7 @@ namespace entities {
     public:
         Test(const std::vector<question_dto>& questions) : questions(questions) {}
 
-        void take_test() const {
+        /*void take_test() const {
             int score = 0;
             for (const auto& question : questions) {
                 question.ask_question();
@@ -23,6 +23,6 @@ namespace entities {
                 }
             }
             std::cout << "Your score: " << score << " out of " << questions.size() << std::endl;
-        }
+        }*/
     };
 }

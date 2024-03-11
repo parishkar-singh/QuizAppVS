@@ -2,7 +2,6 @@
 #define DATABASE_H
 
 #include "QueryExecutor.h"
-#include "Bootstrap.h"
 #include <cppconn/driver.h>
 #include <string>
 
@@ -21,7 +20,7 @@ namespace mysql {
 
     public:
         static Database* get_instance(std::vector<std::string> creds);
-        query::QueryExecutor* get_query_executor();
+        query::QueryExecutor* get_query_executor() const;
 
         ~Database();
 

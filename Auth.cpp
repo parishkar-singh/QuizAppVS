@@ -4,7 +4,7 @@ namespace auth {
 	AuthHandler::AuthHandler() {
 		console::selector::ConsoleSelector selector;
 		const std::vector<std::string> options = { "Login", "Register user", "Forgot Password" };
-		const int choice = selector.selectOptions("How would you like to start? ", options);
+		const int choice = selector.select_options("How would you like to start? ", options);
 		system("cls");
 		switch (choice) {
 
@@ -17,7 +17,7 @@ namespace auth {
 			std::cout << "Password: ";
 			std::cin >> password;
 			if (authenticate_user(email, password)) {
-				if (const std::vector<std::string> user_data = exec::query_executor->getUserQuery("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
+				if (const std::vector<std::string> user_data = exec::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
 					exec::current_user = new Model::CurrentUser(user_data);
 				}
 				else {
@@ -102,9 +102,9 @@ namespace auth {
 		try {
 			const std::string hashed_password = hash_password(password);
 			const std::string query = "INSERT INTO users (username ,email, password) VALUES ('" + username + "','" + email + "', '" + hashed_password + "')";
-			exec::query_executor->executeUpdate(query);
+			exec::query_executor->execute_update(query);
 			const std::string select_query = "SELECT username, userId from users WHERE email = '" + email + "' AND password = '" + hashed_password + "'";
-			exec::query_executor->selectQuery(select_query); 
+			exec::query_executor->select_query(select_query); 
 			return true;
 		}
 		catch (const std::exception& e) {
@@ -116,7 +116,7 @@ namespace auth {
 	bool AuthHandler::user_matches_id(const std::string& username, const std::string& user_id) {
 		try {
 			const std::string query = "SELECT COUNT(*) FROM users WHERE username = '" + username + "' AND userId = '" + user_id + "'";
-			const int count = exec::query_executor->executeCountQuery(query);
+			const int count = exec::query_executor->execute_count_query(query);
 			return count > 0;
 		}
 		catch (const std::exception& e) {
@@ -133,7 +133,7 @@ namespace auth {
 		try {
 			const std::string hashed_password = hash_password(new_password);
 			const std::string query = "UPDATE users SET password = '" + hashed_password + "' WHERE username = '" + username + "'";
-			exec::query_executor->executeUpdate(query);
+			exec::query_executor->execute_update(query);
 			std::cout << "Password Reset Success\n";
 			return true;
 		}

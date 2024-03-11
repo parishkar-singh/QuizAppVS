@@ -2,9 +2,6 @@
 #ifndef NAVBAR_H
 #define NAVBAR_H
 
-#include <iostream>
-#include <string>
-#include <windows.h> 
 
 namespace navbar {
 

@@ -2,7 +2,7 @@
 
 namespace mysql {
     Database* Database::instance = nullptr;
-    Database::Database(std::vector<std::string> creds) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
+    Database::Database(std::vector<std::string> creds) : driver(nullptr), con(nullptr), queryExecutor(nullptr) {
         this->server = creds[0];
         this->username = creds[1];
         this->password = creds[2];
@@ -23,7 +23,7 @@ namespace mysql {
             return true;
         }
         catch (sql::SQLException& e) {
-            std::cerr << "Could not connect to server. Error message: " << e.what() << std::endl;
+            std::cerr << "Could not connect to server. Error message: " << e.what() << '\n';
             return false;
         }
     }
@@ -41,7 +41,8 @@ namespace mysql {
         }
         return instance;
     }
-    query::QueryExecutor* Database::get_query_executor() {
+    query::QueryExecutor* Database::get_query_executor() const
+    {
         return queryExecutor;
     }
 }
