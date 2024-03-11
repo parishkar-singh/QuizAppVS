@@ -28,7 +28,7 @@ namespace query {
 	}
 
 
-	bool  QueryExecutor::table_exists(const std::string& table_name) const
+	bool QueryExecutor::table_exists(const std::string& table_name) const
 	{
 		bool exists = false;
 		try {

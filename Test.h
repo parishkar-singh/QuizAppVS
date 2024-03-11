@@ -9,10 +9,8 @@ namespace test {
         std::vector<entities::question_dto> questions;
 
     public:
-        // Constructor
         Test(const std::vector<entities::question_dto>& questions);
 
-        // Method to take the test
         void take_test() const;
     };
 }

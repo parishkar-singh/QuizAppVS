@@ -16,9 +16,7 @@ namespace entities {
 		std::string option_d;
 		char correct_option;
 	public:
-		question_dto(int id, const std::string& text, const std::string& a,
-			const std::string& b, const std::string& c,
-			const std::string& d, char correct);
+		question_dto(const std::vector<std::string>& data);
 		std::vector<std::string> convert_to_vector() const;
 		int ask_question_and_get_response() const;
 		bool is_correct(char option) const;

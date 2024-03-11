@@ -21,7 +21,7 @@ namespace console {
         public:
             ConsoleSelector();
 
-            int selectOptions(const std::string& question, const std::vector<std::string>& values);
+            int select_options(const std::string& question, const std::vector<std::string>& values);
             std::vector<std::string> inputOptions(const std::string question, const std::vector<std::string> values);
         };
     }
@@ -39,7 +39,7 @@ namespace console {
         void Debug(const std::string& message);
         void Test(const std::string& message);
         void Database(bool isConnected, const std::string& message);
-        void Executor(bool isAvailable, const std::string& message);
+        void Executor(bool is_available, const std::string& message);
         void Role(const std::string& message);
         void User(const std::string& message);
     }

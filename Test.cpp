@@ -7,10 +7,8 @@ namespace entities {
         std::vector<question_dto> questions;
 
     public:
-        // Constructor
         Test(const std::vector<question_dto>& questions) : questions(questions) {}
 
-        // Method to take the test
         void take_test() const {
             int score = 0;
             for (const auto& question : questions) {

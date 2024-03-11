@@ -5,9 +5,9 @@ namespace console {
     namespace selector {
         ConsoleSelector::ConsoleSelector() : choice(0), keyPressed(0) {}
         
-        int ConsoleSelector::selectOptions(const std::string& question, const std::vector<std::string>& values) {
+        int ConsoleSelector::select_options(const std::string& question, const std::vector<std::string>& values) {
             while (keyPressed != ENTER_KEY) {
-                navbar::NavBar();
+                navbar::NavBar give_me_a_name;
                 std::cout << question + "\n" << '\n';
                 for (size_t i = 0; i < values.size(); ++i) {
                     if (static_cast<int>(i) == choice) {
@@ -29,9 +29,9 @@ namespace console {
         }
         std::vector<std::string> inputOptions(const std::string& question, const std::vector<std::string>& values) {
             std::vector<std::string> answers;
-            std::cout << question << std::endl;
+            std::cout << question << '\n';
             for (const auto& value : values) {
-                std::string temp = "";
+                std::string temp;
                 if (value == "Password:") {
                     std::cin >> temp;
                     // Read password securely
@@ -86,7 +86,7 @@ namespace console {
             }
         }
 
-        void Executor(bool isAvailable, const std::string& message) {
+        void Executor(const bool is_available, const std::string& message) {
             const std::string RESET = "\033[0m";
             const std::string CYAN = "\033[36m";
             const std::string RED = "\033[31m";
@@ -94,7 +94,7 @@ namespace console {
             const std::string YELLOW = "\033[33m";
 
             std::cout <<YELLOW << "[Query Executor]: ";
-            if (isAvailable) {
+            if (is_available) {
                 std::cout << GREEN << "Available " << message << RESET;
             }
             else {
@@ -151,7 +151,7 @@ namespace console {
                     password += ch;
                 }
             }
-            std::cout << std::endl;
+            std::cout << '\n';
             return password;
         }
     }
@@ -167,7 +167,7 @@ namespace console {
     \|___| \__\|_______|\|__|\|_______|        \|__|\|__|\|__|     \|__|   
           \|__|                                                            
                                                                             By Parishkar Singh                                                                       
-    )" << std::endl;
+    )" << '\n';
         }
         //////////////////////////////////
         void outro() {
@@ -179,7 +179,7 @@ namespace console {
  _| |__/ |_| |_\   |_ _| |_.' / 
 |________|_____|\____|______.'  
                                                                         
-)" << std::endl;
+)" << '\n';
         }
     }
 }

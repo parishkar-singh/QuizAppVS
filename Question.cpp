@@ -3,11 +3,20 @@
 
 namespace entities
 {
-	question_dto::question_dto(const int id, const std::string& text, const std::string& a,
-	                           const std::string& b, const std::string& c,
-	                           const std::string& d, char correct)
-		: question_id(id), question_text(text), option_a(a), option_b(b),
-		option_c(c), option_d(d), correct_option(correct) {}
+	question_dto::question_dto(const std::vector<std::string>& data) {
+		
+		if (data.size() < 7) {
+			throw std::invalid_argument("Insufficient data provided for question_dto ");
+		}
+
+		question_id = std::stoi(data[0]);
+		question_text = data[1];
+		option_a = data[2];
+		option_b = data[3];
+		option_c = data[4];
+		option_d = data[5];
+		correct_option = data[6][0]; 
+	}
 
 	
 	std::vector<std::string> question_dto::convert_to_vector() const
@@ -24,7 +33,7 @@ namespace entities
 	int question_dto::ask_question_and_get_response() const
 	{
 		console::selector::ConsoleSelector selector;
-		int choice = selector.selectOptions(question_text, convert_to_vector());
+		const int choice = selector.select_options(question_text, convert_to_vector());
 		return choice;
 	}
 
