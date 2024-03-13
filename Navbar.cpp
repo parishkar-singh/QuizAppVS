@@ -1,56 +1,29 @@
+#include "Navbar.h"
+
 #include "WhateverItTakes"
+namespace nav {
 
-namespace NAVBAR {
+    NavBar::NavBar()
+    = default;
 
-    NavBar::NavBar() {
+    void NavBar::render_navbar(const std::vector<bool>& status) {
         system("cls");
-        logDatabase();
-        logExecutor();
-        logRole();
-        logUser();
-        printDivider();
-    }
-
-    NavBar::~NavBar() {}
-
-    void NavBar::logDatabase() {
-            console::log::Database(true,"\t") ;
-        
-    }
-
-    void NavBar::logExecutor() {
-        console::log::Executor(EXEC::queryExecutor, "\t");
-    }
-
-    void NavBar::logRole() {
-        if (EXEC::currentUser == nullptr) {
-            console::log::Role("N/A\t ");
-        }
-        else if (EXEC::currentUser->isAdminUser()) {
-        console::log::Role( "Admin\t");
-        }
-        else {
-        console::log::Role( "Student\t");
-        }
-
-    }
-
-    void NavBar::logUser() {
-        if (EXEC::currentUser == nullptr) {
-        console::log::User("N/A \n");
-        }
-        else {
-        console::log::User(EXEC::currentUser->getUsername()+"\n");
+        if (status.size() >= 2) {
+            console::Console::Database(status[0], "\t");
+            console::Console::Executor(status[1], "\t");
+            console::Console::Role("USER\t");
+            console::Console::User("Parishkar\n");
+            print_divider();
         }
     }
-
-    void NavBar::printDivider() {
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
-        GetConsoleScreenBufferInfo(hConsole, &bufferInfo);
-        int terminalWidth = bufferInfo.dwSize.X;
-        std::string divider(terminalWidth - 1, '_');
-        std::cout << divider << std::endl << std::endl;
+   
+    void NavBar::print_divider() {
+        const HANDLE h_console = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_SCREEN_BUFFER_INFO buffer_info;
+        GetConsoleScreenBufferInfo(h_console, &buffer_info);
+        const int terminal_width = buffer_info.dwSize.X;
+        const std::string divider(terminal_width - 1, '_');
+        std::cout << divider << '\n' << '\n';
     }
 
-}
+} // namespace navbar

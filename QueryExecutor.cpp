@@ -1,103 +1,14 @@
 #include "WhateverItTakes"
 
-namespace Query {
+namespace query {
 	QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
-		console::log::Debug("Query Executor loaded \n");
+		console::Console::Debug("Query Executor loaded \n");
 	}
 
 	QueryExecutor::~QueryExecutor() = default;
 
-	bool Query::QueryExecutor::userExists(const std::string& email, const std::string& password) const
+	int QueryExecutor::execute_count_query(const std::string& query) const
 	{
-		bool exists = false;
-		try {
-			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
-			sql::ResultSet* res = stmt->executeQuery(query);
-			if (res->next()) {
-				int count = res->getInt(1);
-				exists = (count > 0);
-			}
-			delete res;
-			delete stmt;
-		}
-		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << '\n';
-		}
-		return exists;
-	}
-
-
-	bool  QueryExecutor::tableExists(const std::string& tableName) const
-	{
-		bool exists = false;
-		try {
-			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '" + tableName + "'";
-			sql::ResultSet* res = stmt->executeQuery(query);
-			if (res->next()) {
-				int count = res->getInt(1);
-				exists = (count > 0);
-			}
-			delete res;
-			delete stmt;
-		}
-		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << '\n';
-		}
-		return exists;
-	}
-	bool QueryExecutor::schemaExists(const std::string& schemaName) {
-		bool exists = false;
-		try {
-			sql::Statement* stmt = connection->createStatement();
-			std::string query = "SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '" + schemaName + "'";
-			sql::ResultSet* res = stmt->executeQuery(query);
-			if (res->next()) {
-				int count = res->getInt(1);
-				exists = (count > 0);
-			}
-			delete res;
-			delete stmt;
-		}
-		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << '\n';
-		}
-		return exists;
-	}
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	 
-	std::vector<std::string> QueryExecutor::getUserQuery(const std::string& query) {
-		std::vector<std::string> userData;
-
-		try {
-			sql::Statement* stmt = connection->createStatement();
-			sql::ResultSet* res = stmt->executeQuery(query);
-			sql::ResultSetMetaData* meta = res->getMetaData();
-
-			int numColumns = meta->getColumnCount();
-
-			if (res->next()) {
-				for (int i = 1; i <= numColumns; ++i) {
-					std::string columnValue = res->getString(i);
-					userData.push_back(columnValue);
-				}
-			}
-
-			delete res;
-			delete stmt;
-		}
-		catch (sql::SQLException& e) {
-			std::cerr << "SQL Exception: " << e.what() << '\n';
-		}
-
-		return userData;
-	}
-
-	 
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
-	int QueryExecutor::executeCountQuery(const std::string& query) {
 		int count = 0;
 		try {
 			sql::Statement* stmt = connection->createStatement();
@@ -113,7 +24,9 @@ namespace Query {
 		}
 		return count;
 	}
-	bool QueryExecutor::executeUpdate(const std::string& query) {
+	// create, update and delete queries
+	bool QueryExecutor::execute_update(const std::string& query) const
+	{
 		try {
 			sql::Statement* stmt = connection->createStatement();
 			stmt->executeUpdate(query);
@@ -126,7 +39,29 @@ namespace Query {
 		}
 	}
 
-	void QueryExecutor::selectQuery(const std::string& query, const bool isQuestions) {
+	bool query::QueryExecutor::user_exists(const std::string& email, const std::string& password) const
+	{
+		bool exists = false;
+		try {
+			sql::Statement* stmt = connection->createStatement();
+			const std::string query = "SELECT COUNT(*) FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
+			sql::ResultSet* res = stmt->executeQuery(query);
+			if (res->next()) {
+				const int count = res->getInt(1);
+				exists = (count > 0);
+			}
+			delete res;
+			delete stmt;
+		}
+		catch (sql::SQLException& e) {
+			std::cerr << "SQL Exception: " << e.what() << '\n';
+		}
+		return exists;
+	}
+
+	// This does not return the headers and mostly this will be used for the DTO conversion
+	std::vector<std::vector<std::string>> QueryExecutor::select_query_convert_into_dto(const std::string& query) const
+	{
 		std::vector<std::vector<std::string>> results;
 
 		try {
@@ -134,20 +69,13 @@ namespace Query {
 			sql::ResultSet* res = stmt->executeQuery(query);
 			sql::ResultSetMetaData* meta = res->getMetaData();
 
-			int numColumns = meta->getColumnCount();
-
-			std::vector<std::string> columnNames;
-			for (int i = 1; i <= numColumns; ++i) {
-				std::string columnName = meta->getColumnLabel(i);
-				columnNames.push_back(columnName);
-			}
-			results.push_back(columnNames);
+			const int num_columns = meta->getColumnCount();
 
 			while (res->next()) {
 				std::vector<std::string> row;
-				for (int i = 1; i <= numColumns; ++i) {
-					std::string columnValue = res->getString(i);
-					row.push_back(columnValue);
+				for (int i = 1; i <= num_columns; ++i) {
+					std::string column_value = res->getString(i);
+					row.push_back(column_value);
 				}
 				results.push_back(row);
 			}
@@ -158,7 +86,73 @@ namespace Query {
 		catch (sql::SQLException& e) {
 			std::cerr << "SQL Exception: " << e.what() << '\n';
 		}
+		printer::Questions(results);
+		return results;
+		//isQuestions ? Printer::Questions(results) : Printer::Table(results);
+	}
+	std::vector<std::string> query::QueryExecutor::get_user_query(const std::string& query) const
+	{
+		std::vector<std::string> user_data;
 
-		isQuestions ? Printer::Questions(results) : Printer::Table(results);
+		try {
+			sql::Statement* stmt = connection->createStatement();
+			sql::ResultSet* res = stmt->executeQuery(query);
+			sql::ResultSetMetaData* meta = res->getMetaData();
+
+			const int num_columns = meta->getColumnCount();
+
+			if (res->next()) {
+				for (int i = 1; i <= num_columns; ++i) {
+					std::string column_value = res->getString(i);
+					user_data.push_back(column_value);
+				}
+			}
+
+			delete res;
+			delete stmt;
+		}
+		catch (sql::SQLException& e) {
+			std::cerr << "SQL Exception: " << e.what() << '\n';
+		}
+
+		return user_data;
+	}
+
+	// Prints the data using the printer module
+	void QueryExecutor::select_query_and_print(const std::string& query,const bool is_question) const
+	{
+		std::vector<std::vector<std::string>> results;
+
+		try {
+			sql::Statement* stmt = connection->createStatement();
+			sql::ResultSet* res = stmt->executeQuery(query);
+			sql::ResultSetMetaData* meta = res->getMetaData();
+
+			const int num_columns = meta->getColumnCount();
+
+			std::vector<std::string> column_names;
+			for (int i = 1; i <= num_columns; ++i) {
+				std::string column_name = meta->getColumnLabel(i);
+				column_names.push_back(column_name);
+			}
+			results.push_back(column_names);
+
+			while (res->next()) {
+				std::vector<std::string> row;
+				for (int i = 1; i <= num_columns; ++i) {
+					std::string column_value = res->getString(i);
+					row.push_back(column_value);
+				}
+				results.push_back(row);
+			}
+
+			delete res;
+			delete stmt;
+		}
+		catch (sql::SQLException& e) {
+			std::cerr << "SQL Exception: " << e.what() << '\n';
+		}
+	
+		is_question ? printer::Questions(results) : printer::Table(results);
 	}
 }

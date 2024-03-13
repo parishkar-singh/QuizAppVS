@@ -1,8 +1,8 @@
 #include "WhateverItTakes"
 
-namespace MYSQL {
+namespace mysql {
     Database* Database::instance = nullptr;
-    Database::Database(std::vector<std::string> creds) : con(nullptr), driver(nullptr), queryExecutor(nullptr) {
+    Database::Database(std::vector<std::string> creds) : driver(nullptr), con(nullptr), query_executor(nullptr) {
         this->server = creds[0];
         this->username = creds[1];
         this->password = creds[2];
@@ -10,7 +10,7 @@ namespace MYSQL {
     }
     Database::~Database() {
         disconnect();
-        delete queryExecutor;
+        delete query_executor;
     }
     // Connections
     bool Database::connect() {
@@ -18,12 +18,12 @@ namespace MYSQL {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
             con->setSchema("test");
-            queryExecutor = new Query::QueryExecutor(con);
-            console::log::Success("Database Connected\n");
+            query_executor = new query::QueryExecutor(con);
+            console::Console::Success("Database Connected\n");
             return true;
         }
         catch (sql::SQLException& e) {
-            std::cerr << "Could not connect to server. Error message: " << e.what() << std::endl;
+            std::cerr << "Could not connect to server. Error message: " << e.what() << '\n';
             return false;
         }
     }
@@ -35,13 +35,14 @@ namespace MYSQL {
         }
     }
     // Getters
-    Database* Database::getInstance(std::vector<std::string> creds) {
+    Database* Database::get_instance(std::vector<std::string> creds) {
         if (!instance) {
             instance = new Database(creds);
         }
         return instance;
     }
-    Query::QueryExecutor* Database::getQueryExecutor() {
-        return queryExecutor;
+    query::QueryExecutor* Database::get_query_executor() const
+    {
+        return query_executor;
     }
 }

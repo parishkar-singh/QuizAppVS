@@ -133,22 +133,22 @@
   <ItemGroup>
     <ClCompile Include="Auth.cpp" />
     <ClCompile Include="ClipLoader.cpp" />
+    <ClCompile Include="CLX.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Bootstrap.cpp" />
+    <ClCompile Include="Entities.cpp" />
     <ClCompile Include="Navbar.cpp" />
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Printer.cpp" />
     <ClCompile Include="QueryExecutor.cpp" />
-    <ClCompile Include="Question.cpp" />
+    <ClCompile Include="Question_DTO.cpp" />
     <ClCompile Include="QuizApp.cpp" />
-    <ClCompile Include="QuizSet.cpp" />
-    <ClCompile Include="Result.cpp" />
-    <ClCompile Include="States.cpp" />
-    <ClCompile Include="Stats.cpp" />
+    <ClCompile Include="Repair.cpp" />
+    <ClCompile Include="Role.cpp" />
     <ClCompile Include="CurrentUser.cpp" />
-    <ClCompile Include="Test.cpp" />
-    <ClCompile Include="Inspector.cpp" />
+    <ClCompile Include="User_DTO.cpp" />
+    <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auth.h" />
@@ -156,18 +156,18 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="Bootstrap.h" />
-    <ClInclude Include="Inspector.h" />
+    <ClInclude Include="Entities.h" />
     <ClInclude Include="Navbar.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="Printer.h" />
-    <ClInclude Include="Result.h" />
-    <ClInclude Include="States.h" />
-    <ClInclude Include="Test.h" />
+    <ClInclude Include="Context.h" />
+    <ClInclude Include="Question_DTO.h" />
+    <ClInclude Include="QuizApp.h" />
+    <ClInclude Include="Repair.h" />
+    <ClInclude Include="Role.h" />
+    <ClInclude Include="Validator.h" />
     <ClInclude Include="WhateverItTakes" />
     <ClInclude Include="QueryExecutor.h" />
-    <ClInclude Include="Question.h" />
-    <ClInclude Include="QuizSet.h" />
-    <ClInclude Include="Stats.h" />
     <ClInclude Include="CurrentUser.h" />
   </ItemGroup>
   <ItemGroup>

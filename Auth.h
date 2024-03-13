@@ -3,16 +3,22 @@
 
 #include <string>
 
-namespace Auth {
+namespace auth {
     class AuthHandler {
     public:
         AuthHandler();
         ~AuthHandler();
-        static std::string hashPassword(const std::string& password);
-        static bool registerUser(const std::string& username,const std::string& email, const std::string& password);
-        static bool authenticateUser(const std::string& email, const std::string& password);
-        static bool updatePassword(const std::string& username,const std::string& userId, const std::string& newPassword);
-        bool userMatchesId(const std::string& username, const std::string& userId);
+        static std::string hash_password(const std::string& password);
+        static bool register_user(const std::string& username,const std::string& email, const std::string& password);
+        static bool authenticate_user(const std::string& email, const std::string& password);
+        static bool update_password(const std::string& username,const std::string& user_id, const std::string& new_password);
+        static bool user_matches_id(const std::string& username, const std::string& user_id);
+    private:
+        std::string generate_user_id();
+
+        bool username_exists(const std::string& username);
+
+        bool email_exists(const std::string& email);
     };
 }
 

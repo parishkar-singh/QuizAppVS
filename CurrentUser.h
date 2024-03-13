@@ -5,25 +5,25 @@
 #include <string>
 #include <vector>
 
-namespace Model {
+namespace model {
     class CurrentUser {
     private:
-        int userId;
+        int user_id;
         std::string email;
         std::string username;
-        bool isAdmin;
+        bool is_admin;
 
     public:
         CurrentUser(const std::vector<std::string>& s);
         ~CurrentUser();
 
-        int getUserId() const { return userId; }
-        const std::string& getEmail() const { return email; }
-        const std::string& getUsername() const { return username; }
-        bool isAdminUser() const { return isAdmin; }
+        [[nodiscard]] int get_user_id() const { return user_id; }
+        [[nodiscard]] const std::string& get_email() const { return email; }
+        [[nodiscard]] const std::string& get_username() const { return username; }
+        [[nodiscard]] bool is_admin_user() const { return is_admin; }
 
-        bool getUserInformation();
-        bool deleteUser(const std::string& email);
+        static bool get_user_information();
+        static bool delete_user(const std::string& email);
     };
 }
 

@@ -1,25 +1,16 @@
 #pragma once
 #ifndef NAVBAR_H
 #define NAVBAR_H
+#include <vector>
 
-#include <iostream>
-#include <string>
-#include <windows.h> 
-
-namespace NAVBAR {
+namespace nav {
 
     class NavBar {
     public:
         NavBar();
-        ~NavBar();
-
-    private:
-        void logDatabase();
-        void logExecutor();
-        void logRole();
-        void logUser();
-
-        void printDivider();
+        static void render_navbar(const std::vector<bool>& status);
+        static void print_divider();
+       
     };
 
 }

@@ -2,26 +2,27 @@
 #define QUERYEXECUTOR_H
 
 #include <cppconn/connection.h>
-#include <cppconn/statement.h>
 #include <cppconn/resultset.h>
+#include <cppconn/statement.h>
 #include <string>
 #include <vector>
 
-namespace Query {
+namespace query {
+
 	class QueryExecutor {
 	private:
 		sql::Connection* connection;
 	public:
-		QueryExecutor(sql::Connection* conn);
+		explicit QueryExecutor(sql::Connection* conn);
 		~QueryExecutor();
 
-		bool userExists(const std::string& username, const std::string& hashPassword) const;
-		bool schemaExists(const std::string& schemaName);
-		bool tableExists(const std::string& tableName) const;
-		bool executeUpdate(const std::string& query);
-		void selectQuery(const std::string& query, bool isQuestions);
-		int executeCountQuery(const std::string& query);
-		std::vector < std::string > getUserQuery(const std::string& query);
+		bool user_exists(const std::string& email, const std::string& password) const;
+		std::vector<std::string> get_user_query(const std::string& query) const;
+		[[nodiscard]] bool execute_update(const std::string& query) const;
+
+		[[nodiscard]] int execute_count_query(const std::string& query) const;
+		[[nodiscard]] std::vector<std::vector<std::string>> select_query_convert_into_dto(const std::string& query) const;
+		void select_query_and_print(const std::string& query, const bool is_question) const;
 	};
 }
 

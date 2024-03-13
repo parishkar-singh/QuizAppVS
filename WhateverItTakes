@@ -2,16 +2,18 @@
 //This file is mainly targetted for cpp file dont include this in .h
 
 ///////////////////////////// Definations
-#define QuizApp int
+#define StartQuizApp int
 #define Credentials char*
 enum Status { App= 0, Memory_Error = -1 };
 #define SELECT_OPTION(selector, ...) selector.selectOption(std::vector<std::string>({__VA_ARGS__}))
 
 // Database Classes
 #include "CurrentUser.h"
-#include "Question.h"
-#include "QuizSet.h"
-#include "Result.h"
+
+// DTOS
+#include "Question_DTO.h"
+
+
 
 ///////////////////////////// c and windows headers
 #include <conio.h>
@@ -21,13 +23,18 @@ enum Status { App= 0, Memory_Error = -1 };
 //////////////////////////// .h libraries
 #include "Auth.h"
 #include "Bootstrap.h"
-#include "Console.h"
-#include "Inspector.h"
-#include "Database.h"
-#include "QueryExecutor.h"
 #include "ClipLoader.h"
-#include "Printer.h"
+#include "Console.h"
+#include "Database.h"
+#include "Entities.h"
 #include "Navbar.h"
+#include "Navigator.h"
+#include "Printer.h"
+#include "QueryExecutor.h"
+
+// Utils
+#include "Repair.h"
+#include "Validator.h"
 
 /////////////////////////// STL and Native Libraries
 #include <chrono>

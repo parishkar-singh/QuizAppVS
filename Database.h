@@ -2,16 +2,15 @@
 #define DATABASE_H
 
 #include "QueryExecutor.h"
-#include "Bootstrap.h"
 #include <cppconn/driver.h>
 #include <string>
 
-namespace MYSQL {
+namespace mysql {
     class Database {
     private:
         sql::Driver* driver;
         sql::Connection* con;
-        Query::QueryExecutor* queryExecutor;
+        query::QueryExecutor* query_executor;
         std::string server;
         std::string username;
         std::string password;
@@ -20,8 +19,8 @@ namespace MYSQL {
         void disconnect();
 
     public:
-        static Database* getInstance(std::vector<std::string> creds);
-        Query::QueryExecutor* getQueryExecutor();
+        static Database* get_instance(std::vector<std::string> creds);
+        query::QueryExecutor* get_query_executor() const;
 
         ~Database();
 
