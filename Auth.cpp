@@ -13,7 +13,7 @@ namespace auth {
 		switch (choice) {
 
 		case 0: {
-			navbar::NavBar give_me_a_name;
+			nav::NavBar give_me_a_name;
 			std::cout << "Enter Credentials to Login: " << '\n';
 			std::string email, password;
 			std::cout << "Email: ";
@@ -33,7 +33,7 @@ namespace auth {
 		}
 		case 1:
 		{
-			navbar::NavBar give_me_a_name;
+			nav::NavBar give_me_a_name;
 			std::cout << "Enter Credentials to Register:" << '\n';
 			std::string username, email, password;
 			std::cout << "Username:";
@@ -47,7 +47,7 @@ namespace auth {
 			break;
 		}
 		case 2: {
-			navbar::NavBar give_me_a_name;
+			nav::NavBar give_me_a_name;
 			std::cout << "Enter Required Details to reset:" << '\n';
 			std::string email, user_id, password;
 			std::cout << "Email: ";

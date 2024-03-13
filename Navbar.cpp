@@ -11,8 +11,8 @@ namespace nav {
         if (status.size() >= 2) {
             console::Console::Database(status[0], "\t");
             console::Console::Executor(status[1], "\t");
-            console::Console::Role("USER");
-            console::Console::User("Parishkar");
+            console::Console::Role("USER\t");
+            console::Console::User("Parishkar\n");
             print_divider();
         }
     }

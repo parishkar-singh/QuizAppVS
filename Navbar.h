@@ -3,7 +3,7 @@
 #define NAVBAR_H
 #include <vector>
 
-namespace navbar {
+namespace nav {
 
     class NavBar {
     public:

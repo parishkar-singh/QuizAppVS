@@ -20,7 +20,7 @@ namespace exec {
 	void print_available() {
 		
 		system("cls");
-		navbar::NavBar give_me_a_name;
+		nav::NavBar give_me_a_name;
 
 		//query_executor->select_query_and_print("select * from computerscience",true);
 		_getch();
