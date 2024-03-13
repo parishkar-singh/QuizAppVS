@@ -7,6 +7,9 @@
 #include <iostream>
 #include "QueryExecutor.h"
 
+namespace vldr
+{
+	
 class Validator {
 private:
     query::QueryExecutor* query_executor = nullptr;
@@ -20,3 +23,5 @@ public:
 };
 
 #endif /* VALIDATOR_H */
+
+}

@@ -4,7 +4,7 @@
 namespace auth {
 	AuthHandler::AuthHandler() {
 		const std::vector<std::string> options = { "Login", "Register user", "Forgot Password" };
-		int choice = console::Console::selector("How would you like to start? ", options);
+		//int choice = console::Console::selector("How would you like to start? ", options);
 		//const int choice = selector.select_options(, options);
 
 		system("cls");
