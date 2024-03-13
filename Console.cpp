@@ -22,6 +22,7 @@ namespace console
 
     int Console::selector(const std::string& question, const std::vector<std::string>& values) {
         while (keyPressed != ENTER_KEY) {
+            system("cls");
             std::cout << question + "\n" << '\n';
             for (size_t i = 0; i < values.size(); ++i) {
                 if (static_cast<int>(i) == choice) {

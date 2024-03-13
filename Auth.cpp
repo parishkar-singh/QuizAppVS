@@ -20,7 +20,7 @@ namespace auth {
 			std::cin >> email;
 			std::cout << "Password: ";
 			std::cin >> password;
-			if (authenticate_user(email, password)) {
+			/*if (authenticate_user(email, password)) {
 				if (const std::vector<std::string> user_data = exec::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
 					exec::current_user = new model::CurrentUser(user_data);
 				}
@@ -28,7 +28,7 @@ namespace auth {
 					exec::current_user = nullptr;
 				}
 			}
-			
+			*/
 			break;
 		}
 		case 1:
@@ -83,13 +83,13 @@ namespace auth {
 
 
 	bool AuthHandler::authenticate_user(const std::string& email, const std::string& password) {
-		if (!exec::query_executor) {
-			std::cerr << "QueryExecutor not initialized." << '\n';
-			return false;
-		}
+		//if (!exec::query_executor) {
+			//std::cerr << "QueryExecutor not initialized." << '\n';
+			//return false;
+		//}
 		try {
 			const std::string hashed_password = hash_password(password);
-			exec::query_executor->user_exists(email, hashed_password);
+			//exec::query_executor->user_exists(email, hashed_password);
 			return true;
 		}
 		catch (const std::exception& e) {
@@ -100,16 +100,16 @@ namespace auth {
 
 
 	bool AuthHandler::register_user(const std::string& username,const std::string & email, const std::string& password) {
-		if (!exec::query_executor) {
+		/*if (!exec::query_executor) {
 			std::cerr << "QueryExecutor not initialized." << '\n';
 			return false;
-		}
+		}*/
 		try {
 			const std::string hashed_password = hash_password(password);
 			const std::string query = "INSERT INTO users (username ,email, password) VALUES ('" + username + "','" + email + "', '" + hashed_password + "')";
-			exec::query_executor->execute_update(query);
+			//exec::query_executor->execute_update(query);
 			const std::string select_query = "SELECT username, userId from users WHERE email = '" + email + "' AND password = '" + hashed_password + "'";
-			exec::query_executor->select_query_and_print(select_query,false);
+			//exec::query_executor->select_query_and_print(select_query,false);
 			return true;
 		}
 		catch (const std::exception& e) {
@@ -121,8 +121,9 @@ namespace auth {
 	bool AuthHandler::user_matches_id(const std::string& username, const std::string& user_id) {
 		try {
 			const std::string query = "SELECT COUNT(*) FROM users WHERE username = '" + username + "' AND userId = '" + user_id + "'";
-			const int count = exec::query_executor->execute_count_query(query);
-			return count > 0;
+			//const int count = exec::query_executor->execute_count_query(query);
+			//return count > 0;
+			return 1;
 		}
 		catch (const std::exception& e) {
 			std::cerr << "Exception occurred while checking if username and userId match: " << e.what() << '\n';
@@ -131,14 +132,14 @@ namespace auth {
 	}
 
 	bool AuthHandler::update_password(const std::string& username, const std::string& user_id, const std::string& new_password) {
-		if (!exec::query_executor) {
+		/*if (!exec::query_executor) {
 			std::cerr << "QueryExecutor not initialized." << '\n';
 			return false;
-		}
+		}*/
 		try {
 			const std::string hashed_password = hash_password(new_password);
 			const std::string query = "UPDATE users SET password = '" + hashed_password + "' WHERE username = '" + username + "'";
-			exec::query_executor->execute_update(query);
+			//exec::query_executor->execute_update(query);
 			std::cout << "Password Reset Success\n";
 			return true;
 		}

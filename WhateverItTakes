@@ -31,7 +31,6 @@ enum Status { App= 0, Memory_Error = -1 };
 #include "Navigator.h"
 #include "Printer.h"
 #include "QueryExecutor.h"
-#include "Test.h"
 
 // Utils
 #include "Repair.h"

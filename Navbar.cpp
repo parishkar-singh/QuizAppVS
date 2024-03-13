@@ -1,7 +1,7 @@
 #include "Navbar.h"
 
 #include "WhateverItTakes"
-namespace navbar {
+namespace nav {
 
     NavBar::NavBar()
     = default;

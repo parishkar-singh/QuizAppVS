@@ -11,18 +11,18 @@ namespace exec {
 		return query_executor;
 	}*/
 
-	/*void initialize(std::vector<std::string> creds) {
+	void initialize(std::vector<std::string> creds) {
 		if (mysql::Database* db_instance = mysql::Database::get_instance(creds)) {
-			query_executor = db_instance->get_query_executor();
+			//query_executor = db_instance->get_query_executor();
 		}
 	}
-	*/
+	
 	void print_available() {
 		
 		system("cls");
 		navbar::NavBar give_me_a_name;
 
-		query_executor->select_query_and_print("select * from computerscience",true);
+		//query_executor->select_query_and_print("select * from computerscience",true);
 		_getch();
 		/*system("cls");
 		NAVBAR::NavBar();
