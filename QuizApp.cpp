@@ -2,6 +2,11 @@
 
 class QuizApp
 {
+	entities::User* current_user=nullptr;
+	query::QueryExecutor* qexec = nullptr;
+
+
+
 
 private:
 public:

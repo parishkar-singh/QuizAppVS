@@ -1,11 +1,14 @@
 #include "WhateverItTakes"
 
+
 namespace auth {
 	AuthHandler::AuthHandler() {
-		console::selector::ConsoleSelector selector;
 		const std::vector<std::string> options = { "Login", "Register user", "Forgot Password" };
-		const int choice = selector.select_options("How would you like to start? ", options);
+		int choice = console::Console::selector("How would you like to start? ", options);
+		//const int choice = selector.select_options(, options);
+
 		system("cls");
+
 		switch (choice) {
 
 		case 0: {
@@ -17,11 +20,10 @@ namespace auth {
 			std::cout << "Password: ";
 			std::cin >> password;
 			if (authenticate_user(email, password)) {
-				if (const std::vector<std::string> user_data = exec::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
+				if (const std::vector<std::string> user_data = query::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
 					exec::current_user = new model::CurrentUser(user_data);
 				}
 				else {
-					// Handle the case where user data is empty
 					exec::current_user = nullptr;
 				}
 			}

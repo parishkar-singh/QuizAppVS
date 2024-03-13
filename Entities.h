@@ -6,7 +6,7 @@
 
 namespace entities {
 	///////////// Questions
-	class question_dto {
+	class Question {
 	private:
 		int question_id;
 		std::string question_text;
@@ -15,15 +15,11 @@ namespace entities {
 		std::string option_c;
 		std::string option_d;
 		char correct_option;
-	public:
-		question_dto(const std::vector<std::string>& data);
-		std::vector<std::string> convert_to_vector() const;
-		int ask_question_and_get_response() const;
-		bool is_correct(char option) const;
+	
 	};
 
 	///////////// Users
-	class user_dto
+	class User
 	{
 	public:
 		int user_id;
@@ -32,7 +28,7 @@ namespace entities {
 		bool is_admin;
 	};
 	///////////// Question Set
-	class question_set_dto
+	class Question_Set
 	{
 	public:
 		int set_id;
@@ -42,7 +38,7 @@ namespace entities {
 
 	};
 	//////////// Result 
-	class result_dto
+	class Result_Dto
 	{
 	public:
 		int result_id;

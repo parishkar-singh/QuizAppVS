@@ -1,6 +1,5 @@
 #include "WhateverItTakes"
 
-
 namespace entities
 {
 	question_dto::question_dto(const std::vector<std::string>& data) {
@@ -32,9 +31,10 @@ namespace entities
 
 	int question_dto::ask_question_and_get_response() const
 	{
-		console::selector::ConsoleSelector selector;
-		const int choice = selector.select_options(question_text, convert_to_vector());
-		return choice;
+		//console::selector::ConsoleSelector selector;
+		//const int choice = selector.select_options(question_text, convert_to_vector());
+		//return choice;
+		return 1;
 	}
 
 	bool question_dto::is_correct(const char option) const {

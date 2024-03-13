@@ -7,12 +7,6 @@ namespace query {
 
 	QueryExecutor::~QueryExecutor() = default;
 
-	
-	 
-	
-
-	 
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	int QueryExecutor::execute_count_query(const std::string& query) const
 	{
 		int count = 0;
@@ -30,6 +24,7 @@ namespace query {
 		}
 		return count;
 	}
+	// create, update and delete queries
 	bool QueryExecutor::execute_update(const std::string& query) const
 	{
 		try {
@@ -55,14 +50,6 @@ namespace query {
 
 			const int num_columns = meta->getColumnCount();
 
-			// Right now ignore the column vector
-			/*std::vector<std::string> column_names;
-			for (int i = 1; i <= num_columns; ++i) {
-				std::string column_name = meta->getColumnLabel(i);
-				column_names.push_back(column_name);
-			}
-			results.push_back(column_names);*/
-
 			while (res->next()) {
 				std::vector<std::string> row;
 				for (int i = 1; i <= num_columns; ++i) {
@@ -82,6 +69,7 @@ namespace query {
 		return results;
 		//isQuestions ? Printer::Questions(results) : Printer::Table(results);
 	}
+
 	// Prints the data using the printer module
 	void QueryExecutor::select_query_and_print(const std::string& query,const bool is_question) const
 	{

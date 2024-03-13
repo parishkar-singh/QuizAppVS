@@ -2,7 +2,7 @@
 
 namespace mysql {
     Database* Database::instance = nullptr;
-    Database::Database(std::vector<std::string> creds) : driver(nullptr), con(nullptr), queryExecutor(nullptr) {
+    Database::Database(std::vector<std::string> creds) : driver(nullptr), con(nullptr), query_executor_(nullptr) {
         this->server = creds[0];
         this->username = creds[1];
         this->password = creds[2];
@@ -10,7 +10,7 @@ namespace mysql {
     }
     Database::~Database() {
         disconnect();
-        delete queryExecutor;
+        delete query_executor_;
     }
     // Connections
     bool Database::connect() {
@@ -18,7 +18,7 @@ namespace mysql {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
             con->setSchema("test");
-            queryExecutor = new query::QueryExecutor(con);
+            query_executor_ = new query::QueryExecutor(con);
             console::log::Success("Database Connected\n");
             return true;
         }
@@ -43,6 +43,6 @@ namespace mysql {
     }
     query::QueryExecutor* Database::get_query_executor() const
     {
-        return queryExecutor;
+        return query_executor_;
     }
 }

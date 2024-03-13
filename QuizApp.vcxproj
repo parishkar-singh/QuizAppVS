@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Auth.cpp" />
     <ClCompile Include="ClipLoader.cpp" />
+    <ClCompile Include="CLX.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Bootstrap.cpp" />
@@ -141,14 +142,14 @@
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Printer.cpp" />
     <ClCompile Include="QueryExecutor.cpp" />
-    <ClCompile Include="Question.cpp" />
+    <ClCompile Include="Question_DTO.cpp" />
     <ClCompile Include="QuizApp.cpp" />
     <ClCompile Include="Repair.cpp" />
     <ClCompile Include="Role.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="CurrentUser.cpp" />
     <ClCompile Include="Test.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="User_DTO.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,8 @@
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="Context.h" />
+    <ClInclude Include="Question_DTO.h" />
+    <ClInclude Include="QuizApp.h" />
     <ClInclude Include="Repair.h" />
     <ClInclude Include="Role.h" />
     <ClInclude Include="Test.h" />

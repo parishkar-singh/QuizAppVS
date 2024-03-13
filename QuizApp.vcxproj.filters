@@ -28,6 +28,12 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{addf670d-e8b4-42dc-8d96-06c8bbcfe78b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DTO">
+      <UniqueIdentifier>{97e5104e-363c-417e-8477-c0cbffa1fd67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DTO">
+      <UniqueIdentifier>{b435f32f-6357-4db9-802d-04b88069a842}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="QuizApp.cpp">
@@ -72,12 +78,6 @@
     <ClCompile Include="Entities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Question.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Role.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,6 +86,15 @@
     </ClCompile>
     <ClCompile Include="Repair.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="User_DTO.cpp">
+      <Filter>Source Files\DTO</Filter>
+    </ClCompile>
+    <ClCompile Include="Question_DTO.cpp">
+      <Filter>Source Files\DTO</Filter>
+    </ClCompile>
+    <ClCompile Include="CLX.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="Repair.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="QuizApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Question_DTO.h">
+      <Filter>Header Files\DTO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

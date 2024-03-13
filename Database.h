@@ -10,7 +10,7 @@ namespace mysql {
     private:
         sql::Driver* driver;
         sql::Connection* con;
-        query::QueryExecutor* queryExecutor;
+        query::QueryExecutor* query_executor;
         std::string server;
         std::string username;
         std::string password;

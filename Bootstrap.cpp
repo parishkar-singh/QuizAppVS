@@ -2,21 +2,21 @@
 // I dont know this may be responsible for the flow of execution not yet decided
 
 namespace exec {
-	model::CurrentUser* current_user = nullptr;
+	/*model::CurrentUser* current_user = nullptr;
 	model::CurrentUser* get_current_user() {
 		return current_user;
 	}
 	query::QueryExecutor* query_executor = nullptr;
 	query::QueryExecutor* get_query_executor() {
 		return query_executor;
-	}
+	}*/
 
-	void initialize(std::vector<std::string> creds) {
+	/*void initialize(std::vector<std::string> creds) {
 		if (mysql::Database* db_instance = mysql::Database::get_instance(creds)) {
 			query_executor = db_instance->get_query_executor();
 		}
 	}
-	
+	*/
 	void print_available() {
 		
 		system("cls");
@@ -30,7 +30,7 @@ namespace exec {
 		_getch();*/
 	}
 	bool bootstrap(std::vector<std::string> creds) {
-		console::art::intro();
+		//console::art::intro();
 		loader::start_progress_bar();
 		std::cout << " Lets go";
 		_getch();
@@ -41,7 +41,7 @@ namespace exec {
 		auth::AuthHandler::AuthHandler();
 		print_available();
 		system("cls");
-		console::art::outro();
+		//console::art::outro();
 		std::cout << "Thank you for trying out...";
 		_getch();
 		system("cls");
