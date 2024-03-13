@@ -11,7 +11,14 @@ namespace console
     const std::string Console::MAGENTA = "\033[35m";
     const std::string Console::CYAN = "\033[36m";
 
-    Console::Console() : KEY_UP(72), KEY_DOWN(80), ENTER_KEY(13), choice(0), keyPressed(0) {}
+    Console::Console() {
+        // Initialize non-static member variables here
+        KEY_UP = 72;
+        KEY_DOWN = 80;
+        ENTER_KEY = 13;
+        choice = 0; // Initialize to default value
+        keyPressed = 0; // Initialize to default value
+    }
 
     int Console::selector(const std::string& question, const std::vector<std::string>& values) {
         while (keyPressed != ENTER_KEY) {

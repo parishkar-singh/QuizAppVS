@@ -3,8 +3,9 @@
 
 namespace auth {
 	AuthHandler::AuthHandler() {
+		console::Console selector;
 		const std::vector<std::string> options = { "Login", "Register user", "Forgot Password" };
-		//int choice = console::Console::selector("How would you like to start? ", options);
+		const int choice = selector.selector("How would you like to start? ", options);
 		//const int choice = selector.select_options(, options);
 
 		system("cls");
@@ -20,7 +21,7 @@ namespace auth {
 			std::cout << "Password: ";
 			std::cin >> password;
 			if (authenticate_user(email, password)) {
-				if (const std::vector<std::string> user_data = query::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
+				if (const std::vector<std::string> user_data = exec::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
 					exec::current_user = new model::CurrentUser(user_data);
 				}
 				else {
@@ -64,6 +65,7 @@ namespace auth {
 
 	}
 	AuthHandler::~AuthHandler() = default;
+
 
 
 	std::string AuthHandler::hash_password(const std::string& password) {

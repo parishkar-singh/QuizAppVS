@@ -23,7 +23,7 @@ namespace loader {
         for (int i = 0; i <= num_bars; ++i) {
             std::cout << "\r|";
             for (int j = 0; j < i; ++j) {
-                std::cout <<console::log::GREEN<< ">"<<console::log::RESET;
+                std::cout << ">";
             }
             for (int j = 0; j < num_bars - i; ++j) {
                 std::cout << " ";

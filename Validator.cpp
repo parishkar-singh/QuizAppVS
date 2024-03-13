@@ -1,5 +1,7 @@
 #include "WhateverItTakes"
 
+using namespace vldr;
+
 bool Validator::validate_email(const std::string& email) {
     const std::regex email_regex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
     return std::regex_match(email, email_regex);
