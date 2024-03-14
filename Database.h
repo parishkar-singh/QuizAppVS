@@ -9,7 +9,7 @@ namespace mysql {
     class Database {
     private:
         sql::Driver* driver;
-        sql::Connection* con;
+        sql::Connection* con=nullptr;
         query::QueryExecutor* query_executor;
         std::string server;
         std::string username;

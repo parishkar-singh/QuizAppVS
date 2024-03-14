@@ -13,13 +13,11 @@ namespace auth {
 		switch (choice) {
 
 		case 0: {
-			//nav::NavBar give_me_a_name;
+				/*App::current_user=*/
+			//nav::NavBar give_me_a_name
 			std::cout << "Enter Credentials to Login: " << '\n';
-			std::string email, password;
-			std::cout << "Email: ";
-			std::cin >> email;
-			std::cout << "Password: ";
-			std::cin >> password;
+			const std::string email=console::Console::input("Enter your email",false);
+			const std::string password=console::Console::input("Enter your email",true);
 			/*if (authenticate_user(email, password)) {
 				if (const std::vector<std::string> user_data = exec::query_executor->get_user_query("SELECT userId, username, email, isAdmin FROM users WHERE email = '" + email + "'"); !user_data.empty()) {
 					exec::current_user = new model::CurrentUser(user_data);
@@ -27,8 +25,8 @@ namespace auth {
 				else {
 					exec::current_user = nullptr;
 				}
-			}
-			*/
+			}*/
+			
 			break;
 		}
 		case 1:

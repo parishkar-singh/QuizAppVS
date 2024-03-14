@@ -1,4 +1,5 @@
-﻿#include "WhateverItTakes"
+﻿
+#include "WhateverItTakes"
 
 
 namespace console
@@ -23,9 +24,7 @@ namespace console
 
 		while (keyPressed != ENTER_KEY) {
 
-			system("cls");
-
-			//nav::NavBar::render_navbar(stats);
+			App::ui->render_navbar(App::get_stats());
 			std::cout << question + "\n" << '\n';
 			for (size_t i = 0; i < values.size(); ++i) {
 				if (static_cast<int>(i) == choice) {
@@ -35,6 +34,7 @@ namespace console
 					std::cout << "   " << values[i] << "\n";
 				}
 			}
+				App::ui->render_bottombar(App::get_actions());
 			keyPressed = _getch(); // Catch the arrow key
 			if (keyPressed == KEY_UP && choice > 0) {
 				choice--; // going up :)
@@ -42,28 +42,21 @@ namespace console
 			else if (keyPressed == KEY_DOWN && choice < static_cast<int>(values.size()) - 1) {
 				choice++; // going down :(
 			}
+			
 		}
 		return choice;
 	}
 
-	std::vector<std::string> Console::input(const std::string& question, const std::vector<std::string>& values) {
-		std::vector<std::string> answers;
+	std::string Console::input(const std::string& question,bool is_password) {
+		App::ui->render_navbar(App::get_stats());
 		std::cout << question << '\n';
-		for (const auto& value : values) {
-			std::string temp;
-			if (value == "Password:") {
-				std::cin >> temp;
-				// Read password securely
-				//temp = getPassword();
-			}
-			else {
-				std::cout << value;
-				std::cin >> temp;
-			}
-			answers.push_back(temp);
+		//App::ui->render_bottombar(App::get_actions());
+		std::string temp;
+		std::cin >> temp;
+		//std::cout << "\033[2J";
+		return temp;
 		}
-		return answers;
-	}
+
 
 	void Console::Success(const std::string& message) {
 		std::cout << GREEN << "[SUCCESS] " << message << RESET;

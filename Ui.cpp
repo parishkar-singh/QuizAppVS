@@ -19,18 +19,33 @@ namespace gui {
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
         const int console_width = csbi.dwSize.X;
+        COORD cursorPos;
 
-        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, csbi.dwSize.Y - 3 });
-
+        // Calculate the length of the bottom bar content
         std::string bottom_bar_content;
         for (const auto& item : bottom_bar_items) {
             bottom_bar_content += item + "  |  ";
         }
+        const int bottom_bar_length = bottom_bar_content.length();
+
+        // Calculate the position to start printing the bottom bar content
+        int start_column = (console_width - bottom_bar_length) / 2;
+        if (start_column < 0) {
+            start_column = 0; // Ensure the content starts at the beginning if it exceeds the console width
+        }
+
+        // Print the bottom bar content
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { (SHORT)start_column, csbi.dwSize.Y - 3 });
         print_divider();
         std::cout << bottom_bar_content;
 
-        std::cout << std::string(console_width - bottom_bar_content.length(), ' ');
+        // Move the cursor to the end of the bottom bar content
+        cursorPos.X = start_column + bottom_bar_length;
+        cursorPos.Y = csbi.dwSize.Y - 3;
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPos);
     }
+
+
 
     void ConsoleUI::print_divider() {
         const HANDLE h_console = GetStdHandle(STD_OUTPUT_HANDLE);

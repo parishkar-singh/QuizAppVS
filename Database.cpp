@@ -18,6 +18,11 @@ namespace mysql {
         try {
             driver = get_driver_instance();
             con = driver->connect(server, username, password);
+            if (con==nullptr)
+            {
+                this->disconnect();
+                return false;
+            }
             con->setSchema("test");
             query_executor = new query::QueryExecutor(con);
             console::Console::Debug("Database Connected\n");

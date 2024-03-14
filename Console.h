@@ -29,7 +29,7 @@ namespace console
 	public:
 		Console();
 		int selector(const std::string& question, const std::vector<std::string>& values);
-		std::vector<std::string> input(const std::string& question, const std::vector<std::string>& values);
+		static std::string input(const std::string& question, const bool is_password);
 
 		static void Success(const std::string& message);
 		static void Warning(const std::string& message);
