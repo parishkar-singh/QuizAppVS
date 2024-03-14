@@ -7,6 +7,7 @@ namespace mysql {
         this->username = creds[1];
         this->password = creds[2];
         connect();
+
     }
     Database::~Database() {
         disconnect();
@@ -19,7 +20,7 @@ namespace mysql {
             con = driver->connect(server, username, password);
             con->setSchema("test");
             query_executor = new query::QueryExecutor(con);
-            console::Console::Success("Database Connected\n");
+            console::Console::Debug("Database Connected\n");
             return true;
         }
         catch (sql::SQLException& e) {

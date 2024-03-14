@@ -3,6 +3,9 @@ using namespace rpr;
 
 Repair::Repair(query::QueryExecutor* executor) : query_executor(executor) {}
 
+/// <summary>
+/// This is only for the open source version.
+/// </summary>
 void Repair::fix_schema() const
 {
 	query_executor->execute_update("CREATE SCHEMA test");

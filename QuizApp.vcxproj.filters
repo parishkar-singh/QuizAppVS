@@ -60,7 +60,7 @@
     <ClCompile Include="ClipLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Navbar.cpp">
+    <ClCompile Include="Ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Printer.cpp">
@@ -86,9 +86,6 @@
     </ClCompile>
     <ClCompile Include="Question_DTO.cpp">
       <Filter>Source Files\DTO</Filter>
-    </ClCompile>
-    <ClCompile Include="CLX.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,13 +113,10 @@
     <ClInclude Include="ClipLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Navbar.h">
+    <ClInclude Include="Ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Printer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Navigator.h">
