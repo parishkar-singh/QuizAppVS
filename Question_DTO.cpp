@@ -21,6 +21,8 @@ namespace DTO {
     }
 
     int QuestionDTO::ask_question_and_get_response() const {
+        
+
         return 1; 
     }
 

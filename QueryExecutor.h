@@ -19,7 +19,6 @@ namespace query {
 		bool user_exists(const std::string& email, const std::string& password) const;
 		std::vector<std::string> get_user_query(const std::string& query) const;
 		[[nodiscard]] bool execute_update(const std::string& query) const;
-
 		[[nodiscard]] int execute_count_query(const std::string& query) const;
 		[[nodiscard]] std::vector<std::vector<std::string>> select_query_convert_into_dto(const std::string& query) const;
 		void select_query_and_print(const std::string& query, const bool is_question) const;

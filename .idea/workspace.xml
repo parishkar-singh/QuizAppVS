@@ -21,9 +21,12 @@
     <list default="true" id="07453963-7c3a-4f8c-a37f-7f7382bf7b93" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Auth.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Auth.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Console.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Console.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Console.h" beforeDir="false" afterPath="$PROJECT_DIR$/Console.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QueryExecutor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/QueryExecutor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repair.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Repair.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Database.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database.h" beforeDir="false" afterPath="$PROJECT_DIR$/Database.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuizApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/QuizApp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuizApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/QuizApp.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,9 +75,9 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -90,6 +93,7 @@
       <workItem from="1709884825534" duration="15000" />
       <workItem from="1710074438251" duration="621000" />
       <workItem from="1710237997705" duration="67000" />
+      <workItem from="1710413116853" duration="22000" />
     </task>
     <servers />
   </component>

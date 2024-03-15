@@ -2,10 +2,6 @@
 //This file is mainly targetted for cpp file dont include this in .h
 
 ///////////////////////////// Definations
-#define StartQuizApp int
-#define Credentials char*
-enum Status { App= 0, Memory_Error = -1 };
-#define SELECT_OPTION(selector, ...) selector.selectOption(std::vector<std::string>({__VA_ARGS__}))
 
 // Database Classes
 #include "CurrentUser.h"
@@ -27,10 +23,12 @@ enum Status { App= 0, Memory_Error = -1 };
 #include "Console.h"
 #include "Database.h"
 #include "Entities.h"
-#include "Navbar.h"
+#include "Ui.h"
 #include "Navigator.h"
 #include "Printer.h"
 #include "QueryExecutor.h"
+#include "QuizApp.h"
+#include "QuizSession.h"
 
 // Utils
 #include "Repair.h"

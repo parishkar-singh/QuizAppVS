@@ -5,20 +5,35 @@
 #include "Database.h"
 #include "Navigator.h"
 #include "QueryExecutor.h"
+#include "Ui.h"
+#include "CurrentUser.h"
 
-class QuizApp {
-
-private:
-	entities::User* current_user = nullptr;
-	query::QueryExecutor* query_executor = nullptr;
-	mysql::Database* instance = nullptr;
-	console::Console* IO = nullptr;
-	navigation::Navigator* page = nullptr;
+/// <summary>
+/// 1. Create a separate thread for database connection
+///	2. Retrieve the current page from the navigator
+///	3. Create template for navigator 
+/// </summary>
+class App
+{
 
 public:
-	const static std::vector<bool>  get_stats();
-	void connect_to_database();
-	void start_validation_and_diagnosis();
 
+	static query::QueryExecutor* query_executor ;
+	static mysql::Database* connection ;
+	static model:: CurrentUser* current_user ;
+	static navigation::Navigator* page ;
+	static gui::ConsoleUI* ui ;
+	static console::Console* io_ops ;
+	// Constructor 
+	explicit App(const std::vector<std::string>&);
+	// functions
+	static void start_validation_and_diagnosis();
+	// non statics
+	static void connect_to_database(const std::vector<std::string>& credentials);
+	// library
+	static void get_console_ui();
+	static void get_io_library();
+	[[maybe_unused]] [[nodiscard]] static  std::vector<bool> get_stats()  ;
+	[[maybe_unused]] [[nodiscard]] static  std::vector<std::string>  get_actions();
 
 };
