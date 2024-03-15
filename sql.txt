@@ -6,53 +6,27 @@ CREATE TABLE Users (
     isAdmin BOOLEAN NOT NULL DEFAULT 0
 );
 
-CREATE TABLE Geography (
+
+CREATE TABLE Questions (
     questionId INT AUTO_INCREMENT PRIMARY KEY,
     questionText TEXT NOT NULL,
     optionA VARCHAR(255) NOT NULL,
     optionB VARCHAR(255) NOT NULL,
     optionC VARCHAR(255) NOT NULL,
     optionD VARCHAR(255) NOT NULL,
-    correctOption CHAR(1) NOT NULL
+    correctOption CHAR(1) NOT NULL,
+    category ENUM('Geography', 'ComputerScience', 'History') NOT NULL
 );
 
-CREATE TABLE ComputerScience (
-    questionId INT AUTO_INCREMENT PRIMARY KEY,
-    questionText TEXT NOT NULL,
-    optionA VARCHAR(255) NOT NULL,
-    optionB VARCHAR(255) NOT NULL,
-    optionC VARCHAR(255) NOT NULL,
-    optionD VARCHAR(255) NOT NULL,
-    correctOption CHAR(1) NOT NULL
-);
-
-CREATE TABLE History (
-    questionId INT AUTO_INCREMENT PRIMARY KEY,
-    questionText TEXT NOT NULL,
-    optionA VARCHAR(255) NOT NULL,
-    optionB VARCHAR(255) NOT NULL,
-    optionC VARCHAR(255) NOT NULL,
-    optionD VARCHAR(255) NOT NULL,
-    correctOption CHAR(1) NOT NULL
-);
-
-CREATE TABLE QuestionsSet (
-    setId INT AUTO_INCREMENT PRIMARY KEY,
-    setName VARCHAR(50) NOT NULL,
-    category ENUM('Geography', 'ComputerScience', 'History') NOT NULL,
-    adminId INT NOT NULL, -- Admin who set the paper
-    FOREIGN KEY (adminId) REFERENCES Users(userId)
-);
-
-
-CREATE TABLE Result (
+CREATE TABLE Results (
     resultId INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
-    setId INT NOT NULL,
+    questionId INT NOT NULL,
     score INT NOT NULL,
     FOREIGN KEY (userId) REFERENCES Users(userId),
-    FOREIGN KEY (setId) REFERENCES QuestionsSet(setId)
+    FOREIGN KEY (questionId) REFERENCES Questions(questionId)
 );
+
 
 INSERT INTO Users (username, email, password, isAdmin) VALUES 
 ('admin', 'admin@example.com', 'admin123', 1),

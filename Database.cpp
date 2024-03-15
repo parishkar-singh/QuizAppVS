@@ -25,7 +25,7 @@ namespace mysql {
             }
             con->setSchema("test");
             query_executor = new query::QueryExecutor(con);
-            console::Console::Debug("Database Connected\n");
+            //console::Console::Debug("Database Connected\n");
             return true;
         }
         catch (sql::SQLException& e) {

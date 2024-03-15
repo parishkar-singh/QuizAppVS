@@ -2,11 +2,12 @@
 
 namespace query {
 	QueryExecutor::QueryExecutor(sql::Connection* conn) : connection(conn) {
-		console::Console::Debug("Query Executor loaded \n");
+		//console::Console::Debug("Query Executor loaded \n");
 	}
 
 	QueryExecutor::~QueryExecutor() = default;
 
+	
 	int QueryExecutor::execute_count_query(const std::string& query) const
 	{
 		int count = 0;

@@ -6,6 +6,7 @@
 #include "Navigator.h"
 #include "QueryExecutor.h"
 #include "Ui.h"
+#include "CurrentUser.h"
 
 /// <summary>
 /// 1. Create a separate thread for database connection
@@ -19,7 +20,7 @@ public:
 
 	static query::QueryExecutor* query_executor ;
 	static mysql::Database* connection ;
-	static entities::User* current_user ;
+	static model:: CurrentUser* current_user ;
 	static navigation::Navigator* page ;
 	static gui::ConsoleUI* ui ;
 	static console::Console* io_ops ;

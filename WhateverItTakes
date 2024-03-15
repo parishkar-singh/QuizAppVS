@@ -28,6 +28,7 @@
 #include "Printer.h"
 #include "QueryExecutor.h"
 #include "QuizApp.h"
+#include "QuizSession.h"
 
 // Utils
 #include "Repair.h"

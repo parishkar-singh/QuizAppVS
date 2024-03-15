@@ -20,7 +20,6 @@ namespace console
 		keyPressed(0) {};
 
 	int Console::selector(const std::string& question, const std::vector<std::string>& values) {
-		std::vector<bool> stats{ true, true, true, true };
 
 		while (keyPressed != ENTER_KEY) {
 

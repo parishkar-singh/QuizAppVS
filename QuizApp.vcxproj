@@ -137,6 +137,7 @@
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Bootstrap.cpp" />
     <ClCompile Include="Entities.cpp" />
+    <ClCompile Include="QuizSession.cpp" />
     <ClCompile Include="Ui.cpp" />
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Printer.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="Bootstrap.h" />
     <ClInclude Include="Entities.h" />
+    <ClInclude Include="QuizSession.h" />
     <ClInclude Include="Ui.h" />
     <ClInclude Include="Navigator.h" />
     <ClInclude Include="Printer.h" />
